@@ -25,9 +25,43 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/style.css",
+              "src/assets/css/assets.css",
+              "src/assets/css/typography.css",
+              "src/assets/css/color/color-1.css",
+              "src/assets/css/shortcodes/shortcodes.css",
+              "src/assets/vendors/revolution/css/layers.css",
+              "src/assets/vendors/revolution/css/settings.css",
+              "src/assets/vendors/revolution/css/navigation.css"
             ],
-            "scripts": []
+            "scripts": ["src/assets/js/jquery.min.js",
+              "src/assets/vendors/bootstrap/js/popper.min.js",
+              "src/assets/vendors/bootstrap/js/bootstrap.min.js",
+              "src/assets/vendors/bootstrap-select/bootstrap-select.min.js",
+              "src/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js",
+              "src/assets/vendors/magnific-popup/magnific-popup.js",
+              "src/assets/vendors/counter/waypoints-min.js",
+              "src/assets/vendors/counter/counterup.min.js",
+              "src/assets/vendors/imagesloaded/imagesloaded.js",
+              "src/assets/vendors/masonry/masonry.js",
+              "src/assets/vendors/masonry/filter.js",
+              "src/assets/vendors/owl-carousel/owl.carousel.js",
+              "src/assets/js/functions.js",
+              "src/assets/js/contact.js",
+              "src/assets/vendors/switcher/switcher.js",
+              "src/assets/vendors/revolution/js/jquery.themepunch.tools.min.js",
+              "src/assets/vendors/revolution/js/jquery.themepunch.revolution.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.actions.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.carousel.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.migration.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.parallax.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js",
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.video.min.js",
+              "src/assets/js/admin.js"]
           },
           "configurations": {
             "production": {
@@ -94,5 +128,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "13ac6920-06ff-43e3-87ee-eb85dc23e94b"
   }
 }
