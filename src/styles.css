@@ -1,1 +1,86 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+
+    /**
+     * colors
+     */
+  
+        --rich-black-fogra-29_50: hsl(210, 26%, 11%, 0.5);
+          --rich-black-fogra-29-1: #08243C;
+          --rich-black-fogra-29-2: #08243C;
+          --silver-metallic: #888888;
+          --coquelicot_20: hsla(12, 98%, 52%, 0.2);
+          --coquelicot_10: hsla(12, 98%, 52%, 0.1);
+          --sonic-silver: #08243C;
+          --cadet-gray: #E0F1FF;
+          --light-gray: #FF5A5A;
+          --coquelicot: #008AFF;
+          --gainsboro: #50C49C;
+          --white_20: hsl(0, 0%, 100%, 0.2);
+          --white_10: hsl(0, 0%, 100%, 0.1);
+          --black_10: hsl(0, 0%, 0%, 0.1);
+          --white: #E0F1FF;
+  
+    /**
+     * typography
+     */
+  
+    --ff-catamaran: 'Catamaran', sans-serif;
+    --ff-rubik: 'Rubik', sans-serif;
+  
+    --fs-1: 3.8rem;
+    --fs-2: 3rem;
+    --fs-3: 2.5rem;
+    --fs-4: 2rem;
+    --fs-5: 1.8rem;
+    --fs-6: 1.5rem;
+  
+    --fw-900: 900;
+    --fw-800: 800;
+    --fw-700: 700;
+    --fw-500: 500;
+  
+    /**
+     * spacing
+     */
+  
+    --section-padding: 80px;
+  
+    /**
+     * shadow
+     */
+  
+    --shadow-1: 0 0 20px var(--black_10);
+    --shadow-2: 0px 10px 24px var(--coquelicot_20);
+  
+    /**
+     * border radius
+     */
+  
+    --radius-10: 10px;
+    --radius-8: 8px;
+    --radius-5: 5px;
+  
+    /**
+     * transition
+     */
+  
+    --transition-1: 0.25s ease;
+    --transition-2: 0.5s ease;
+    --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+    --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+  
+  }
+
+html {
+    font-family: var(--ff-rubik);
+    font-size: 10px;
+    scroll-behavior: smooth;
+  }
+  
+body {
+    background-color: var(--white);
+    color: var(--sonic-silver);
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+  
