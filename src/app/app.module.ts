@@ -19,6 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { WhatPeopleSayComponent } from './components/what-people-say/what-people-say.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MultiStepFormComponent } from './components/multi-step-form/multi-step-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -38,11 +40,13 @@ import { AppRoutingModule } from './app-routing.module';
     ProgramComponent,
     RegisterComponent,
     StatisticsComponent,
-    WhatPeopleSayComponent
+    WhatPeopleSayComponent,
+    MultiStepFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
