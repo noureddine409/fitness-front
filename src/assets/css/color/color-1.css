@@ -20,7 +20,7 @@
 .pagination-bx.primary .pagination>li>span,
 button.back-to-top,
 .rev-btn {
-    background-color: #4c1864;
+    background-color: #a0ebfc;
 }
 
 /*Hex color :hover */
@@ -162,7 +162,7 @@ button.back-to-top,
 .recent-news-carousel .owl-nav .owl-prev,
 .testimonial-carousel .owl-nav .owl-next,
 .testimonial-carousel .owl-nav .owl-prev {
-    background-color: #f7b205;
+    background-color: var(--primary);
     color: #000;
 }
 
