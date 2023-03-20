@@ -156,12 +156,7 @@
 	margin-top: 0px;
 	margin-right: 2px;
 }
-.header-lang-bx .flag.flag-uk:after{
-	background-image:url(../images/flag/united-kingdom.svg);
-}
-.header-lang-bx .flag.flag-us:after{
-	background-image:url(../images/flag/united-states-of-america.svg);
-}
+
 @media only screen and (max-width: 767px) {
     .secondary-menu {
         margin-right: 5px;
@@ -431,7 +426,7 @@
 .menu-links .nav > li.active > a,
 .menu-links .nav > li.current-menu-item > a {
     background-color: transparent;
-    color: #EFBB20;
+    color: #96907d;
 }
 .menu-links .nav > li:hover > a {
     color: #EFBB20;
@@ -1144,51 +1139,7 @@
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
-/*========================
-	8. PAGE BANNER
-=========================*/
-/*.page-banner {
-    height: 300px;
-    background-size: cover;
-    background-position: center center;
-    display: table;
-    width: 100%;
-	text-align:left;
-}
-.page-banner .container {
-    display: table;
-    height: 100%;
-}
-.page-banner-entry {
-    display: table-cell;
-    vertical-align: middle;
-	text-align: center;
-}
-.page-banner-entry.align-m {
-    vertical-align: middle;
-}
-.page-banner h1 {
-	font-weight:600;
-	font-size:40px;
-	margin-bottom: 0;
-}
-.breadcrumb-row ul li a{
-	color:#000;
-}
-@media only screen and (max-width: 767px) {
-	.page-banner-entry{
-		vertical-align: middle;
-	}
-	.page-banner{
-		padding-bottom: 0;
-		height: 200px;
-	}
-	.page-banner h1{
-		line-height: 24px;
-		font-size: 20px;
-		text-align:center;
-	}
-}*/
+
 /*========================
 	9. BLOG
 =========================*/
@@ -2191,14 +2142,7 @@ button.back-to-top {
 	padding-bottom:50px;
 }
 /*   */
-.ovpr-dark:after{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff5e14+0,ff8e14+100 */
-background: #ff5e14; /* Old browsers */
-background: -moz-linear-gradient(45deg, #ff5e14 0%, #ff8e14 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(45deg, #ff5e14 0%,#ff8e14 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(45deg, #ff5e14 0%,#ff8e14 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', endColorstr='#ff8e14',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
+
 /* Event Box */
 .event-bx{
 	box-shadow:0 0 15px 0 rgba(29,25,0,0.25);
@@ -2269,7 +2213,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 .upcoming-event-carousel.owl-btn-1 .owl-next{
 	margin: 0 100px !important;
     font-size: 20px;
-    background-color: var(--primary);
+    background-color: var(--sec-c);
     width: 50px;
     height: 50px;
     line-height: 50px;
@@ -2277,7 +2221,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 }
 .upcoming-event-carousel.owl-btn-1 .owl-prev:hover,
 .upcoming-event-carousel.owl-btn-1 .owl-next:hover{
-	background-color: var(--sc-primary);
+	background-color: var(--sec-c);
 }
 /* Testimonials */
 .testimonial-bx{
@@ -2322,16 +2266,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 	color:#000;
 	font-size:15px;
 }
-.ovbl-middle:after,
-.ovbl-light:after,
-.ovbl-dark:after{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#391800+0,001739+38,321001+71,011e32+100 */
-background: #391800; /* Old browsers */
-background: -moz-linear-gradient(left, #391800 0%, #001739 38%, #321001 71%, #011e32 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, #391800 0%,#001739 38%,#321001 71%,#011e32 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, #391800 0%,#001739 38%,#321001 71%,#011e32 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', endColorstr='#011e32',GradientType=1 ); /* IE6-9 */
-}
+
 .our-story{
 	position:relative;
 	z-index: 1;

@@ -144,13 +144,13 @@
 	font-family: rubik;
 }
 .btn {
-    background-color: #EFBB20;
+    background-color: #008AFF;
 }
 .btn:active,
 .btn:hover,
 .btn:focus,
 .active > .btn {
-    background-color: #d8a409;
+    background-color: #08243C;
     color: #fff;
 }
 .btn-secondry {
