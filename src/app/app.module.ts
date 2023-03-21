@@ -20,7 +20,10 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { WhatPeopleSayComponent } from './components/what-people-say/what-people-say.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MultiStepFormComponent } from './components/multi-step-form/multi-step-form.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RegistrationService} from "./services/registration/registration.service";
+import {HttpClientModule} from "@angular/common/http";
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +44,18 @@ import {ReactiveFormsModule} from "@angular/forms";
     RegisterComponent,
     StatisticsComponent,
     WhatPeopleSayComponent,
-    MultiStepFormComponent
+    MultiStepFormComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
-  ],
-  providers: [],
+    ReactiveFormsModule,
+    HttpClientModule
+//...
+
+],
+  providers: [RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
