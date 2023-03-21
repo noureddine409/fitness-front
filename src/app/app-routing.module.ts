@@ -11,8 +11,10 @@ import {ContactComponent} from "./components/contact/contact.component";
 import {ForgetPasswordComponent} from "./components/forget-password/forget-password.component";
 import {BlogsComponent} from "./components/blogs/blogs.component";
 
+
+
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'our-programs', component: OurProgramsComponent },
   { path: 'our-trainers', component: OurTrainersComponent },
