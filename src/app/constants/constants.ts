@@ -10,7 +10,7 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         name: "firstName",
         type: "text",
         label: "first name",
-      },{
+      }, {
         name: "lastName",
         type: "text",
         label: "last name"
@@ -39,7 +39,7 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         name: "city",
         type: "text",
         label: "city"
-      },{
+      }, {
         name: "country",
         type: "text",
         label: "country"
@@ -48,6 +48,11 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         name: "postalCode",
         type: "number",
         label: "postal code"
+      },
+      {
+        name: "street",
+        type: "text",
+        label: "street"
       }
     ]
   },
@@ -58,7 +63,7 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         type: "number",
         label: "your height"
 
-      },{
+      }, {
         name: "weight",
         type: "number",
         label: "your weight"
@@ -71,3 +76,11 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
     ]
   }
 ]
+
+
+export const ERROR_MESSAGES = {
+  REGISTER: {
+    REGISTRATION_FAILED_ALREADY_EXISTS: "Registration failed: Email already in use. Please use a different email or log in.",
+    REGISTRATION_FAILED: "Registration failed: We're sorry, but we were unable to register your account."
+  }
+}
