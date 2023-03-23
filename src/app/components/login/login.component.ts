@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/authentication/auth.service";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {TokenRequest} from "../../models/token-request.model";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,10 @@ export class LoginComponent implements OnInit {
 
   isLoginFailed = false
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenStorageService: TokenStorageService) {
+  user!: any;
+  loggedIn!: boolean;
+
+  constructor(private socialAuthService: SocialAuthService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -28,6 +33,23 @@ export class LoginComponent implements OnInit {
         password: this.formBuilder.control(null, Validators.required)
       }
     )
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      if (this.loggedIn) {
+        this.authService.googleLogin(this.user.idToken).subscribe(
+          data => {
+            this.tokenStorageService.saveToken(data.accessToken.token);
+            this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
+          },
+          error => {
+            this.errorMessage = error.message;
+            this.isLoginFailed = true;
+          }
+        )
+      }
+    });
   }
 
   getErrorMessage(errors: any) {
