@@ -25,6 +25,7 @@ import {RegistrationService} from "./services/registration/registration.service"
 import {HttpClientModule} from "@angular/common/http";
 import {AlertComponent} from './components/alert/alert.component';
 import {
+  FacebookLoginProvider,
   GoogleLoginProvider,
   GoogleSigninButtonModule,
   SocialAuthServiceConfig,
@@ -64,23 +65,25 @@ import {environment} from "./environements/environements";
 //...
 
   ],
-  providers: [RegistrationService, {
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(
-            environment.google_id
-          )
-        }
-      ],
-      onError: (err) => {
-        console.error(err);
-      }
-    } as SocialAuthServiceConfig,
-  }],
+  providers: [RegistrationService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.google_id
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(environment.facebook_id),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

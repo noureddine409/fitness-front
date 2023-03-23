@@ -3,8 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/authentication/auth.service";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
-import {TokenRequest} from "../../models/token-request.model";
+import {FacebookLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -38,16 +37,32 @@ export class LoginComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
       if (this.loggedIn) {
-        this.authService.googleLogin(this.user.idToken).subscribe(
-          data => {
-            this.tokenStorageService.saveToken(data.accessToken.token);
-            this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
-          },
-          error => {
-            this.errorMessage = error.message;
-            this.isLoginFailed = true;
-          }
-        )
+        if (user.provider === "GOOGLE"){
+          this.authService.googleLogin(this.user.idToken).subscribe(
+            data => {
+              this.tokenStorageService.saveToken(data.accessToken.token);
+              this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
+            },
+            error => {
+              this.errorMessage = error.message;
+              this.isLoginFailed = true;
+            }
+          )
+        }
+        if ( user.provider === "FACEBOOK" ) {
+          alert(user.firstName)
+          alert(user.authToken)
+          this.authService.facebookLogin(this.user.authToken).subscribe(
+            data => {
+              this.tokenStorageService.saveToken(data.accessToken.token);
+              this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
+            },
+            error => {
+              this.errorMessage = error.message;
+              this.isLoginFailed = true;
+            }
+          )
+        }
       }
     });
   }
@@ -89,4 +104,9 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+  signInWithFB() {
+      this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
 }
