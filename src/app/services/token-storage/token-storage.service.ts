@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
+import {REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../constants/constants";
+import {Token} from "../../models/token.model";
 
-const TOKEN_KEY = 'auth-token';
-const REFRESHTOKEN_KEY = 'auth-refreshtoken';
-const USER_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,40 +16,30 @@ export class TokenStorageService {
     localStorage.clear();
   }
 
-  public saveToken(token: string): void {
+  public saveToken(token: Token): void {
     localStorage.removeItem(TOKEN_KEY);
-    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+  }
 
-    const user = this.getUser();
-    if (user.id) {
-      this.saveUser({...user, accessToken: token});
+  public getToken(type: string): Token | null {
+    const tokenExist = localStorage.getItem(type);
+    if (tokenExist === null) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(tokenExist);
+    } catch (e) {
+      console.error('Error parsing token:', e);
+      return null;
     }
   }
 
-  public getToken(): string | null {
-    return localStorage.getItem(TOKEN_KEY);
+
+  public saveRefreshToken(token: Token): void {
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
+    localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(token));
   }
 
-  public saveRefreshToken(token: string): void {
-    localStorage.removeItem(REFRESHTOKEN_KEY);
-    localStorage.setItem(REFRESHTOKEN_KEY, token);
-  }
 
-  public getRefreshToken(): string | null {
-    return localStorage.getItem(REFRESHTOKEN_KEY);
-  }
-
-  public saveUser(user: any): void {
-    localStorage.removeItem(USER_KEY);
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-
-  public getUser(): any {
-    const user = localStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
-
-    return {};
-  }
 }
