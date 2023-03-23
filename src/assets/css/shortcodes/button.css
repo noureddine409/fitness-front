@@ -113,13 +113,13 @@
     color: hsl(0, 0%, 100%);
 }
 /* Bootstrap Btn Size */
-.btn-group-lg > .btn, 
+.btn-group-lg > .btn,
 .btn-lg {
     border-radius:4px;
     font-size:20px;
     padding: 12px 24px;
 }
-.btn-group-sm > 
+.btn-group-sm >
 .btn, .btn-sm {
     border-radius: 3px;
     font-size: 12px;
@@ -150,7 +150,7 @@
 .btn:hover,
 .btn:focus,
 .active > .btn {
-    background-color: #08243C;
+    background-color: #ec882B;
     color: #fff;
 }
 .btn-secondry {
@@ -1272,7 +1272,7 @@
     outline: none !important;
 	background: transparent;
 	padding:0;
-	
+
 }
 .feature-filters li input {
     display: none;

@@ -3,6 +3,9 @@ import {Step} from "../models/step.model";
 export const API_URL = 'https://localhost:8080/';
 export const DEFAULT_LANGUAGE = 'en';
 
+
+export const TOKEN_KEY = 'auth-token';
+export const REFRESH_TOKEN_KEY = 'auth-refresh-token';
 export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
   {
     fields: [
