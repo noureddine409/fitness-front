@@ -6,8 +6,4 @@ import { Injectable } from '@angular/core';
 export class UserService {
 
   constructor() { }
-
-  getUserById (id: number): Obser {
-
-  }
 }
