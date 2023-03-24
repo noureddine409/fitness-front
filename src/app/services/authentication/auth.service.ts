@@ -33,14 +33,22 @@ export class AuthService {
   }
 
 
-  refreshToken(refreshToken: Token): Observable<any> {
+  isTokenExpired( token: Token | null): boolean {
+    if (token) {
+      let tokenExpirationDate = token.expiredIn;
+      const date: Date = new Date(tokenExpirationDate);
+      const currentTime = new Date();
+      return date < currentTime;
+    }
+    return true;
+  }
+  refreshToken(refreshToken: string): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': `${refreshToken.tokenType} ${refreshToken.token}`
+      Authorization: `Bearer ${refreshToken}`
     });
 
-    return this.http.post<any>(REFRESH_TOKEN_API, null, {headers});
+    return this.http.post<any>(REFRESH_TOKEN_API, null, { headers });
   }
-
   facebookLogin(facebookToken: String): Observable<any> {
     const body = {value: facebookToken};
     const headers = new HttpHeaders(CONTENT_TYPE_HEADER);
