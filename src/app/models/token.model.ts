@@ -4,8 +4,8 @@ export interface Token {
 
   token: string;
   tokenType: string;
-  createdAt: Timestamp<string>;
-  expiredIn: Timestamp<string>;
+  createdAt: string;
+  expiredIn: string;
 
 
 }

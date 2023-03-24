@@ -82,7 +82,6 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-
     this.submitted = true
 
     if (this.loginFormGroup.invalid) {
