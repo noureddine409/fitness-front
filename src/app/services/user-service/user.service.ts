@@ -13,12 +13,7 @@ export class UserService {
   }
 
   getCurrentUser(): Observable<any> {
-
-    let token = this.tokenStorageService.getToken(TOKEN_KEY);
-
-    let strToken = token?.tokenType + " " + token?.token;
-
-    const headers = new HttpHeaders({'Authorization': strToken});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.get<any>(environment.apiUrl + "/api/users/me", {headers});
   }
