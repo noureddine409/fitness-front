@@ -10,6 +10,7 @@ import {OurTrainersComponent} from "./components/our-trainers/our-trainers.compo
 import {ContactComponent} from "./components/contact/contact.component";
 import {ForgetPasswordComponent} from "./components/forget-password/forget-password.component";
 import {BlogsComponent} from "./components/blogs/blogs.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'forget-password', component: ForgetPasswordComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

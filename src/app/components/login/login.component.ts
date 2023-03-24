@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
         if (user.provider === "GOOGLE"){
           this.authService.googleLogin(this.user.idToken).subscribe(
             data => {
-              this.tokenStorageService.saveToken(data.accessToken.token);
-              this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
+              this.tokenStorageService.saveToken(data.accessToken);
+              this.tokenStorageService.saveRefreshToken(data.refreshToken)
             },
             error => {
               this.errorMessage = error.message;
@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit {
           alert(user.authToken)
           this.authService.facebookLogin(this.user.authToken).subscribe(
             data => {
-              this.tokenStorageService.saveToken(data.accessToken.token);
-              this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
+              this.tokenStorageService.saveToken(data.accessToken);
+              this.tokenStorageService.saveRefreshToken(data.refreshToken)
             },
             error => {
               this.errorMessage = error.message;
@@ -82,7 +82,6 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-
     this.submitted = true
 
     if (this.loginFormGroup.invalid) {
@@ -93,8 +92,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe(
       data => {
-        this.tokenStorageService.saveToken(data.accessToken.token);
-        this.tokenStorageService.saveRefreshToken(data.refreshToken.token)
+        this.tokenStorageService.saveToken(data.accessToken);
+        this.tokenStorageService.saveRefreshToken(data.refreshToken)
       },
       error => {
         this.errorMessage = error.message;

@@ -22,7 +22,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MultiStepFormComponent} from './components/multi-step-form/multi-step-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {RegistrationService} from "./services/registration/registration.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AlertComponent} from './components/alert/alert.component';
 import {
   FacebookLoginProvider,
@@ -32,6 +32,8 @@ import {
   SocialLoginModule
 } from '@abacritt/angularx-social-login';
 import {environment} from "./environements/environements";
+import { ProfileComponent } from './components/profile/profile.component';
+import {AuthInterceptor} from "./interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import {environment} from "./environements/environements";
     StatisticsComponent,
     WhatPeopleSayComponent,
     MultiStepFormComponent,
-    AlertComponent
+    AlertComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,11 @@ import {environment} from "./environements/environements";
 
   ],
   providers: [RegistrationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
