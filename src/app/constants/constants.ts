@@ -1,7 +1,5 @@
 import {Step} from "../models/step.model";
-
-export const API_URL = 'https://localhost:8080/';
-export const DEFAULT_LANGUAGE = 'en';
+import {environment} from "../environements/environements";
 
 
 export const TOKEN_KEY = 'auth-token';
@@ -80,10 +78,27 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
   }
 ]
 
+export const LOGIN_API_URL = environment.apiUrl + '/api/auth/login';
+
+export const REGISTER_API_URL = environment.apiUrl + '/api/auth/register'
+
+export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
+
+export const REFRESH_TOKEN_API = environment.apiUrl + '/api/auth/token';
+
+export const FACEBOOK_LOGIN_API = environment.apiUrl + '/api/auth/facebook-social-login'
+
+export const CONTENT_TYPE_HEADER = {'Content-Type': 'application/json'}
+
+export const GET_CURRENT_USER_API_URL = environment.apiUrl + "/api/users/me"
+
 
 export const ERROR_MESSAGES = {
   REGISTER: {
     REGISTRATION_FAILED_ALREADY_EXISTS: "Registration failed: Email already in use. Please use a different email or log in.",
     REGISTRATION_FAILED: "Registration failed: We're sorry, but we were unable to register your account."
+  },
+  TECHNICAL_ERRORS: {
+    ERROR_JSON_PARSE: "Error parsing token:"
   }
 }

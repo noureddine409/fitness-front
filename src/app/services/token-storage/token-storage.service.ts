@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../constants/constants";
+import {ERROR_MESSAGES, REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../constants/constants";
 import {Token} from "../../models/token.model";
 
 
@@ -13,7 +13,8 @@ export class TokenStorageService {
   }
 
   signOut(): void {
-    localStorage.clear();
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
   }
 
   public saveToken(token: Token): void {
@@ -28,9 +29,12 @@ export class TokenStorageService {
       return null;
     }
 
-
-    return JSON.parse(tokenExist);
-
+    try {
+      return JSON.parse(tokenExist);
+    } catch (e) {
+      console.error(ERROR_MESSAGES.TECHNICAL_ERRORS.ERROR_JSON_PARSE, e);
+      return null;
+    }
   }
 
 
