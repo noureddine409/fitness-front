@@ -14,7 +14,9 @@ export interface AppUser {
   gender: "MALE"|"FEMALE";
   address?: Address;
   phoneNumber?: PhoneNumber;
-  roles?: AppUserRoleDto[];
+
+  socialMedia?: SocialMedia;
+  roles?: UserRole[];
 
 }
 
@@ -29,6 +31,14 @@ interface PhoneNumber {
   phoneNumber: string;
 }
 
-interface AppUserRoleDto {
+interface UserRole {
   name: string;
+}
+
+interface SocialMedia {
+  facebook?: string;
+  twitter?: string;
+  instagram?: string;
+  linkedin?: string;
+
 }
