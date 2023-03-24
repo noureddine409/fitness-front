@@ -32,6 +32,7 @@ import {
   SocialLoginModule
 } from '@abacritt/angularx-social-login';
 import {environment} from "./environements/environements";
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {environment} from "./environements/environements";
     StatisticsComponent,
     WhatPeopleSayComponent,
     MultiStepFormComponent,
-    AlertComponent
+    AlertComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
