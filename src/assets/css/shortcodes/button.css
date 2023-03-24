@@ -150,9 +150,11 @@
 .btn:hover,
 .btn:focus,
 .active > .btn {
-    background-color: #ec882B;
-    color: #fff;
+    background-color: #E0F1FF;
+    color: #008AFF;
+    box-shadow: 0px 10px 24px hsla(12, 98%, 52%, 0.2);
 }
+
 .btn-secondry {
     background-color: #282A3C;
 }
