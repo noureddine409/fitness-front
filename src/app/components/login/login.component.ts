@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
             data => {
               this.tokenStorageService.saveToken(data.accessToken);
               this.tokenStorageService.saveRefreshToken(data.refreshToken)
+              this.router.navigate(['/profile']);
             },
             error => {
               this.errorMessage = error.message;
@@ -50,12 +51,11 @@ export class LoginComponent implements OnInit {
           )
         }
         if ( user.provider === "FACEBOOK" ) {
-          alert(user.firstName)
-          alert(user.authToken)
           this.authService.facebookLogin(this.user.authToken).subscribe(
             data => {
               this.tokenStorageService.saveToken(data.accessToken);
               this.tokenStorageService.saveRefreshToken(data.refreshToken)
+              this.router.navigate(['/home']);
             },
             error => {
               this.errorMessage = error.message;
@@ -94,6 +94,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenStorageService.saveToken(data.accessToken);
         this.tokenStorageService.saveRefreshToken(data.refreshToken)
+        this.router.navigate(['/profile']);
       },
       error => {
         this.errorMessage = error.message;

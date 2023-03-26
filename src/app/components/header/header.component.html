@@ -3,15 +3,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- 
+  <!--
     - favicon
   -->
-  <!-- 
+  <!--
     - custom css link
   -->
 
 
-  <!-- 
+  <!--
     - google font link
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
     href="https://fonts.googleapis.com/css2?family=Catamaran:wght@600;700;800;900&family=Rubik:wght@400;500;800&display=swap"
     rel="stylesheet">
 
-  <!-- 
+  <!--
     - preload images
   -->
   <link rel="preload" as="image" href="./assets/images/hero-banner.png">
@@ -28,7 +28,7 @@
   <link rel="preload" as="image" href="./assets/images/hero-circle-two.png">
   <link rel="preload" as="image" href="./assets/images/heart-rate.svg">
   <link rel="preload" as="image" href="./assets/images/calories.svg">
-  
+
   <div class="sticky-header navbar-expand-lg">
     <div class="menu-bar clearfix">
       <div class="container clearfix">
@@ -81,7 +81,13 @@
               </ul>
             </li>
             <li class="add-mega-menu"><a routerLink="contact-us">Contact Us</a></li>
-            <li class="add-mega-menu"><a routerLink="/dashboard">Dashboard</a></li>
+            <div *ngIf="currentUser">
+              <li class="add-mega-menu"><a routerLink="/dashboard">{{currentUser?.email!}}</a></li>
+            </div>
+            <div *ngIf="currentUser==null">
+              <li class="add-mega-menu"><a routerLink="/dashboard">LOGIN</a></li>
+            </div>
+
           </ul>
           <div class="nav-social-link">
             <a href="javascript:;"><i class="fa fa-facebook"></i></a>

@@ -5,6 +5,7 @@ import {TokenStorageService} from "../services/token-storage/token-storage.servi
 import {REFRESH_TOKEN_KEY, TOKEN_KEY} from "../constants/constants";
 import {AuthService} from "../services/authentication/auth.service";
 import {Token} from "../models/token.model";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -13,11 +14,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
   refreshToken!: Token| null
 
-  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) {
+  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService, private router: Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
-
 
     if (request.url.includes('/api/auth/')) {
       return next.handle(request);
@@ -43,10 +43,14 @@ export class AuthInterceptor implements HttpInterceptor {
           const cloned = this.addAuthorizationHeader(request, access)
           console.log(value.accessToken)
           return next.handle(cloned);
+        }),
+        catchError(error => {
+          this.tokenStorageService.signOut();
+          this.router.navigate(['/login']);
+          return throwError(error);
         })
       );
     }
-
 
     return next.handle(request);
   }
@@ -60,4 +64,5 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
   }
+
 }
