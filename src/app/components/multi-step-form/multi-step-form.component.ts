@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Step} from "../../models/step.model";
 import {COMPLETE_PROFILE_FORM_STEPS} from "../../constants/constants";
+import {Address, PhoneNumber, SocialMedia, UserPatch} from "../../models/user.model";
+import {UserService} from "../../services/user-service/user.service";
+import {Router} from "@angular/router";
 
 interface Form {
   [key: string]: any;
@@ -16,9 +19,9 @@ export class MultiStepFormComponent {
 
   form!: FormGroup;
   currentStep = 0;
-  steps: Step[] = COMPLETE_PROFILE_FORM_STEPS
+  @Input() steps: Step[] = COMPLETE_PROFILE_FORM_STEPS
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
 
     const formGroupObj: Form = {};
     this.steps.forEach((step, index) => {
@@ -34,8 +37,17 @@ export class MultiStepFormComponent {
   }
 
   submitForm() {
-    // Handle form submission
+    const submited = this.form.value;
+    console.log(submited)
+     this.userService.updateUser(submited).subscribe(
+       value => {
+         this.router.navigate(['/home'])
+       }
+     )
   }
+
+
+
 
 
 }

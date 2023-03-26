@@ -4,6 +4,8 @@ import {environment} from "../environements/environements";
 
 export const TOKEN_KEY = 'auth-token';
 export const REFRESH_TOKEN_KEY = 'auth-refresh-token';
+
+export const CURRENT_USER_KEY = 'currentUser';
 export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
   {
     fields: [
@@ -23,13 +25,13 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
 
       },
       {
-        name: "age",
-        type: "number",
-        label: "age"
+        name: "birthday",
+        type: "date",
+        label: "birthday"
       },
       {
         name: "phone",
-        type: "text",
+        type: "tel",
         label: "phone number"
       }
     ]
@@ -49,30 +51,30 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         name: "postalCode",
         type: "number",
         label: "postal code"
-      },
-      {
-        name: "street",
-        type: "text",
-        label: "street"
       }
     ]
   },
   {
     fields: [
       {
-        name: "height",
-        type: "number",
-        label: "your height"
+        name: "facebook",
+        type: "text",
+        label: "your facebook"
 
       }, {
-        name: "weight",
-        type: "number",
-        label: "your weight"
+        name: "twitter",
+        type: "text",
+        label: "your twitter"
       },
       {
-        name: "sport",
+        name: "instagram",
         type: "text",
-        label: "your favorite sport"
+        label: "your instagram"
+      },
+      {
+        name: "linkedIn",
+        type: "text",
+        label: "your linkedIn"
       }
     ]
   }
@@ -87,6 +89,8 @@ export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-socia
 export const REFRESH_TOKEN_API = environment.apiUrl + '/api/auth/token';
 
 export const FACEBOOK_LOGIN_API = environment.apiUrl + '/api/auth/facebook-social-login'
+
+export const UPDATE_USER_API_URL = environment.apiUrl + '/api/users'
 
 export const CONTENT_TYPE_HEADER = {'Content-Type': 'application/json'}
 

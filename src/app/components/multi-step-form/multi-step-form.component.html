@@ -5,7 +5,7 @@
         <div class="heading-bx left">
           <h2 class="title-head">Complete your <span>Profile</span></h2>
         </div>
-        <form class="contact-bx" [formGroup]="form" (ngSubmit)="submitForm()">
+        <form class="contact-bx" [formGroup]="form">
           <div *ngFor="let step of steps; let i = index" [hidden]="i !== currentStep">
             <div class="row placeani">
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-6 text-md-right">
                   <button *ngIf="i < steps.length - 1" (click)="goToStep(i + 1)" class="btn button-md float-right">Next</button>
-                  <button *ngIf="i === steps.length - 1" type="submit" class="btn button-md">Submit</button>
+                  <button *ngIf="i === steps.length - 1" (click)="submitForm()" class="btn button-md">Submit</button>
                 </div>
               </div>
             </div>

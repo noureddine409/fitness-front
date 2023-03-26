@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
-import {ERROR_MESSAGES, REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../constants/constants";
+import {CURRENT_USER_KEY, ERROR_MESSAGES, REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../constants/constants";
 import {Token} from "../../models/token.model";
+import {AppUser} from "../../models/user.model";
+import {BehaviorSubject} from "rxjs";
+
+
 
 
 @Injectable({
@@ -8,13 +12,22 @@ import {Token} from "../../models/token.model";
 })
 export class TokenStorageService {
 
+  private currentUserSubject = new BehaviorSubject<AppUser | null>(null);
+  currentUser$ = this.currentUserSubject.asObservable();
+
 
   constructor() {
+    const userJson = localStorage.getItem(CURRENT_USER_KEY);
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      this.currentUserSubject.next(user);
+    }
   }
 
   signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(REFRESH_TOKEN_KEY);
+    localStorage.removeItem(CURRENT_USER_KEY)
   }
 
   public saveToken(token: Token): void {
@@ -44,5 +57,14 @@ export class TokenStorageService {
     localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(token));
   }
 
+
+  setCurrentUser(user: AppUser | null) {
+    if (user) {
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+    } else {
+      localStorage.removeItem(CURRENT_USER_KEY);
+    }
+    this.currentUserSubject.next(user);
+  }
 
 }

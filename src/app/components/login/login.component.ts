@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../services/authentication/auth.service";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
 import {FacebookLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
+import {Observable, switchMap} from "rxjs";
+import {UserService} from "../../services/user-service/user.service";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
   user!: any;
   loggedIn!: boolean;
 
-  constructor(private socialAuthService: SocialAuthService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenStorageService: TokenStorageService) {
+  constructor(private socialAuthService: SocialAuthService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenStorageService: TokenStorageService, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -36,32 +38,16 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
+
       if (this.loggedIn) {
-        if (user.provider === "GOOGLE"){
-          this.authService.googleLogin(this.user.idToken).subscribe(
-            data => {
-              this.tokenStorageService.saveToken(data.accessToken);
-              this.tokenStorageService.saveRefreshToken(data.refreshToken)
-              this.router.navigate(['/profile']);
-            },
-            error => {
-              this.errorMessage = error.message;
-              this.isLoginFailed = true;
-            }
-          )
-        }
-        if ( user.provider === "FACEBOOK" ) {
-          this.authService.facebookLogin(this.user.authToken).subscribe(
-            data => {
-              this.tokenStorageService.saveToken(data.accessToken);
-              this.tokenStorageService.saveRefreshToken(data.refreshToken)
-              this.router.navigate(['/home']);
-            },
-            error => {
-              this.errorMessage = error.message;
-              this.isLoginFailed = true;
-            }
-          )
+        if (user.provider === "GOOGLE") {
+          this.doLogin(
+            () => this.authService.googleLogin(this.user.idToken)
+          );
+        } else if (user.provider === "FACEBOOK") {
+          this.doLogin(
+            () => this.authService.facebookLogin(this.user.authToken)
+          );
         }
       }
     });
@@ -81,32 +67,45 @@ export class LoginComponent implements OnInit {
 
   }
 
+
+
   handleLogin() {
-    this.submitted = true
+    this.submitted = true;
 
     if (this.loginFormGroup.invalid) {
-      return
+      return;
     }
-    let email = this.loginFormGroup.value.email
-    let password = this.loginFormGroup.value.password
 
-    this.authService.login(email, password).subscribe(
-      data => {
-        this.tokenStorageService.saveToken(data.accessToken);
-        this.tokenStorageService.saveRefreshToken(data.refreshToken)
-        this.router.navigate(['/profile']);
-      },
-      error => {
-        this.errorMessage = error.message;
-        this.isLoginFailed = true;
-      }
-    )
+    const email = this.loginFormGroup.value.email;
+    const password = this.loginFormGroup.value.password;
 
-
+    this.doLogin(() => this.authService.login(email, password));
   }
 
+  private doLogin(loginFn: () => Observable<any>) {
+    loginFn().pipe(
+      switchMap(data => {
+        this.tokenStorageService.saveToken(data.accessToken);
+        this.tokenStorageService.saveRefreshToken(data.refreshToken);
+
+        // Fetch the user details after storing the tokens
+        return this.userService.getCurrentUser();
+      })
+    ).subscribe(
+      user => {
+        this.tokenStorageService.setCurrentUser(user);
+        this.router.navigate(['/home']);
+      },
+      error => {
+        console.log(error);
+        this.router.navigate(['/login']);
+      }
+    );
+  }
+
+
   signInWithFB() {
-      this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
 }

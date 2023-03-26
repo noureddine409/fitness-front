@@ -12,12 +12,13 @@ import {ForgetPasswordComponent} from "./components/forget-password/forget-passw
 import {BlogsComponent} from "./components/blogs/blogs.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {MultiStepFormComponent} from "./components/multi-step-form/multi-step-form.component";
+import {ProfileGuard} from "./guards/auth/profile.guard";
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent , canActivate: [ProfileGuard]},
   { path: 'our-programs', component: OurProgramsComponent },
   { path: 'our-trainers', component: OurTrainersComponent },
   { path: 'blogs', component: BlogsComponent },

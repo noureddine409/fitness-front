@@ -15,18 +15,34 @@ export interface AppUser {
   address?: Address;
   phoneNumber?: PhoneNumber;
 
+  profileCompleted: boolean;
+
   socialMedia?: SocialMedia;
   roles?: UserRole[];
 
 }
 
-interface Address {
+export interface UserPatch {
+  firstName?: string;
+  lastName?: string;
+  birthDay?: string;
+  bio?: string;
+  gender?: "MALE"|"FEMALE";
+  address?: Address;
+  phoneNumber?: PhoneNumber;
+
+  socialMedia?: SocialMedia;
+
+
+}
+
+export interface Address {
   country: string;
   city: string;
   postalCode?: string;
 }
 
-interface PhoneNumber {
+export interface PhoneNumber {
   region: string;
   phoneNumber: string;
 }
@@ -35,7 +51,7 @@ interface UserRole {
   name: string;
 }
 
-interface SocialMedia {
+export interface SocialMedia {
   facebook?: string;
   twitter?: string;
   instagram?: string;

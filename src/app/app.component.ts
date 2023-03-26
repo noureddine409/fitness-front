@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppUser} from "./models/user.model";
 import {UserService} from "./services/user-service/user.service";
+import {TokenStorageService} from "./services/token-storage/token-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -8,20 +9,14 @@ import {UserService} from "./services/user-service/user.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  authenticatedUser!: AppUser
+  authenticatedUser!: AppUser | null
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private tokenStorageService: TokenStorageService) {
   }
 
 
   ngOnInit() {
-    this.userService.getCurrentUser().subscribe(
-      value => {
-        console.log("ng init app called")
-        this.authenticatedUser = value;
-        console.log(this.authenticatedUser)
-      }
-    )
+
   }
 
 
