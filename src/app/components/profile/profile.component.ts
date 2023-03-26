@@ -39,7 +39,10 @@ export class ProfileComponent implements OnInit {
           }
         )
       },
-      error => console.log(error)
+      error => {
+        console.log(error)
+        console.log("err")
+      }
     )
 
 

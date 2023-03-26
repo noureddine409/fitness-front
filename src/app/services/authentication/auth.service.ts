@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {
   CONTENT_TYPE_HEADER,
   FACEBOOK_LOGIN_API,
@@ -33,22 +33,30 @@ export class AuthService {
   }
 
 
-  isTokenExpired( token: Token | null): boolean {
+  isTokenExpired(token: Token | null): boolean {
     if (token) {
-      let tokenExpirationDate = token.expiredIn;
-      const date: Date = new Date(tokenExpirationDate);
+      const strTokenExpirationDate = token.expiresIn;
+
+      const tokenExpirationDate: Date = new Date(strTokenExpirationDate);
+
       const currentTime = new Date();
-      return date < currentTime;
+
+      const isExpired = tokenExpirationDate <= currentTime;
+
+      return isExpired;
     }
+    console.log('token is null');
     return true;
   }
-  refreshToken(refreshToken: string): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${refreshToken}`
-    });
 
-    return this.http.post<any>(REFRESH_TOKEN_API, null, { headers });
+
+  refreshToken(refreshToken: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', "Bearer " + refreshToken);
+    console.log(headers)
+    return this.http.post<any>(REFRESH_TOKEN_API, null, {headers: headers});
   }
+
   facebookLogin(facebookToken: String): Observable<any> {
     const body = {value: facebookToken};
     const headers = new HttpHeaders(CONTENT_TYPE_HEADER);

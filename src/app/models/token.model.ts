@@ -5,7 +5,7 @@ export interface Token {
   token: string;
   tokenType: string;
   createdAt: string;
-  expiredIn: string;
+  expiresIn: string;
 
 
 }

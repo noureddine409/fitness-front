@@ -11,8 +11,7 @@ export class UserService {
   }
 
   getCurrentUser(): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-    return this.http.get<any>(GET_CURRENT_USER_API_URL, {headers});
+    return this.http.get<any>(GET_CURRENT_USER_API_URL);
   }
 }
