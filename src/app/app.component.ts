@@ -8,16 +8,7 @@ import {TokenStorageService} from "./services/token-storage/token-storage.servic
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  authenticatedUser!: AppUser | null
-
-  constructor(private userService: UserService, private tokenStorageService: TokenStorageService) {
-  }
-
-
-  ngOnInit() {
-
-  }
+export class AppComponent {
 
 
 }

@@ -5,7 +5,7 @@ export interface AppUser {
   lastName: string;
   email: string;
   password: string;
-  birthDay?: string;
+  birthDay: string | null;
   profilePicture?: string;
   verificationCode?: string;
   bio?: string;
@@ -25,7 +25,7 @@ export interface AppUser {
 export interface UserPatch {
   firstName?: string;
   lastName?: string;
-  birthDay?: string;
+  birthDay?: string|null;
   bio?: string;
   gender?: "MALE"|"FEMALE";
   address?: Address;

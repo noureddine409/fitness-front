@@ -13,21 +13,25 @@ import {BlogsComponent} from "./components/blogs/blogs.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {MultiStepFormComponent} from "./components/multi-step-form/multi-step-form.component";
 import {ProfileGuard} from "./guards/auth/profile.guard";
+import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
+import {VerifyAccountComponent} from "./components/verfy-account/verify-account.component";
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent , canActivate: [ProfileGuard]},
-  { path: 'our-programs', component: OurProgramsComponent },
-  { path: 'our-trainers', component: OurTrainersComponent },
-  { path: 'blogs', component: BlogsComponent },
-  { path: 'contact-us', component: ContactComponent },
+  { path: 'our-programs', component: OurProgramsComponent, canActivate: [ProfileGuard]},
+  { path: 'our-trainers', component: OurTrainersComponent, canActivate: [ProfileGuard] },
+  { path: 'blogs', component: BlogsComponent, canActivate: [ProfileGuard] },
+  { path: 'contact-us', component: ContactComponent, canActivate: [ProfileGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'forget-password', component: ForgetPasswordComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'complete-profile', component: MultiStepFormComponent}
+  { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]},
+  { path: 'complete-profile', component: MultiStepFormComponent},
+  { path: 'activate-account', component: ActivateAccountComponent},
+  { path: 'verify-account', component: VerifyAccountComponent},
 ];
 
 @NgModule({

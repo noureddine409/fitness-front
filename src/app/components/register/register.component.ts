@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit{
     this.registrationService.register(email, password).subscribe(
       () => {
         alert('Registration successful!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         if (error.status === 302) {

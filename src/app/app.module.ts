@@ -34,6 +34,8 @@ import {
 import {environment} from "./environements/environements";
 import { ProfileComponent } from './components/profile/profile.component';
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
+import { ActivateAccountComponent } from './components/activate-account/activate-account.component';
+import { VerifyAccountComponent } from './components/verfy-account/verify-account.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import {AuthInterceptor} from "./interceptor/auth.interceptor";
     MultiStepFormComponent,
     AlertComponent,
     ProfileComponent,
+    ActivateAccountComponent,
+    VerifyAccountComponent,
   ],
   imports: [
     BrowserModule,

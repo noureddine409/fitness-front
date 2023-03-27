@@ -5,6 +5,8 @@ import {environment} from "../environements/environements";
 export const TOKEN_KEY = 'auth-token';
 export const REFRESH_TOKEN_KEY = 'auth-refresh-token';
 
+
+
 export const CURRENT_USER_KEY = 'currentUser';
 export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
   {
@@ -87,6 +89,8 @@ export const REGISTER_API_URL = environment.apiUrl + '/api/auth/register'
 export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
 
 export const REFRESH_TOKEN_API = environment.apiUrl + '/api/auth/token';
+
+export const VERIFY_ACCOUNT_API = environment.apiUrl + '/api/auth/verify';
 
 export const FACEBOOK_LOGIN_API = environment.apiUrl + '/api/auth/facebook-social-login'
 

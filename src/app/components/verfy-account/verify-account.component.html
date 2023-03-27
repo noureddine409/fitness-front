@@ -1,0 +1,5 @@
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading">
+  <p *ngIf="isVerified">Account verified!</p>
+  <p *ngIf="!isVerified">Verification failed. Please try again.</p>
+</div>

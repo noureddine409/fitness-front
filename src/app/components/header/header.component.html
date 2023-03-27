@@ -52,8 +52,10 @@
               <li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
               <li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
               <!-- Search Button ==== -->
-              <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i
-                class="fa fa-search"></i></button></li>
+              <li class="search-btn">
+                <button id="quik-search-btn" type="button" class="btn-link"><i
+                  class="fa fa-search"></i></button>
+              </li>
             </ul>
           </div>
         </div>
@@ -81,12 +83,9 @@
               </ul>
             </li>
             <li class="add-mega-menu"><a routerLink="contact-us">Contact Us</a></li>
-            <div *ngIf="currentUser">
-              <li class="add-mega-menu"><a routerLink="/dashboard">{{currentUser?.email!}}</a></li>
-            </div>
-            <div *ngIf="currentUser==null">
-              <li class="add-mega-menu"><a routerLink="/dashboard">LOGIN</a></li>
-            </div>
+
+            <li class="add-mega-menu"><a routerLink="/dashboard">Dashboard</a></li>
+
 
           </ul>
           <div class="nav-social-link">

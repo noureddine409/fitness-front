@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import {
   CONTENT_TYPE_HEADER,
   FACEBOOK_LOGIN_API,
   GOOGLE_LOGIN_API_API,
   LOGIN_API_URL,
-  REFRESH_TOKEN_API
+  REFRESH_TOKEN_API, VERIFY_ACCOUNT_API
 } from "../../constants/constants";
 import {Token} from "../../models/token.model";
 
@@ -61,5 +61,10 @@ export class AuthService {
     const body = {value: facebookToken};
     const headers = new HttpHeaders(CONTENT_TYPE_HEADER);
     return this.http.post<any>(FACEBOOK_LOGIN_API, body, {headers});
+  }
+
+  verifyAccount(code: string): Observable<any> {
+    const params = new HttpParams().set('code', code);
+    return this.http.get(VERIFY_ACCOUNT_API, { params });
   }
 }
