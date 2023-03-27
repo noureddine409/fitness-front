@@ -9,7 +9,7 @@ import {AuthService} from "../../services/authentication/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileGuard implements CanActivate {
+export class HomeGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router, private tokenStorageService: TokenStorageService, private authService: AuthService) {
   }
 

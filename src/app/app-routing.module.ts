@@ -12,24 +12,26 @@ import {ForgetPasswordComponent} from "./components/forget-password/forget-passw
 import {BlogsComponent} from "./components/blogs/blogs.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {MultiStepFormComponent} from "./components/multi-step-form/multi-step-form.component";
-import {ProfileGuard} from "./guards/auth/profile.guard";
+import {HomeGuard} from "./guards/home/home.guard";
 import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
 import {VerifyAccountComponent} from "./components/verfy-account/verify-account.component";
+import {CompleteProfileGuard} from "./guards/complete-profile/complete-profile.guard";
+import {AuthGuard} from "./guards/auth/auth.guard";
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent , canActivate: [ProfileGuard]},
-  { path: 'our-programs', component: OurProgramsComponent, canActivate: [ProfileGuard]},
-  { path: 'our-trainers', component: OurTrainersComponent, canActivate: [ProfileGuard] },
-  { path: 'blogs', component: BlogsComponent, canActivate: [ProfileGuard] },
-  { path: 'contact-us', component: ContactComponent, canActivate: [ProfileGuard] },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'forget-password', component: ForgetPasswordComponent},
-  { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]},
-  { path: 'complete-profile', component: MultiStepFormComponent},
+  { path: 'home', component: HomeComponent , canActivate: [HomeGuard]},
+  { path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
+  { path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard] },
+  { path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard] },
+  { path: 'contact-us', component: ContactComponent, canActivate: [HomeGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  { path: 'forget-password', component: ForgetPasswordComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [HomeGuard]},
+  { path: 'complete-profile', component: MultiStepFormComponent, canActivate: [CompleteProfileGuard]},
   { path: 'activate-account', component: ActivateAccountComponent},
   { path: 'verify-account', component: VerifyAccountComponent},
 ];
