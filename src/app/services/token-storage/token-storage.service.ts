@@ -1,5 +1,11 @@
 import {Injectable} from '@angular/core';
-import {CURRENT_USER_KEY, ERROR_MESSAGES, REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../constants/constants";
+import {
+  CURRENT_USER_KEY,
+  ERROR_MESSAGES,
+  REFRESH_TOKEN_KEY,
+  RESET_TOKEN_KEY,
+  TOKEN_KEY
+} from "../../constants/constants";
 import {Token} from "../../models/token.model";
 import {AppUser} from "../../models/user.model";
 import {BehaviorSubject} from "rxjs";
@@ -25,9 +31,7 @@ export class TokenStorageService {
   }
 
   signOut(): void {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(REFRESH_TOKEN_KEY);
-    localStorage.removeItem(CURRENT_USER_KEY)
+    localStorage.clear();
   }
 
   public saveToken(token: Token): void {
@@ -55,6 +59,11 @@ export class TokenStorageService {
   public saveRefreshToken(token: Token): void {
     localStorage.removeItem(REFRESH_TOKEN_KEY);
     localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(token));
+  }
+
+  public saveResetToken(token: Token): void {
+    localStorage.removeItem(RESET_TOKEN_KEY);
+    localStorage.setItem(RESET_TOKEN_KEY, JSON.stringify(token));
   }
 
 

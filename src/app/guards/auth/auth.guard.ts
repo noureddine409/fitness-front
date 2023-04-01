@@ -13,9 +13,11 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): Observable<boolean> | boolean {
+    console.log("guard called")
     return this.tokenStorageService.currentUser$.pipe(
       map(user => {
         if (user) {
+
           // If the user is logged in, redirect them to the home page
           this.router.navigate(['/home']);
           return false;

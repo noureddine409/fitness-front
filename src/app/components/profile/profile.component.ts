@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user-service/user.service";
 import {AppUser} from "../../models/user.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {TokenStorageService} from "../../services/token-storage/token-storage.service";
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,9 @@ export class ProfileComponent implements OnInit {
   user!: AppUser;
 
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+
+
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -52,6 +55,8 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+
   resetUpdateProfileForm() {
 
     this.updateProfileFormGroup.reset({
@@ -68,5 +73,18 @@ export class ProfileComponent implements OnInit {
       instagram: this.user?.socialMedia?.instagram
     });
 
+  }
+
+  onFileSelected(event: Event) {
+    console.log(event)
+    const target = event.target as HTMLInputElement;
+    const file = (target.files as FileList)[0];
+    this.userService.changeProfilePicture(file).subscribe(
+      value => {
+        this.user.profilePicture = value.profilePicture;
+        this.tokenStorageService.setCurrentUser(value);
+      }
+
+    )
   }
 }

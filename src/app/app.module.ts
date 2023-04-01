@@ -35,7 +35,14 @@ import {environment} from "./environements/environements";
 import { ProfileComponent } from './components/profile/profile.component';
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import { ActivateAccountComponent } from './components/activate-account/activate-account.component';
-import { VerifyAccountComponent } from './components/verfy-account/verify-account.component';
+import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
+import {NgProgressModule} from "ngx-progressbar";
+import {NgProgressRouterModule} from "@ngx-progressbar/router";
+import {RouterModule} from "@angular/router";
+import { ForgetPasswordMailComponent } from './components/forget-password-mail/forget-password-mail.component';
+import { ForgetPasswordVerifyComponent } from './components/forget-password-verify/forget-password-verify.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +68,10 @@ import { VerifyAccountComponent } from './components/verfy-account/verify-accoun
     ProfileComponent,
     ActivateAccountComponent,
     VerifyAccountComponent,
+    ForgetPasswordMailComponent,
+    ForgetPasswordVerifyComponent,
+    ResetPasswordComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +80,12 @@ import { VerifyAccountComponent } from './components/verfy-account/verify-accoun
     HttpClientModule,
     SocialLoginModule,
     GoogleSigninButtonModule,
+    RouterModule.forRoot([]),
+    NgProgressModule.withConfig({
+      color: '#f00',
+      thick: true
+    }),
+    NgProgressRouterModule
 //...
 
   ],
@@ -86,7 +103,10 @@ import { VerifyAccountComponent } from './components/verfy-account/verify-accoun
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              environment.google_id
+              environment.google_id,
+              {
+                oneTapEnabled: false
+              }
             ),
           },
           {

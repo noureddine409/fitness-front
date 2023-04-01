@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit{
   submitted = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private registrationService: RegistrationService) {
-    console.log('RegistrationService constructor called');
   }
 
   ngOnInit() {

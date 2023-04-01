@@ -1,8 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Step} from "../../models/step.model";
 import {COMPLETE_PROFILE_FORM_STEPS} from "../../constants/constants";
-import {Address, PhoneNumber, SocialMedia, UserPatch} from "../../models/user.model";
+import {UserPatch} from "../../models/user.model";
 import {UserService} from "../../services/user-service/user.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
@@ -16,13 +16,18 @@ interface Form {
   templateUrl: './multi-step-form.component.html',
   styleUrls: ['./multi-step-form.component.css']
 })
-export class MultiStepFormComponent {
+export class MultiStepFormComponent implements OnInit {
 
   form!: FormGroup;
   currentStep = 0;
   @Input() steps: Step[] = COMPLETE_PROFILE_FORM_STEPS
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private tokenStorageService: TokenStorageService) {
+
+
+  }
+
+  ngOnInit() {
 
     const formGroupObj: Form = {};
     this.steps.forEach((step, index) => {
@@ -31,7 +36,43 @@ export class MultiStepFormComponent {
       });
     });
     this.form = this.formBuilder.group(formGroupObj);
+
+
+    this.tokenStorageService.currentUser$.subscribe(
+      user => {
+        if (user) {
+          const simplifiedUser = this.simplifyUser(user)
+          console.log(simplifiedUser)
+          console.log("user", user)
+          this.steps.forEach((step, index) => {
+            step.fields.forEach(field => {
+              const defaultValue = simplifiedUser[field.name] || '';
+              this.form.controls[field.name].setValue(defaultValue);
+            });
+          });
+        }
+      }
+    );
+
+
+
   }
+
+  simplifyUser(user: any) {
+    const simplifiedUser: any = {};
+    Object.keys(user).forEach(key => {
+      if (typeof user[key] === 'object' && user[key] !== null) {
+        Object.keys(user[key]).forEach(innerKey => {
+          simplifiedUser[innerKey] = user[key][innerKey];
+        });
+      } else {
+        simplifiedUser[key] = user[key];
+      }
+    });
+    return simplifiedUser;
+  }
+
+
 
   goToStep(step: number) {
     this.currentStep = step;
@@ -69,11 +110,6 @@ export class MultiStepFormComponent {
       }
     );
   }
-
-
-
-
-
 
 
 }

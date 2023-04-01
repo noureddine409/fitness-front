@@ -20,6 +20,7 @@ export interface AppUser {
   socialMedia?: SocialMedia;
   roles?: UserRole[];
 
+  [key: string]: any;
 }
 
 export interface UserPatch {

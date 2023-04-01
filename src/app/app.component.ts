@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {AppUser} from "./models/user.model";
-import {UserService} from "./services/user-service/user.service";
-import {TokenStorageService} from "./services/token-storage/token-storage.service";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +6,4 @@ import {TokenStorageService} from "./services/token-storage/token-storage.servic
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-
 }

@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-
       if (this.loggedIn) {
         if (user.provider === "GOOGLE") {
           this.doLogin(
@@ -94,6 +93,7 @@ export class LoginComponent implements OnInit {
     ).subscribe(
       user => {
         this.tokenStorageService.setCurrentUser(user);
+        this.socialAuthService.signOut();
         this.router.navigate(['/home']);
       },
       error => {

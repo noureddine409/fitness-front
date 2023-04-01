@@ -5,6 +5,8 @@ import {environment} from "../environements/environements";
 export const TOKEN_KEY = 'auth-token';
 export const REFRESH_TOKEN_KEY = 'auth-refresh-token';
 
+export const RESET_TOKEN_KEY = "auth-reset-token"
+
 
 
 export const CURRENT_USER_KEY = 'currentUser';
@@ -21,18 +23,12 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         label: "last name"
       },
       {
-        name: "email",
-        type: "email",
-        label: "your email"
-
-      },
-      {
         name: "birthday",
         type: "date",
         label: "birthday"
       },
       {
-        name: "phone",
+        name: "phoneNumber",
         type: "tel",
         label: "phone number"
       }
@@ -74,9 +70,9 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         label: "your instagram"
       },
       {
-        name: "linkedIn",
+        name: "linkedin",
         type: "text",
-        label: "your linkedIn"
+        label: "your linkedin"
       }
     ]
   }
@@ -100,7 +96,13 @@ export const CONTENT_TYPE_HEADER = {'Content-Type': 'application/json'}
 
 export const GET_CURRENT_USER_API_URL = environment.apiUrl + "/api/users/me"
 
+export const UPDATE_PROFILE_PICTURE_API_URL = environment.apiUrl + "/api/users/profile-picture"
 
+export const FORGET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/forget-password"
+
+export const RESET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/reset-password"
+
+export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/forget-password/verify-token"
 export const ERROR_MESSAGES = {
   REGISTER: {
     REGISTRATION_FAILED_ALREADY_EXISTS: "Registration failed: Email already in use. Please use a different email or log in.",

@@ -3,12 +3,13 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import {
   CONTENT_TYPE_HEADER,
-  FACEBOOK_LOGIN_API,
+  FACEBOOK_LOGIN_API, FORGET_PASSWORD_API_URL, FORGET_PASSWORD_VERIFY_API_URL,
   GOOGLE_LOGIN_API_API,
   LOGIN_API_URL,
-  REFRESH_TOKEN_API, VERIFY_ACCOUNT_API
+  REFRESH_TOKEN_API, RESET_PASSWORD_API_URL, VERIFY_ACCOUNT_API
 } from "../../constants/constants";
 import {Token} from "../../models/token.model";
+import {ForgetPasswordRequest} from "../../models/forget-password.model";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,7 @@ export class AuthService {
 
 
   refreshToken(refreshToken: string): Observable<any> {
+    console.log("refreshing token .....")
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', "Bearer " + refreshToken);
     console.log(headers)
@@ -66,5 +68,28 @@ export class AuthService {
   verifyAccount(code: string): Observable<any> {
     const params = new HttpParams().set('code', code);
     return this.http.get(VERIFY_ACCOUNT_API, { params });
+  }
+
+  forgetPassword(forgetPasswordRequest: ForgetPasswordRequest): Observable<any> {
+    return this.http.post<any>(FORGET_PASSWORD_API_URL, forgetPasswordRequest);
+  }
+
+  verifyToken(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(FORGET_PASSWORD_VERIFY_API_URL, { headers });
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    const body = { newPassword };
+
+    return this.http.post<any>(RESET_PASSWORD_API_URL, body, { headers });
   }
 }

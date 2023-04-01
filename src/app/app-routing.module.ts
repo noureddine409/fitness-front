@@ -14,11 +14,13 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {MultiStepFormComponent} from "./components/multi-step-form/multi-step-form.component";
 import {HomeGuard} from "./guards/home/home.guard";
 import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
-import {VerifyAccountComponent} from "./components/verfy-account/verify-account.component";
+import {VerifyAccountComponent} from "./components/verify-account/verify-account.component";
 import {CompleteProfileGuard} from "./guards/complete-profile/complete-profile.guard";
 import {AuthGuard} from "./guards/auth/auth.guard";
-
-
+import {ForgetPasswordMailComponent} from "./components/forget-password-mail/forget-password-mail.component";
+import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
+import {ErrorComponent} from "./components/error/error.component";
+import {ForgetPasswordVerifyComponent} from "./components/forget-password-verify/forget-password-verify.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,8 +34,12 @@ const routes: Routes = [
   { path: 'forget-password', component: ForgetPasswordComponent, canActivate: [AuthGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [HomeGuard]},
   { path: 'complete-profile', component: MultiStepFormComponent, canActivate: [CompleteProfileGuard]},
-  { path: 'activate-account', component: ActivateAccountComponent},
+  { path: 'activate-account', component: ActivateAccountComponent, canActivate: [CompleteProfileGuard]},
   { path: 'verify-account', component: VerifyAccountComponent},
+  { path: 'forget-password-email', component: ForgetPasswordMailComponent},
+  { path: 'forget-password-verify', component: ForgetPasswordVerifyComponent},
+  { path: 'reset-password', component: ResetPasswordComponent},
+  { path: 'error-404', component: ErrorComponent},
 ];
 
 @NgModule({

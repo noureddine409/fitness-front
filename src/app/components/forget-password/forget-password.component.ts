@@ -46,5 +46,16 @@ export class ForgetPasswordComponent implements OnInit{
       return
     }
 
+    const email = this.forgetPasswordFormGroup.value.email;
+
+    this.authService.forgetPassword({email: email}).subscribe(
+      value => {
+        this.router.navigate(["/forget-password-email"])
+      },
+      error => {
+        console.log("failed")
+      }
+      )
+
   }
 }
