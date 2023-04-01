@@ -21,6 +21,7 @@ import {ForgetPasswordMailComponent} from "./components/forget-password-mail/for
 import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {ForgetPasswordVerifyComponent} from "./components/forget-password-verify/forget-password-verify.component";
+import {ResetPasswordGuard} from "./guards/reset-password/reset-password.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'verify-account', component: VerifyAccountComponent},
   { path: 'forget-password-email', component: ForgetPasswordMailComponent},
   { path: 'forget-password-verify', component: ForgetPasswordVerifyComponent},
-  { path: 'reset-password', component: ResetPasswordComponent},
+  { path: 'reset-password', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard]},
   { path: 'error-404', component: ErrorComponent},
 ];
 

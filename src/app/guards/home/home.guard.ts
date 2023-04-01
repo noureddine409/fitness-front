@@ -33,8 +33,7 @@ export class HomeGuard implements CanActivate {
         const refreshToken = this.tokenStorageService.getToken(REFRESH_TOKEN_KEY)
         console.log("refresh token guard", refreshToken)
         if ( refreshToken == null || this.authService.isTokenExpired(refreshToken)) {
-          this.router.navigate(['/login']); // redirect to login page if there is no authenticated user
-          return false;
+          return true;
         } else if (user?.profileCompleted) {
           console.log('completed', user?.profileCompleted)
           return true; // allow access to protected route if the user is authenticated and their profile is complete
