@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
           <div class="profile-bx text-center">
-            <div class="user-profile-thumb" (click)="fileInput.click()">
+            <div class="user-profile-thumb" (click)="fileInput.click()" [style.background-image]="'url(' + user.profilePicture + ')'">
               <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput  />
-              <img [src]="user.profilePicture"  alt=""/>
+<!--              <img class="profile-image" [src]="user.profilePicture"  alt=""/>-->
             </div>
             <div class="profile-info">
               <h4>{{user.firstName + ' ' + user.lastName}}</h4>

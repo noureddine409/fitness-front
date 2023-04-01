@@ -13,19 +13,6 @@ export class HomeGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router, private tokenStorageService: TokenStorageService, private authService: AuthService) {
   }
 
-  // canActivate(): Observable<boolean> {
-  //   return this.userService.getCurrentUser().pipe(
-  //     map(user => {
-  //       if (user.profileCompleted) {
-  //         return true; // allow access to protected route
-  //       } else {
-  //         this.router.navigate(['/complete-profile']); // redirect to complete profile page
-  //         return false;
-  //       }
-  //     })
-  //   );
-  // }
-
 
   canActivate(): Observable<boolean> {
     return this.tokenStorageService.currentUser$.pipe(
