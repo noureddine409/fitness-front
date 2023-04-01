@@ -2,16 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/authentication/auth.service";
+import {ERROR_MESSAGES} from "../../constants/constants";
 
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.css']
 })
-export class ForgetPasswordComponent implements OnInit{
-
-  alert : { message: string, type: string } | undefined ;
+export class ForgetPasswordComponent implements OnInit {
   forgetPasswordFormGroup!: FormGroup;
+
+  errorMessage = "";
 
   submitted = false;
 
@@ -25,6 +26,7 @@ export class ForgetPasswordComponent implements OnInit{
       }
     )
   }
+
   getErrorMessage(errors: any) {
     const messages = [];
     if (errors) {
@@ -42,7 +44,7 @@ export class ForgetPasswordComponent implements OnInit{
   handleForgetPassword() {
     this.submitted = true
 
-    if(this.forgetPasswordFormGroup.invalid){
+    if (this.forgetPasswordFormGroup.invalid) {
       return
     }
 
@@ -53,9 +55,13 @@ export class ForgetPasswordComponent implements OnInit{
         this.router.navigate(["/forget-password-email"])
       },
       error => {
-        console.log("failed")
+        if (error.status === 404) {
+          this.errorMessage = ERROR_MESSAGES.FORGET_PASSWORD.NOT_FOUND;
+        } else {
+          this.errorMessage = ERROR_MESSAGES.FORGET_PASSWORD.ERROR;
+        }
       }
-      )
+    )
 
   }
 }

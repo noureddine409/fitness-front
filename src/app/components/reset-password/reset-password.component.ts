@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/authentication/auth.service";
-import {RESET_TOKEN_KEY} from "../../constants/constants";
+import {ERROR_MESSAGES, RESET_TOKEN_KEY} from "../../constants/constants";
 import {Router} from "@angular/router";
 import {Token} from "../../models/token.model";
 
@@ -71,6 +71,9 @@ export class ResetPasswordComponent implements OnInit {
       value => {
         localStorage.removeItem(RESET_TOKEN_KEY);
         this.router.navigate(["/login"])
+      },
+      error => {
+        this.errorMessage = ERROR_MESSAGES.FORGET_PASSWORD.RESET_ERROR;
       }
     )
 

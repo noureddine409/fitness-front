@@ -110,5 +110,10 @@ export const ERROR_MESSAGES = {
   },
   TECHNICAL_ERRORS: {
     ERROR_JSON_PARSE: "Error parsing token:"
+  },
+  FORGET_PASSWORD: {
+    NOT_FOUND: "Email not found in our system. Please check the email address or register a new account.",
+    ERROR: "Oops! Something went wrong. Please try again later or contact our customer support team for further assistance.",
+    RESET_ERROR: "Sorry, we were unable to reset your password at this time. Please try again later or contact our customer support team for further assistance."
   }
 }
