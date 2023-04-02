@@ -6,6 +6,7 @@ import {UserPatch} from "../../models/user.model";
 import {UserService} from "../../services/user-service/user.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
+import {getErrorMessages} from "../../utils/validation.util";
 
 interface Form {
   [key: string]: any;
@@ -20,6 +21,8 @@ export class CompleteProfileFormComponent implements OnInit {
 
   form!: FormGroup;
   currentStep = 0;
+
+  submitted = false;
   @Input() steps: Step[] = COMPLETE_PROFILE_FORM_STEPS
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private tokenStorageService: TokenStorageService) {
@@ -32,7 +35,11 @@ export class CompleteProfileFormComponent implements OnInit {
     const formGroupObj: Form = {};
     this.steps.forEach((step, index) => {
       step.fields.forEach(field => {
-        formGroupObj[field.name] = ['', Validators.required];
+        if (field.name === 'firstName' || field.name === 'lastName' || field.name === 'gender') {
+          formGroupObj[field.name] = [null, Validators.required];
+        } else {
+          formGroupObj[field.name] = [null, Validators.nullValidator];
+        }
       });
     });
     this.form = this.formBuilder.group(formGroupObj);
@@ -73,32 +80,46 @@ export class CompleteProfileFormComponent implements OnInit {
   }
 
 
+  getErrorMessage(errors: any) {
+    return getErrorMessages(errors);
+  }
+
+
+
 
   goToStep(step: number) {
+    if(this.form.invalid) {
+      return;
+    }
     this.currentStep = step;
   }
 
   submitForm() {
-    const submitted = this.form.value;
+    this.submitted = true;
+
+    if(this.form.invalid) {
+      return;
+    }
+    const submittedForm = this.form.value;
     const userPatch: UserPatch = {
-      firstName: submitted.firstName,
-      lastName: submitted.lastName,
-      gender: submitted.gender,
+      firstName: submittedForm.firstName,
+      lastName: submittedForm.lastName,
+      gender: submittedForm.gender,
       birthDay: null,
       address: {
-        country: submitted.country,
-        city: submitted.city,
-        postalCode: submitted.postalCode
+        country: submittedForm.country,
+        city: submittedForm.city,
+        postalCode: submittedForm.postalCode
       },
       phoneNumber: {
         region: "MA",
-        phoneNumber: submitted.phone
+        phoneNumber: submittedForm.phone
       },
       socialMedia: {
-        facebook: submitted.facebook,
-        twitter: submitted.twitter,
-        instagram: submitted.instagram,
-        linkedin: submitted.linkedIn
+        facebook: submittedForm.facebook,
+        twitter: submittedForm.twitter,
+        instagram: submittedForm.instagram,
+        linkedin: submittedForm.linkedIn
       }
     };
     this.userService.updateUser(userPatch).subscribe(
