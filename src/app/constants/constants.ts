@@ -28,7 +28,7 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         label: "Gender"
       },
       {
-        name: "birthday",
+        name: "birthDay",
         type: "date",
         label: "birthday"
       },

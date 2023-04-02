@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
             firstName: this.formBuilder.control(this.user?.firstName, Validators.required),
             lastName: this.formBuilder.control(this.user?.lastName, Validators.required),
             gender: this.formBuilder.control(this.user?.gender, Validators.required),
+            birthday: this.formBuilder.control(this.user?.birthDay),
             phoneNumber: this.formBuilder.control(this.user?.phoneNumber?.phoneNumber),
             city: this.formBuilder.control(this.user?.address?.city),
             country: this.formBuilder.control(this.user?.address?.country),
@@ -81,14 +82,19 @@ export class ProfileComponent implements OnInit {
     }
 
     const submittedForm = this.updateProfileFormGroup.value;
+    console.log("submitted : ", submittedForm)
+    const dateObj = new Date(submittedForm.birthday); // create a new Date object from the string
+    const isoString = dateObj.toISOString().split("T")[0];
+    console.log("birthday : ", isoString)
     const userPatch: UserPatch = {
       firstName: submittedForm.firstName,
       lastName: submittedForm.lastName,
-      birthDay: null,
+      birthDay: isoString,
+      gender: submittedForm.gender,
       address: {
         country: submittedForm.country,
         city: submittedForm.city,
-        postalCode: submittedForm.postalCode
+        postalCode: submittedForm.postCode
       },
       phoneNumber: {
         region: "MA",
@@ -101,6 +107,8 @@ export class ProfileComponent implements OnInit {
         linkedin: submittedForm.linkedIn
       }
     };
+
+    console.log("userPatchDto", userPatch)
     this.userService.updateUser(userPatch).subscribe(
       value => {
         // Update user in local storage

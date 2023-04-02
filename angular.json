@@ -59,8 +59,7 @@
               "src/assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js",
               "src/assets/vendors/revolution/js/extensions/revolution.extension.parallax.min.js",
               "src/assets/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js",
-              "src/assets/vendors/revolution/js/extensions/revolution.extension.video.min.js",
-              "src/assets/js/admin.js"]
+              "src/assets/vendors/revolution/js/extensions/revolution.extension.video.min.js"]
           },
           "configurations": {
             "production": {

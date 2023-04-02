@@ -101,11 +101,13 @@ export class CompleteProfileFormComponent implements OnInit {
       return;
     }
     const submittedForm = this.form.value;
+    const dateObj = new Date(submittedForm.birthDay); // create a new Date object from the string
+    const isoString = dateObj.toISOString().split("T")[0];
     const userPatch: UserPatch = {
       firstName: submittedForm.firstName,
       lastName: submittedForm.lastName,
       gender: submittedForm.gender,
-      birthDay: null,
+      birthDay: isoString,
       address: {
         country: submittedForm.country,
         city: submittedForm.city,

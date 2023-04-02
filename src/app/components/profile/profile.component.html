@@ -407,6 +407,17 @@
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Birthday</label>
+                      <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                        <input class="form-control" type="date" value="{{user.birthDay}}" formControlName="birthday">
+                        <div *ngIf="(submitted && updateProfileFormGroup.controls['birthday']?.errors) || (updateProfileFormGroup.controls['birthday'].invalid && (updateProfileFormGroup.controls['birthday'].dirty || updateProfileFormGroup.controls['birthday'].touched))">
+                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['birthday'].errors)">
+                            {{ error }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Phone No.</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
                         <input class="form-control" type="text" value="{{user.phoneNumber?.phoneNumber}}" formControlName="phoneNumber">
