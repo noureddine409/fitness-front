@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user-service/user.service";
 import {AppUser, UserPatch} from "../../models/user.model";
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
 import {ALERT_MESSAGES} from "../../constants/constants";
-import {getErrorMessages} from "../../utils/validation.util";
+import {getErrorMessages, matchPassword, passwordValidator} from "../../utils/validation.util";
 
 @Component({
   selector: 'app-profile',
@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit {
     this.resetPasswordFormGroup = this.formBuilder.group(
       {
         oldPassword: this.formBuilder.control(null, Validators.required),
-        password: this.formBuilder.control(null, Validators.required),
-        confirmPassword: this.formBuilder.control(null, [Validators.required, this.matchPassword.bind(this)]),
+        password: this.formBuilder.control(null, [Validators.required, passwordValidator()]),
+        confirmPassword: this.formBuilder.control(null, [Validators.required, matchPassword.bind(this)]),
       }
     )
 
@@ -72,10 +72,6 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  matchPassword(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.root.get('password');
-    return password && control.value !== password.value ? {'mismatch': true} : null;
-  }
 
   handleUpdate() {
     this.submitted = true

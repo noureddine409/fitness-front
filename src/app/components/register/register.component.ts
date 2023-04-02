@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RegistrationService} from "../../services/registration/registration.service";
 import {ALERT_MESSAGES} from "../../constants/constants";
-import {getErrorMessages} from "../../utils/validation.util";
+import {getErrorMessages, matchPassword, passwordValidator} from "../../utils/validation.util";
 
 @Component({
   selector: 'app-register',
@@ -25,15 +25,10 @@ export class RegisterComponent implements OnInit{
     this.registerFormGroup = this.formBuilder.group(
       {
         email: this.formBuilder.control(null, [Validators.required, Validators.email]),
-        password: this.formBuilder.control(null, Validators.required),
-        confirmPassword: this.formBuilder.control(null, [Validators.required, this.matchPassword.bind(this)]),
+        password: this.formBuilder.control(null, [Validators.required, passwordValidator()]),
+        confirmPassword: this.formBuilder.control(null, [Validators.required, matchPassword.bind(this)]),
       }
     )
-  }
-
-  matchPassword(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.root.get('password');
-    return password && control.value !== password.value ? { 'mismatch': true } : null;
   }
 
   getErrorMessage(errors: any) {

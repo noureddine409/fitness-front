@@ -4,7 +4,7 @@ import {AuthService} from "../../services/authentication/auth.service";
 import {ALERT_MESSAGES, RESET_TOKEN_KEY} from "../../constants/constants";
 import {Router} from "@angular/router";
 import {Token} from "../../models/token.model";
-import {getErrorMessages} from "../../utils/validation.util";
+import {getErrorMessages, matchPassword, passwordValidator} from "../../utils/validation.util";
 
 @Component({
   selector: 'app-reset-password',
@@ -24,15 +24,10 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit() {
     this.resetPasswordFormGroup = this.formBuilder.group(
       {
-        password: this.formBuilder.control(null, Validators.required),
-        confirmPassword: this.formBuilder.control(null, [Validators.required, this.matchPassword.bind(this)]),
+        password: this.formBuilder.control(null,[ Validators.required, passwordValidator()]),
+        confirmPassword: this.formBuilder.control(null, [Validators.required, matchPassword.bind(this)]),
       }
     )
-  }
-
-  matchPassword(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.root.get('password');
-    return password && control.value !== password.value ? {'mismatch': true} : null;
   }
 
   getErrorMessage(errors: any) {
