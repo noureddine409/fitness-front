@@ -23,6 +23,11 @@ export const COMPLETE_PROFILE_FORM_STEPS: Step[] = [
         label: "last name"
       },
       {
+        name: "gender",
+        type: "text",
+        label: "Gender"
+      },
+      {
         name: "birthday",
         type: "date",
         label: "birthday"
@@ -103,7 +108,9 @@ export const FORGET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/forget-pa
 export const RESET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/reset-password"
 
 export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/forget-password/verify-token"
-export const ERROR_MESSAGES = {
+
+export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
+export const ALERT_MESSAGES = {
   REGISTER: {
     REGISTRATION_FAILED_ALREADY_EXISTS: "Registration failed: Email already in use. Please use a different email or log in.",
     REGISTRATION_FAILED: "Registration failed: We're sorry, but we were unable to register your account."
@@ -115,5 +122,18 @@ export const ERROR_MESSAGES = {
     NOT_FOUND: "Email not found in our system. Please check the email address or register a new account.",
     ERROR: "Oops! Something went wrong. Please try again later or contact our customer support team for further assistance.",
     RESET_ERROR: "Sorry, we were unable to reset your password at this time. Please try again later or contact our customer support team for further assistance."
+  },
+  LOGIN: {
+    BAD_CREDENTIALS: "Invalid login credentials. Please try again or contact support.",
+    ERROR: "Sorry, we're unable to log you in at this time. Please try again later or contact our customer support team for further assistance."
+  },
+  PROFILE: {
+    ERROR: "Sorry, we were unable to update your profile at this time. Please try again later or contact our customer support team for further assistance.",
+    SUCCESS: "Your profile has been successfully updated!"
+  },
+  RESET_PASSWORD: {
+    ERROR: "Sorry, we were unable to update your password at this time. Please try again later or contact our customer support team for further assistance.",
+    SUCCESS: "Your password has been successfully updated!",
+    INVALID_PASSWORD : "Invalid Password"
   }
 }

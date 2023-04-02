@@ -19,7 +19,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {WhatPeopleSayComponent} from './components/what-people-say/what-people-say.component';
 import {AppRoutingModule} from './app-routing.module';
-import {MultiStepFormComponent} from './components/multi-step-form/multi-step-form.component';
+import {CompleteProfileFormComponent} from './components/complete-profile/complete-profile-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {RegistrationService} from "./services/registration/registration.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -63,7 +63,7 @@ import { ErrorComponent } from './components/error/error.component';
     RegisterComponent,
     StatisticsComponent,
     WhatPeopleSayComponent,
-    MultiStepFormComponent,
+    CompleteProfileFormComponent,
     AlertComponent,
     ProfileComponent,
     ActivateAccountComponent,
@@ -81,11 +81,6 @@ import { ErrorComponent } from './components/error/error.component';
     SocialLoginModule,
     GoogleSigninButtonModule,
     RouterModule.forRoot([]),
-    NgProgressModule.withConfig({
-      color: '#f00',
-      thick: true
-    }),
-    NgProgressRouterModule
 //...
 
   ],

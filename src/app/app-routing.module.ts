@@ -11,7 +11,7 @@ import {ContactComponent} from "./components/contact/contact.component";
 import {ForgetPasswordComponent} from "./components/forget-password/forget-password.component";
 import {BlogsComponent} from "./components/blogs/blogs.component";
 import {ProfileComponent} from "./components/profile/profile.component";
-import {MultiStepFormComponent} from "./components/multi-step-form/multi-step-form.component";
+import {CompleteProfileFormComponent} from "./components/complete-profile/complete-profile-form.component";
 import {HomeGuard} from "./guards/home/home.guard";
 import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
 import {VerifyAccountComponent} from "./components/verify-account/verify-account.component";
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   { path: 'forget-password', component: ForgetPasswordComponent, canActivate: [AuthGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [HomeGuard]},
-  { path: 'complete-profile', component: MultiStepFormComponent, canActivate: [CompleteProfileGuard]},
+  { path: 'complete-profile', component: CompleteProfileFormComponent, canActivate: [CompleteProfileGuard]},
   { path: 'activate-account', component: ActivateAccountComponent, canActivate: [CompleteProfileGuard]},
   { path: 'verify-account', component: VerifyAccountComponent},
   { path: 'forget-password-email', component: ForgetPasswordMailComponent},

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {
   CURRENT_USER_KEY,
-  ERROR_MESSAGES,
+  ALERT_MESSAGES,
   REFRESH_TOKEN_KEY,
   RESET_TOKEN_KEY,
   TOKEN_KEY
@@ -50,7 +50,7 @@ export class TokenStorageService {
       const token = JSON.parse(tokenExist);
       return token;
     } catch (e) {
-      console.error(ERROR_MESSAGES.TECHNICAL_ERRORS.ERROR_JSON_PARSE, e);
+      console.error(ALERT_MESSAGES.TECHNICAL_ERRORS.ERROR_JSON_PARSE, e);
       return null;
     }
   }

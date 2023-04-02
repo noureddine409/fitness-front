@@ -6,6 +6,8 @@ import {TokenStorageService} from "../../services/token-storage/token-storage.se
 import {FacebookLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
 import {Observable, switchMap} from "rxjs";
 import {UserService} from "../../services/user-service/user.service";
+import {getErrorMessages} from "../../utils/validation.util";
+import {ALERT_MESSAGES} from "../../constants/constants";
 
 @Component({
   selector: 'app-login',
@@ -53,17 +55,7 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessage(errors: any) {
-    const messages = [];
-    if (errors) {
-      if (errors.required) {
-        messages.push('Please fill out this field.');
-      }
-      if (errors.email) {
-        messages.push('Email must be a well-formed email address.');
-      }
-    }
-    return messages;
-
+    return getErrorMessages(errors);
   }
 
 
@@ -97,8 +89,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error => {
-        console.log(error);
-        this.router.navigate(['/login']);
+        if (error.status === 401) {
+          this.errorMessage = ALERT_MESSAGES.LOGIN.BAD_CREDENTIALS;
+        } else {
+          this.errorMessage = ALERT_MESSAGES.LOGIN.ERROR;
+        }
       }
     );
   }

@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RegistrationService} from "../../services/registration/registration.service";
-import {ERROR_MESSAGES} from "../../constants/constants";
+import {ALERT_MESSAGES} from "../../constants/constants";
+import {getErrorMessages} from "../../utils/validation.util";
 
 @Component({
   selector: 'app-register',
@@ -36,21 +37,7 @@ export class RegisterComponent implements OnInit{
   }
 
   getErrorMessage(errors: any) {
-    const messages = [];
-    if (errors) {
-      if (errors.required) {
-        messages.push('Please fill out this field.');
-      }
-      if (errors.email) {
-        messages.push('Email must be a well-formed email address.');
-      }
-
-      if(errors.mismatch) {
-        messages.push('Confirm Password does not match');
-      }
-
-    }
-    return messages;
+    return getErrorMessages(errors);
   }
 
   handleRegister() {
@@ -72,9 +59,9 @@ export class RegisterComponent implements OnInit{
       },
       (error) => {
         if (error.status === 302) {
-          this.errorMessage = ERROR_MESSAGES.REGISTER.REGISTRATION_FAILED_ALREADY_EXISTS;
+          this.errorMessage = ALERT_MESSAGES.REGISTER.REGISTRATION_FAILED_ALREADY_EXISTS;
         } else {
-          this.errorMessage = ERROR_MESSAGES.REGISTER.REGISTRATION_FAILED;
+          this.errorMessage = ALERT_MESSAGES.REGISTER.REGISTRATION_FAILED;
         }
       }
     );

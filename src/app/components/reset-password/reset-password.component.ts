@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/authentication/auth.service";
-import {ERROR_MESSAGES, RESET_TOKEN_KEY} from "../../constants/constants";
+import {ALERT_MESSAGES, RESET_TOKEN_KEY} from "../../constants/constants";
 import {Router} from "@angular/router";
 import {Token} from "../../models/token.model";
+import {getErrorMessages} from "../../utils/validation.util";
 
 @Component({
   selector: 'app-reset-password',
@@ -35,21 +36,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   getErrorMessage(errors: any) {
-    const messages = [];
-    if (errors) {
-      if (errors.required) {
-        messages.push('Please fill out this field.');
-      }
-      if (errors.email) {
-        messages.push('Email must be a well-formed email address.');
-      }
-
-      if (errors.mismatch) {
-        messages.push('Confirm Password does not match');
-      }
-
-    }
-    return messages;
+    return getErrorMessages(errors);
   }
 
 
@@ -73,7 +60,7 @@ export class ResetPasswordComponent implements OnInit {
         this.router.navigate(["/login"])
       },
       error => {
-        this.errorMessage = ERROR_MESSAGES.FORGET_PASSWORD.RESET_ERROR;
+        this.errorMessage = ALERT_MESSAGES.FORGET_PASSWORD.RESET_ERROR;
       }
     )
 

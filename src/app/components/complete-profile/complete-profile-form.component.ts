@@ -13,10 +13,10 @@ interface Form {
 
 @Component({
   selector: 'app-multi-step-form',
-  templateUrl: './multi-step-form.component.html',
-  styleUrls: ['./multi-step-form.component.css']
+  templateUrl: './complete-profile-form.component.html',
+  styleUrls: ['./complete-profile-form.component.css']
 })
-export class MultiStepFormComponent implements OnInit {
+export class CompleteProfileFormComponent implements OnInit {
 
   form!: FormGroup;
   currentStep = 0;
@@ -83,6 +83,7 @@ export class MultiStepFormComponent implements OnInit {
     const userPatch: UserPatch = {
       firstName: submitted.firstName,
       lastName: submitted.lastName,
+      gender: submitted.gender,
       birthDay: null,
       address: {
         country: submitted.country,

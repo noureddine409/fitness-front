@@ -1,8 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {GET_CURRENT_USER_API_URL, UPDATE_PROFILE_PICTURE_API_URL, UPDATE_USER_API_URL} from "../../constants/constants";
-import {AppUser, UserPatch} from "../../models/user.model";
+import {
+  GET_CURRENT_USER_API_URL,
+  RESET_PASSWORD_URL,
+  UPDATE_PROFILE_PICTURE_API_URL,
+  UPDATE_USER_API_URL
+} from "../../constants/constants";
+import {UserPatch} from "../../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +32,10 @@ export class UserService {
     formData.append('profile-picture', file);
 
     return this.http.patch(UPDATE_PROFILE_PICTURE_API_URL, formData, {reportProgress: true});
+  }
+
+  resetPassword(oldPassword: string, newPassword: string): Observable<any> {
+    const body = {oldPassword, newPassword };
+    return this.http.patch<any>(RESET_PASSWORD_URL, body);
   }
 }

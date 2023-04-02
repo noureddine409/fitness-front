@@ -7,7 +7,7 @@
           <div class="profile-bx text-center">
             <div class="user-profile-thumb" (click)="fileInput.click()" [style.background-image]="'url(' + user.profilePicture + ')'">
               <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput  />
-<!--              <img class="profile-image" [src]="user.profilePicture"  alt=""/>-->
+<!--              <img [src]="user.profilePicture"  alt=""/>-->
             </div>
             <div class="profile-info">
               <h4>{{user.firstName + ' ' + user.lastName}}</h4>
@@ -356,9 +356,15 @@
                 <div class="profile-head">
                   <h3>Edit Profile</h3>
                 </div>
-                <form class="edit-profile" [formGroup]="updateProfileFormGroup" (ngSubmit)="handleUpdate()">
+                <div class="col-lg-12 mt-3">
+                  <app-alert *ngIf="alert" typeAlert="{{alert.type}}" message="{{ alert.message }}"></app-alert>
+                </div>
+
+                <form class="edit-profile" [formGroup]="updateProfileFormGroup">
+
                   <div class="">
                     <div class="form-group row">
+
                       <div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
                         <h3>1. Personal Details</h3>
                       </div>
@@ -367,18 +373,37 @@
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">First Name</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
                         <input class="form-control" type="text" value="{{user.firstName}}" formControlName="firstName">
+                        <div *ngIf="(submitted && updateProfileFormGroup.controls['firstName']?.errors) || (updateProfileFormGroup.controls['firstName'].invalid && (updateProfileFormGroup.controls['firstName'].dirty || updateProfileFormGroup.controls['firstName'].touched))">
+                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['firstName'].errors)">
+                            {{ error }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Last Name</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
                         <input class="form-control" type="text" value="{{user.lastName}}" formControlName="lastName">
+                        <div *ngIf="(submitted && updateProfileFormGroup.controls['lastName']?.errors) || (updateProfileFormGroup.controls['lastName'].invalid && (updateProfileFormGroup.controls['lastName'].dirty || updateProfileFormGroup.controls['lastName'].touched))">
+                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['lastName'].errors)">
+                            {{ error }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Gender</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                        <input class="form-control" type="text" value="{{user.gender}}" formControlName="gender">
+                        <input class="form-control" type="text" list="genders" value="{{user.gender}}" formControlName="gender">
+                        <datalist id="genders">
+                          <option value="MALE">
+                          <option value="FEMALE">
+                        </datalist>
+                        <div *ngIf="(submitted && updateProfileFormGroup.controls['gender']?.errors) || (updateProfileFormGroup.controls['gender'].invalid && (updateProfileFormGroup.controls['gender'].dirty || updateProfileFormGroup.controls['gender'].touched))">
+                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['gender'].errors)">
+                            {{ error }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -453,7 +478,7 @@
                         <div class="col-12 col-sm-3 col-md-3 col-lg-2">
                         </div>
                         <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                          <button type="reset" class="btn">Save changes</button>
+                          <button class="btn" (click)="handleUpdate()">Save changes</button>
                           <button (click)="resetUpdateProfileForm()" class="btn-secondry">Cancel</button>
                         </div>
                       </div>
@@ -465,7 +490,10 @@
                 <div class="profile-head">
                   <h3>Change Password</h3>
                 </div>
-                <form class="edit-profile">
+                <div class="col-lg-12 mt-3">
+                  <app-alert *ngIf="alert_reset_password" typeAlert="{{alert_reset_password.type}}" message="{{ alert_reset_password.message }}"></app-alert>
+                </div>
+                <form class="edit-profile" [formGroup]="resetPasswordFormGroup">
                   <div class="">
                     <div class="form-group row">
                       <div class="col-12 col-sm-8 col-md-8 col-lg-9 ml-auto">
@@ -475,19 +503,34 @@
                     <div class="form-group row">
                       <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                        <input class="form-control" type="password" value="">
+                        <input class="form-control" formControlName="oldPassword" type="password">
+                        <div *ngIf="(resetSubmitted && resetPasswordFormGroup.controls['oldPassword']?.errors) || (resetPasswordFormGroup.controls['oldPassword'].invalid && (resetPasswordFormGroup.controls['oldPassword'].dirty || resetPasswordFormGroup.controls['oldPassword'].touched))">
+                          <div>
+                            {{ getErrorMessage(resetPasswordFormGroup.controls['oldPassword'].errors)[0] }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">New Password</label>
                       <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                        <input class="form-control" type="password" value="">
+                        <input class="form-control" type="password"  formControlName="password" value="">
+                        <div *ngIf="(resetSubmitted && resetPasswordFormGroup.controls['password']?.errors) || (resetPasswordFormGroup.controls['password'].invalid && (resetPasswordFormGroup.controls['password'].dirty || resetPasswordFormGroup.controls['password'].touched))">
+                          <div *ngFor="let error of getErrorMessage(resetPasswordFormGroup.controls['password'].errors)">
+                            {{ error }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Re Type New Password</label>
                       <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                        <input class="form-control" type="password" value="">
+                        <input class="form-control" type="password"  formControlName="confirmPassword">
+                        <div *ngIf="(resetSubmitted && resetPasswordFormGroup.controls['confirmPassword']?.errors) || (resetPasswordFormGroup.controls['confirmPassword'].invalid && (resetPasswordFormGroup.controls['confirmPassword'].dirty || resetPasswordFormGroup.controls['confirmPassword'].touched))">
+                          <div>
+                            {{ getErrorMessage(resetPasswordFormGroup.controls['confirmPassword'].errors)[0] }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -495,7 +538,7 @@
                     <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                     </div>
                     <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                      <button type="reset" class="btn">Save changes</button>
+                      <button class="btn" (click)="resetPassword()">Save changes</button>
                       <button type="reset" class="btn-secondry">Cancel</button>
                     </div>
                   </div>
