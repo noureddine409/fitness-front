@@ -1,37 +1,39 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {VALIDATION_MESSAGES} from "../constants/constants";
 
 export function getErrorMessages(errors: any) {
   const messages = [];
   if (errors) {
     switch (true) {
       case errors.required:
-        messages.push('Please fill out this field.');
+        messages.push(VALIDATION_MESSAGES.REQUIRED);
         break;
       case errors.email:
-        messages.push('Email must be a well-formed email address.');
+        messages.push(VALIDATION_MESSAGES.EMAIL);
         break;
       case errors.passwordCommon:
-        messages.push('Please choose a less common password.');
+        messages.push(VALIDATION_MESSAGES.PASSWORD_COMMON);
         break;
       case errors.passwordLength:
-        messages.push('Password must be at least 8 characters long.');
+        messages.push(VALIDATION_MESSAGES.PASSWORD_LENGTH);
         break;
       case errors.passwordUppercase:
-        messages.push('Password must contain at least one uppercase letter.');
+        messages.push(VALIDATION_MESSAGES.PASSWORD_UPPER_CASE);
         break;
       case errors.passwordLowercase:
-        messages.push('Password must contain at least one lowercase letter.');
+        messages.push(VALIDATION_MESSAGES.PASSWORD_LOWER_CASE);
         break;
       case errors.passwordDigit:
-        messages.push('Password must contain at least one digit.');
+        messages.push(VALIDATION_MESSAGES.PASSWORD_DIGITS);
         break;
       case errors.passwordSpecial:
-        messages.push('Password must contain at least one special character.');
+        messages.push(VALIDATION_MESSAGES.PASSWORD_SPECIAL);
         break;
       case errors.mismatch:
-        messages.push('Confirm Password does not match.');
+        messages.push(VALIDATION_MESSAGES.MISMATCH);
         break;
       default:
+        messages.push(VALIDATION_MESSAGES.MISMATCH);
         break;
     }
   }

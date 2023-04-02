@@ -137,3 +137,16 @@ export const ALERT_MESSAGES = {
     INVALID_PASSWORD : "Invalid Password"
   }
 }
+
+export const VALIDATION_MESSAGES = {
+  REQUIRED: "Please fill out this field.",
+  EMAIL: "Email must be a well-formed email address.",
+  PASSWORD_COMMON: "Please choose a less common password.",
+  PASSWORD_LENGTH: "Password must be at least 8 characters long.",
+  PASSWORD_UPPER_CASE: "Password must contain at least one uppercase letter.",
+  PASSWORD_LOWER_CASE: "Password must contain at least one lowercase letter.",
+  PASSWORD_DIGITS: "Password must contain at least one digit.",
+  PASSWORD_SPECIAL: "Password must contain at least one special character.",
+  MISMATCH: "Confirm Password does not match."
+
+}
