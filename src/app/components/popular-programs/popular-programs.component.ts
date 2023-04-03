@@ -5,9 +5,6 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './popular-programs.component.html',
   styleUrls: ['./popular-programs.component.css']
 })
-export class PopularProgramsComponent implements OnInit{
+export class PopularProgramsComponent{
 
-  ngOnInit() {
-    $.getScript('src/assets_v2/js/main.js');
-  }
 }
