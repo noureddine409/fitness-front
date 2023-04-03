@@ -8,6 +8,6 @@ import {Component, OnInit} from '@angular/core';
 export class PopularProgramsComponent implements OnInit{
 
   ngOnInit() {
+    $.getScript('src/assets_v2/js/main.js');
   }
-
 }

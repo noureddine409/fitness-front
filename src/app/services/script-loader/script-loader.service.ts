@@ -7,31 +7,29 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ScriptLoaderService {
 
-  private loadedLibraries: { [url: string]: BehaviorSubject<boolean> } = {};
+  private scripts: { [url: string]: BehaviorSubject<boolean> } = {};
 
   loadScript(url: string): BehaviorSubject<boolean> {
-    if (this.loadedLibraries[url]) {
-      return this.loadedLibraries[url];
+    if (!this.scripts[url]) {
+      this.scripts[url] = new BehaviorSubject<boolean>(false);
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+
+      script.onload = () => {
+        this.scripts[url].next(true);
+        this.scripts[url].complete();
+      };
+
+      script.onerror = (error: Event | string) => {
+        this.scripts[url].error(error);
+      };
+
+      document.body.appendChild(script);
     }
 
-    this.loadedLibraries[url] = new BehaviorSubject<boolean>(false);
-
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-
-    script.onload = () => {
-      this.loadedLibraries[url].next(true);
-      this.loadedLibraries[url].complete();
-    };
-
-    script.onerror = (error: Event | string) => {
-      this.loadedLibraries[url].error(error);
-    };
-
-    document.body.appendChild(script);
-
-    return this.loadedLibraries[url];
+    return this.scripts[url];
   }
 
 }
