@@ -16,7 +16,6 @@ import {PopularProgramsComponent} from './components/popular-programs/popular-pr
 import {ProgramsComponent} from './components/programs/programs.component';
 import {ProgramComponent} from './components/program/program.component';
 import {RegisterComponent} from './components/register/register.component';
-import {StatisticsComponent} from './components/statistics/statistics.component';
 import {WhatPeopleSayComponent} from './components/what-people-say/what-people-say.component';
 import {AppRoutingModule} from './app-routing.module';
 import {CompleteProfileFormComponent} from './components/complete-profile/complete-profile-form.component';
@@ -43,6 +42,7 @@ import { ForgetPasswordMailComponent } from './components/forget-password-mail/f
 import { ForgetPasswordVerifyComponent } from './components/forget-password-verify/forget-password-verify.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ErrorComponent } from './components/error/error.component';
+import { OurServicesComponent } from './components/our-services/our-services.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,6 @@ import { ErrorComponent } from './components/error/error.component';
     ProgramsComponent,
     ProgramComponent,
     RegisterComponent,
-    StatisticsComponent,
     WhatPeopleSayComponent,
     CompleteProfileFormComponent,
     AlertComponent,
@@ -72,6 +71,7 @@ import { ErrorComponent } from './components/error/error.component';
     ForgetPasswordVerifyComponent,
     ResetPasswordComponent,
     ErrorComponent,
+    OurServicesComponent,
   ],
   imports: [
     BrowserModule,
