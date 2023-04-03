@@ -43,6 +43,7 @@ import { ForgetPasswordVerifyComponent } from './components/forget-password-veri
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ErrorComponent } from './components/error/error.component';
 import { OurServicesComponent } from './components/our-services/our-services.component';
+import { OurServicesItemsComponent } from './components/our-services-items/our-services-items.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { OurServicesComponent } from './components/our-services/our-services.com
     ResetPasswordComponent,
     ErrorComponent,
     OurServicesComponent,
+    OurServicesItemsComponent,
   ],
   imports: [
     BrowserModule,
