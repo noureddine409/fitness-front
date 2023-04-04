@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import * as $ from 'jquery';
+import {Router} from "@angular/router";
 
 declare global {
   interface JQuery {
@@ -15,12 +16,16 @@ declare global {
 export class AppComponent implements OnInit, AfterViewInit {
 
 
-  constructor(private elRef: ElementRef) {
+  constructor(private elRef: ElementRef, private router: Router) {
 
   }
 
   ngOnInit() {
 
+  }
+
+  shouldShowHeaderAndFooter(): boolean {
+    return !['/login', '/register', '/forget-password', '/forget-password-email', '/forget-password-verify', '/reset-password', '/complete-profile','/activate-account','/verify-account','/error-404'].includes(this.router.url);
   }
 
   observer!: MutationObserver;
@@ -405,7 +410,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       window.onresize = changeTheScreen;
 
 
-      window.onload= afterLoadThePage;
+      window.onload = afterLoadThePage;
     });
     var config = {attributes: true, childList: true, characterData: true};
 

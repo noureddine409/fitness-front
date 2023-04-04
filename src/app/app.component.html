@@ -1,7 +1,11 @@
 
-<app-header></app-header>
+<ng-container *ngIf="shouldShowHeaderAndFooter()">
+  <app-header></app-header>
+</ng-container>
 <router-outlet #routerOutlet></router-outlet>
-<app-footer></app-footer>
+<ng-container *ngIf="shouldShowHeaderAndFooter()">
+  <app-footer></app-footer>
+</ng-container>
 
 
 <!--<app-multi-step-form></app-multi-step-form>-->
