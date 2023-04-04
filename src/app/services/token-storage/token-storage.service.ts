@@ -75,5 +75,4 @@ export class TokenStorageService {
     }
     this.currentUserSubject.next(user);
   }
-
 }

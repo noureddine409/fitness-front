@@ -92,4 +92,5 @@ export class AuthService {
 
     return this.http.post<any>(RESET_PASSWORD_API_URL, body, { headers });
   }
+  //add isLonggedIn() method
 }
