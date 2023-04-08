@@ -22,11 +22,13 @@ import {ResetPasswordComponent} from "./components/reset-password/reset-password
 import {ErrorComponent} from "./components/error/error.component";
 import {ForgetPasswordVerifyComponent} from "./components/forget-password-verify/forget-password-verify.component";
 import {ResetPasswordGuard} from "./guards/reset-password/reset-password.guard";
+import {WatchProgramComponent} from "./components/watch-program/watch-program.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [HomeGuard] },
   { path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
+  { path: 'watch-program', component: WatchProgramComponent, canActivate: [HomeGuard]},
   { path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard] },
   { path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard] },
   { path: 'contact-us', component: ContactComponent, canActivate: [HomeGuard] },

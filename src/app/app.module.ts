@@ -44,6 +44,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ErrorComponent } from './components/error/error.component';
 import { OurServicesComponent } from './components/our-services/our-services.component';
 import { OurServicesItemsComponent } from './components/our-services-items/our-services-items.component';
+import { WatchProgramComponent } from './components/watch-program/watch-program.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { OurServicesItemsComponent } from './components/our-services-items/our-s
     ErrorComponent,
     OurServicesComponent,
     OurServicesItemsComponent,
+    WatchProgramComponent,
   ],
   imports: [
     BrowserModule,
