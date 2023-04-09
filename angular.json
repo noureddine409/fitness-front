@@ -33,7 +33,8 @@
               "src/assets/css/shortcodes/shortcodes.css",
               "src/assets/vendors/revolution/css/layers.css",
               "src/assets/vendors/revolution/css/settings.css",
-              "src/assets/vendors/revolution/css/navigation.css"
+              "src/assets/vendors/revolution/css/navigation.css",
+              "src/assets/css/dashboard.css"
             ],
             "scripts": ["src/assets/js/jquery.min.js",
               "src/assets/vendors/bootstrap/js/popper.min.js",

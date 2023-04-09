@@ -25,7 +25,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   shouldShowHeaderAndFooter(): boolean {
-    return !['/login', '/register', '/forget-password', '/forget-password-email', '/forget-password-verify', '/reset-password', '/complete-profile','/activate-account','/verify-account','/error-404','/watch-program'].includes(this.router.url);
+    const excludedRoutes = ['/login', '/register', '/forget-password', '/forget-password-email', '/forget-password-verify', '/reset-password', '/complete-profile', '/activate-account', '/verify-account', '/error-404', '/watch-program','/dashboard'];
+    const currentRoute = this.router.url.split('?')[0];
+    return !excludedRoutes.some(route => currentRoute.startsWith(route));
   }
 
   observer!: MutationObserver;
@@ -53,10 +55,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       }
 
-      var magnificPopupImageView = function(){
+      var magnificPopupImageView = function () {
 
         /* magnificPopup function */
-        if(checkSelectorExistence('.magnific-image')) {
+        if (checkSelectorExistence('.magnific-image')) {
           // @ts-ignore
           // @ts-ignore
           jQuery('.magnific-image').magnificPopup({
@@ -67,12 +69,12 @@ export class AppComponent implements OnInit, AfterViewInit {
             gallery: {
               enabled: true,
               navigateByImgClick: true,
-              preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+              preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
             },
             image: {
               tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
               // @ts-ignore
-              titleSrc: function(item) {
+              titleSrc: function (item) {
                 return item.el.attr('title') + '<small></small>';
               }
             }
@@ -81,7 +83,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         /* magnificPopup function end */
 
         /* magnificPopup for video function */
-        if(checkSelectorExistence('.video')) {
+        if (checkSelectorExistence('.video')) {
 
           // @ts-ignore
           // @ts-ignore
@@ -89,22 +91,22 @@ export class AppComponent implements OnInit, AfterViewInit {
           jQuery('.video').magnificPopup({
             type: 'iframe',
             iframe: {
-              markup: '<div class="mfp-iframe-scaler">'+
-                '<div class="mfp-close"></div>'+
-                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-                '<div class="mfp-title">Some caption</div>'+
+              markup: '<div class="mfp-iframe-scaler">' +
+                '<div class="mfp-close"></div>' +
+                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
+                '<div class="mfp-title">Some caption</div>' +
                 '</div>'
             },
             callbacks: {
               // @ts-ignore
-              markupParse: function(template, values, item) {
+              markupParse: function (template, values, item) {
                 values.title = item.el.attr('title');
               }
             }
           });
         }
         /* magnificPopup for paly video function end*/
-        if(checkSelectorExistence('.popup-youtube, .popup-vimeo, .popup-gmaps')) {
+        if (checkSelectorExistence('.popup-youtube, .popup-vimeo, .popup-gmaps')) {
 
           // @ts-ignore
           $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
@@ -482,5 +484,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     var config = {attributes: true, childList: true, characterData: true};
 
     this.observer.observe(this.elRef.nativeElement, config);
+
+
   }
 }

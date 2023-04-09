@@ -1,5 +1,5 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
-import {VALIDATION_MESSAGES} from "../constants/constants";
+import {VALIDATION_MESSAGES} from "../@shared/constants";
 
 export function getErrorMessages(errors: any) {
   const messages = [];

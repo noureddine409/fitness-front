@@ -1,0 +1,217 @@
+<div class="container-fluid">
+  <div class="db-breadcrumb">
+    <h4 class="breadcrumb-title">Add program</h4>
+    <ul class="db-breadcrumb-list">
+      <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+      <li>Add program</li>
+    </ul>
+  </div>
+  <div class="row">
+    <!-- Your Profile Views Chart -->
+    <div class="col-lg-12 m-b30">
+      <div class="widget-box">
+        <div class="wc-title">
+          <h4>Add program</h4>
+        </div>
+        <div class="widget-inner">
+          <form class="edit-profile m-b30" [formGroup]="myForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="ml-auto">
+                  <h3>1. Basic info</h3>
+                </div>
+              </div>
+              <div class="form-group col-6">
+                <label class="col-form-label">Program Motivation</label>
+                <div>
+                  <input class="form-control" type="text" value="" formControlName="program-motivation">
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <label class="col-form-label">Picture</label>
+                <div>
+                  <input class="form-control" type="file" accept="image/*" formControlName="program-picture">
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <label class="col-form-label">Program Level</label>
+                <div>
+                  <select class="form-control" #programLevelInput>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="hard">Hard</option>
+                    <option value="all-levels">All Levels</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <label class="col-form-label">Price (DH)</label>
+                <div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">DH</span>
+                    </div>
+                    <input class="form-control" type="number" step="0.01" value="" formControlName="program-price">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <label class="col-form-label">Category</label>
+                <div>
+                  <select class="form-control" #categoryInput>
+                    <option value="fitness">Fitness</option>
+                    <option value="nutrition">Nutrition</option>
+                    <option value="mindset">Mindset</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group col-6">
+                <label class="col-form-label">Duration (Minutes/Day)</label>
+                <div>
+                  <div class="input-group">
+                    <input class="form-control" type="number" step="1" value="" formControlName="program-duration">
+                    <div class="input-group-append">
+                      <span class="input-group-text">minutes/day</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-12">
+                <div class="seperator"></div>
+                <div class="col-12 m-t20">
+                  <div class="ml-auto m-b5">
+                    <h3>2. Description</h3>
+                  </div>
+                </div>
+                <label class="col-form-label">Motivation description</label>
+                <div>
+                  <textarea class="form-control" formControlName="motivation-description"> </textarea>
+                </div>
+              </div>
+
+              <div class="form-group col-12">
+                <label class="col-form-label">Program description</label>
+                <div>
+                  <textarea class="form-control" formControlName="program-description"> </textarea>
+                </div>
+              </div>
+              <div class="form-group col-12">
+                <button type="button" (click)="showTable = !showTable" class="btn-secondry add-item m-r5"><i class="fa fa-fw fa-plus-circle"></i>Select Program Options</button>
+
+                <div *ngIf="showTable">
+                  <div class="row">
+                    <div class="col-6" *ngFor="let chunk of chunkedElements">
+                      <ul class="list-group">
+                        <li class="list-group-item border-0" *ngFor="let element of chunk">
+                          <input class="form-check-input me-2" type="checkbox" value="" #optionInput (change)="onOptionChange(element, optionInput.checked)">
+                          <label class="form-check-label">{{ element }}</label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group col-12">
+                <button type="button" (click)="showEquipment = !showEquipment" class="btn-secondry add-item m-r5"><i class="fa fa-fw fa-plus-circle"></i>Select Equipment Needed</button>
+
+                <div *ngIf="showEquipment">
+                  <label class="col-form-label">Equipment Needed</label>
+                  <div>
+                    <ul class="list-group">
+                      <li class="list-group-item border-0" *ngFor="let equipment of equipments">
+                        <input class="form-check-input me-2" type="checkbox" value="" #equipmentInput (change)="onEquipmentChange(equipment, equipmentInput.checked)">
+                        <label class="form-check-label">{{ equipment }}</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-12 m-t20">
+                <div class="ml-auto">
+                  <h3 class="m-form__section">3. Program Content</h3>
+                  <h6 class="m-form__section">Add Section</h6>
+                </div>
+              </div>
+              <div class="col-12">
+                <table class="table table-striped" id="item-add" style="width:100%;">
+                <thead>
+                <tr>
+                  <th>Section Name</th>
+                  <th>Section Level</th>
+                  <th>Section Description</th>
+                  <th>Section Video</th>
+                  <th>Close</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="list-item" *ngFor="let item of items">
+                  <td>{{item.name}}</td>
+                  <td>{{item.level}}</td>
+                  <td>{{item.description}}</td>
+                  <td>{{getFileName(item.video)}}</td>
+                  <td><button (click)="deleteItem(item)" class="btn btn-danger my-button"><i class="fa fa-trash"></i></button></td>
+                </tr>
+                </tbody>
+                </table>
+
+                <div class="row">
+                  <div class="col-md-4">
+
+                    <div class="form-group">
+                      <label class="col-form-label">Section Name</label>
+                      <input class="form-control" type="text" formControlName="section-name">
+                    </div>
+
+                    <div class="form-group col-6">
+                      <label class="col-form-label">Section Level</label>
+                      <div>
+                        <select class="form-control" #sectionLevelInput>
+                          <option value="first">First Level</option>
+                          <option value="second">Second Level</option>
+                          <option value="final">Final</option>
+                        </select>
+                      </div>
+                    </div>
+
+                      <div class="form-group col-12">
+                        <label class="col-form-label">Section description</label>
+                        <div>
+                          <textarea class="form-control" formControlName="section-description"> </textarea>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="col-form-label">Section Video</label>
+                      <input class="form-control" type="file" accept="video/*" formControlName="section-video">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <button type="button" (click)="addItem(sectionLevelInput.value)" class="btn-secondry add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="reset" class="btn" (click)="saveChanges(categoryInput.value,programLevelInput.value)">Save changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Your Profile Views Chart END-->
+  </div>
+</div>
