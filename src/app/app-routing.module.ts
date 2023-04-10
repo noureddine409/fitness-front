@@ -38,6 +38,7 @@ import {AddProgramComponent} from "./dashboard/components/add-program/add-progra
 import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.component";
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
 import {TrainerBlogsComponent} from "./dashboard/components/trainer-blogs/trainer-blogs.component";
+import {ProfileGuard} from "./@core/guards/profile/profile.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -50,7 +51,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'forget-password', component: ForgetPasswordComponent, canActivate: [AuthGuard]},
-  {path: 'profile', component: ProfileComponent, canActivate: [HomeGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [HomeGuard, ProfileGuard]},
   {path: 'complete-profile', component: CompleteProfileFormComponent, canActivate: [CompleteProfileGuard]},
   {path: 'activate-account', component: ActivateAccountComponent, canActivate: [CompleteProfileGuard]},
   {path: 'verify-account', component: VerifyAccountComponent},
@@ -59,7 +60,7 @@ const routes: Routes = [
   {path: 'reset-password', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard]},
   {path: 'error-404', component: ErrorComponent},
   {
-    path: 'dashboard', component: DashboardComponent,canActivate: [HomeGuard], children: [
+    path: 'dashboard', component: DashboardComponent, canActivate: [HomeGuard], children: [
       {path: 'home', component: DashboardHomeComponent},
       {path: 'programs', component: TrainerProgramsComponent},
       {path: 'blogs', component: TrainerBlogsComponent},

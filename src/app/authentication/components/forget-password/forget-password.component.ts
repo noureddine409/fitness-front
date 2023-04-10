@@ -28,6 +28,10 @@ export class ForgetPasswordComponent implements OnInit {
     )
   }
 
+  goToOtherComponent(url:string) {
+    this.router.navigate([url]);
+  }
+
   getErrorMessage(errors: any) {
     return getErrorMessages(errors);
   }

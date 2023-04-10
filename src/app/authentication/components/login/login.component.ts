@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
   constructor(private socialAuthService: SocialAuthService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenStorageService: TokenStorageService, private userService: UserService) {
   }
 
+  goToOtherComponent(url:string) {
+    this.router.navigate([url]);
+  }
+
   ngOnInit() {
     this.loginFormGroup = this.formBuilder.group(
       {

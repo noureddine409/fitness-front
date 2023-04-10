@@ -31,6 +31,10 @@ export class RegisterComponent implements OnInit{
     )
   }
 
+  goToOtherComponent(url:string) {
+    this.router.navigate([url]);
+  }
+
   getErrorMessage(errors: any) {
     return getErrorMessages(errors);
   }
