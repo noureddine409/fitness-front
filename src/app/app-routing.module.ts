@@ -33,7 +33,6 @@ import {TrainerProgramsComponent} from "./dashboard/components/trainer-programs/
 import {BasicCalendarComponent} from "./dashboard/components/basic-calendar/basic-calendar.component";
 import {ListViewComponent} from "./dashboard/components/list-view/list-view.component";
 import {ReviewsComponent} from "./dashboard/components/reviews/reviews.component";
-import {TrainerProfileComponent} from "./dashboard/components/trainer-profile/trainer-profile.component";
 import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
 import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.component";
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
@@ -68,7 +67,6 @@ const routes: Routes = [
       {path: 'list-view', component: ListViewComponent},
       {path: 'reviews', component: ReviewsComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'trainer-profile', component: TrainerProfileComponent},
       {path: 'add-Program', component: AddProgramComponent},
 
       {path: 'add-Blog', component: AddBlogComponent},
