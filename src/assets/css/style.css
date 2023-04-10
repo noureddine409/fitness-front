@@ -458,6 +458,7 @@
 	box-shadow:0 0 40px rgba(0, 0, 0, 0.2);
 }
 .menu-links .nav > li .sub-menu {
+
     background-color: var(--third-c);
     border: 1px solid #f4f4f4;
     display: block;

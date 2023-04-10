@@ -77,6 +77,10 @@ html {
     scroll-behavior: smooth;
   }
 
+::-webkit-scrollbar-thumb {
+  height: 100px;
+}
+
 body {
     background-color: var(--white);
     color: var(--sonic-silver);
@@ -86,4 +90,5 @@ body {
 a{
   cursor: pointer;
 }
+
 
