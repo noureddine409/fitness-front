@@ -6,13 +6,14 @@ import {Router} from "@angular/router";
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent implements OnInit{
+export class FooterComponent implements OnInit {
   constructor(private router: Router) {
   }
 
   ngOnInit(): void {
   }
-  goToOtherComponent(url:string) {
+
+  goToOtherComponent(url: string) {
     this.router.navigate([url]);
   }
 

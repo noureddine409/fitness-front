@@ -23,11 +23,7 @@
   <!--
     - preload images
   -->
-  <link rel="preload" as="image" href="../../../../assets/images/hero-banner.png">
-  <link rel="preload" as="image" href="../../../../assets/images/hero-circle-one.png">
-  <link rel="preload" as="image" href="../../../../assets/images/hero-circle-two.png">
-  <link rel="preload" as="image" href="../../../../assets/images/heart-rate.svg">
-  <link rel="preload" as="image" href="../../../../assets/images/calories.svg">
+
 
   <div class="sticky-header navbar-expand-lg">
     <div class="menu-bar clearfix">
@@ -91,7 +87,7 @@
                 <img class="img-prof" src="{{currentUser.profilePicture}}"/>
               </a>
               <ul class="sub-menu">
-                <li><a (click)="goToOtherComponent('/profile')">Profile</a></li>
+                <li><a href="/profile">Profile</a></li>
                 <li ><a href="" (click)="logOut()">Log out</a></li>
               </ul>
             </li>
@@ -108,10 +104,5 @@
       </div>
     </div>
   </div>
-  <link rel="preload" as="image" href="../../../../assets/images/hero-banner.png">
-  <link rel="preload" as="image" href="../../../../assets/images/hero-circle-one.png">
-  <link rel="preload" as="image" href="../../../../assets/images/hero-circle-two.png">
-  <link rel="preload" as="image" href="../../../../assets/images/heart-rate.svg">
-  <link rel="preload" as="image" href="../../../../assets/images/calories.svg">
 
 </header>
