@@ -3,6 +3,7 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {equipments, options} from "../../../@shared/constants";
 import {Item} from "../../../@core/models/Items.model";
 import {ProgramDetails} from "../../../@core/models/program-details.model";
+import {ProgramDto} from "../../../@core/models/program.model";
 
 @Component({
   selector: 'app-add-program',
@@ -31,8 +32,16 @@ export class AddProgramComponent implements OnInit {
   myOptions: string[] = [];
 
   chunkedElements: string[][] = [];
-  items: Item[] = [];
-  details!: ProgramDetails;
+  items: Item[] = []; // TODO remove this
+  details!: ProgramDetails; // TODO remove this
+
+  // TODO work with this instead
+  program!: ProgramDto; // TODO save the program in this object the items in this case are programSection Field
+  multipartFiles: File[] = []; // TODO add the files to this list the files should be sorted
+
+  // TODO please use reactive forms instead of refs and add form validations
+
+  // TODO contact me to provide you more informations
   ngOnInit() {
     this.chunkedElements = this.chunkArray(options, 7);
   }
@@ -112,7 +121,7 @@ export class AddProgramComponent implements OnInit {
       };
       console.log(this.details);
       this.myForm.reset();
-      //Todo save data to server
+      //Todo save data to server (use program service i created it for you )
     }
   }
 
