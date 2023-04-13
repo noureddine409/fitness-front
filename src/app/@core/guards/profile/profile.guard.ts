@@ -20,7 +20,7 @@ export class ProfileGuard implements CanActivate {
         const refreshToken = this.tokenStorageService.getToken(REFRESH_TOKEN_KEY)
         console.log("refresh token guard", refreshToken)
         if (refreshToken == null || this.authService.isTokenExpired(refreshToken)) {
-          this.router.navigate(["/home"]);
+          this.router.navigate(["/login"]);
           return false;
         } else {
           return true;
