@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-programs',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./trainer-programs.component.css']
 })
 export class TrainerProgramsComponent {
-
+  constructor(private router:Router) {
+  }
+  goToOtherComponent(url:string) {
+    this.router.navigate([url]);
+  }
 }

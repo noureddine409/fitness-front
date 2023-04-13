@@ -1,16 +1,16 @@
 import {AppUser} from "./user.model";
 
 export interface ProgramDto {
-  id?: number;
-  createdAt?: string;
-  updatedAt?: string;
+  id?: number;//not required
+  createdAt?: string;//not required
+  updatedAt?: string;//not required
   name: string;
   level: string;
   price: number;
   category: string;
   description: string;
-  createdBy?: AppUser;
-  motivationDescription?: string;
+  createdBy?: AppUser;//not required
+  motivationDescription?: string |null;//not required
   durationPerDay: number;
   options: Set<string>;
   equipments: Set<string>;
@@ -19,13 +19,13 @@ export interface ProgramDto {
 
 export interface ProgramSectionDto {
 
-  id?: number;
-  createdAt?: string;
-  updatedAt?: string;
+  id?: number;//not required
+  createdAt?: string;//not required
+  updatedAt?: string;//not required
   title: string;
   description: string;
   level: string;
-  video?: SectionVideoDto;
+  video?: SectionVideoDto;//not required
 }
 
 export interface SectionVideoDto {
