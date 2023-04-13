@@ -38,6 +38,7 @@ import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.compone
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
 import {TrainerBlogsComponent} from "./dashboard/components/trainer-blogs/trainer-blogs.component";
 import {ProfileGuard} from "./@core/guards/profile/profile.guard";
+import {DashboardGuard} from "./@core/guards/dashboard/dashboard.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -59,7 +60,8 @@ const routes: Routes = [
   {path: 'reset-password', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard]},
   {path: 'error-404', component: ErrorComponent},
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [HomeGuard], children: [
+    path: 'dashboard', component: DashboardComponent, canActivate: [HomeGuard, DashboardGuard], children: [
+      {path: '', component: DashboardHomeComponent},
       {path: 'home', component: DashboardHomeComponent},
       {path: 'programs', component: TrainerProgramsComponent},
       {path: 'blogs', component: TrainerBlogsComponent},
