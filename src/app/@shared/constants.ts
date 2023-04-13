@@ -109,6 +109,8 @@ export const RESET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/reset-pass
 
 export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/forget-password/verify-token"
 
+export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
+
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
 export const ALERT_MESSAGES = {
   REGISTER: {
