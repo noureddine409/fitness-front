@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import * as $ from 'jquery';
-import {Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
 
 declare global {
   interface JQuery {
@@ -21,6 +21,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Trigger the loader function
+        setTimeout(() => {
+          jQuery('#loading-icon-bx').remove();
+        }, 1500);
+      }
+    });
 
   }
 
@@ -375,11 +383,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       }
 
-      var manageLoader = function () {
+      /*var manageLoader = function () {
         setTimeout(function () {
           jQuery('#loading-icon-bx').remove();
         }, 0);
-      }
+      }*/
 
 
       var setStylishScroll = function () {
@@ -461,7 +469,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         setDivSameHeight('.equal-height-container .equal-height-container-item');
         setCounterUp();
         masonryLayout();
-        manageLoader();
+        //manageLoader();
       }
 
       function changeTheScreen() {
