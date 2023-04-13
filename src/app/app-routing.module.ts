@@ -38,11 +38,14 @@ import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.compone
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
 import {TrainerBlogsComponent} from "./dashboard/components/trainer-blogs/trainer-blogs.component";
 import {ProfileGuard} from "./@core/guards/profile/profile.guard";
+import {ProgramDetailsComponent} from "./program-details/program-details.component";
+import {ModifyProgramComponent} from "./modify-program/modify-program.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent, canActivate: [HomeGuard]},
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
+  {path: 'program-details', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
   {path: 'watch-program', component: WatchProgramComponent, canActivate: [HomeGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},
@@ -68,6 +71,7 @@ const routes: Routes = [
       {path: 'reviews', component: ReviewsComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'add-Program', component: AddProgramComponent},
+      {path: 'modify-Program', component: ModifyProgramComponent},
 
       {path: 'add-Blog', component: AddBlogComponent},
     ]

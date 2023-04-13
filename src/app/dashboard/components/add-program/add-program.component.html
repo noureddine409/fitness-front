@@ -155,11 +155,11 @@
                 </thead>
                 <tbody>
                 <tr class="list-item" *ngFor="let item of items">
-                  <td>{{item.name}}</td>
+                  <td><!--{{item.name}}--></td>
                   <td>{{item.level}}</td>
                   <td>{{item.description}}</td>
                   <td>{{getFileName(item.video)}}</td>
-                  <td><button (click)="deleteItem(item)" class="btn btn-danger my-button"><i class="fa fa-trash"></i></button></td>
+<!--                  <td><button (click)="deleteItem(item)" class="btn btn-danger my-button"><i class="fa fa-trash"></i></button></td>-->
                 </tr>
                 </tbody>
                 </table>
@@ -200,12 +200,12 @@
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    <button type="button" (click)="addItem(sectionLevelInput.value)" class="btn-secondry add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>
+<!--                    <button type="button" (click)="addItem(sectionLevelInput.value)" class="btn-secondry add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>-->
                   </div>
                 </div>
               </div>
               <div class="col-12">
-                <button type="reset" class="btn" (click)="saveChanges(categoryInput.value,programLevelInput.value)">Save changes</button>
+<!--                <button type="reset" class="btn" (click)="saveChanges(categoryInput.value,programLevelInput.value)">Save changes</button>-->
               </div>
             </div>
           </form>

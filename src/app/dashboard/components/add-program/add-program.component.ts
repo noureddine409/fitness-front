@@ -3,7 +3,7 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {equipments, options} from "../../../@shared/constants";
 import {Item} from "../../../@core/models/Items.model";
 import {ProgramDetails} from "../../../@core/models/program-details.model";
-import {ProgramDto} from "../../../@core/models/program.model";
+import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 
 @Component({
   selector: 'app-add-program',
@@ -12,8 +12,8 @@ import {ProgramDto} from "../../../@core/models/program.model";
 })
 export class AddProgramComponent implements OnInit {
   myForm = new FormGroup({
-    'section-name': new FormControl('', Validators.required),
-    'section-video': new FormControl('', Validators.required),
+    'section-name': new FormControl(''),
+    'section-video': new FormControl(''),
     'section-description': new FormControl(''),
     'program-motivation': new FormControl(''),
     'program-picture': new FormControl(''),
@@ -32,11 +32,12 @@ export class AddProgramComponent implements OnInit {
   myOptions: string[] = [];
 
   chunkedElements: string[][] = [];
-  items: Item[] = []; // TODO remove this
-  details!: ProgramDetails; // TODO remove this
+  // TODO remove this
+  // TODO remove this
 
   // TODO work with this instead
-  program!: ProgramDto; // TODO save the program in this object the items in this case are programSection Field
+  items:ProgramSectionDto[]=[];
+  details!: ProgramDto; // TODO save the program in this object the items in this case are programSection Field
   multipartFiles: File[] = []; // TODO add the files to this list the files should be sorted
 
   // TODO please use reactive forms instead of refs and add form validations
@@ -53,18 +54,18 @@ export class AddProgramComponent implements OnInit {
     }
     return chunkedArray;
   }
-  addItem(sectionLevel: string) {
+  /*addItem(sectionLevel: string) {
     const sectionName = this.myForm.get('section-name')!.value;
     const sectionVideo = this.myForm.get('section-video')!.value;
     const sectionDescription = this.myForm.get('section-description')!.value;
 
     this.items.push({name: sectionName, video: sectionVideo, description: sectionDescription, level: sectionLevel});
     console.log(this.items);
-  }
-
+  }*/
+/*
   deleteItem(item: { name: string | null; video: string | null; }) {
     this.items = this.items.filter(i => i !== item);
-  }
+  }*/
   onOptionChange(option: string, isChecked: boolean) {
     const optionArray = this.myForm.get('program-options') as FormArray;
 
@@ -96,7 +97,7 @@ export class AddProgramComponent implements OnInit {
     return filePath.split('\\').pop().split('/').pop();
   }
 
-  saveChanges(category: string, programLevel: string) {
+  /*saveChanges(category: string, programLevel: string) {
     if (confirm("Are you sure you want to save changes?")) {
       // code to save changes
       const motivation = this.myForm.get('program-motivation')!.value;
@@ -105,24 +106,23 @@ export class AddProgramComponent implements OnInit {
       const duration = this.myForm.get('program-duration')!.value;
       const motivationDescription = this.myForm.get('motivation-description')!.value;
       const programDescription = this.myForm.get('program-description')!.value;
-
       this.details = {
         motivation: motivation,
         picture: picture,
         programLevel: programLevel,
-        price: price,
+        price: Number(price),
         category: category,
         duration: duration,
         motivationDescription: motivationDescription,
         programDescription: programDescription,
         programEquipments: this.myequipments,
         programOptions: this.myOptions,
-        items: this.items
+        sections: this.items;
       };
       console.log(this.details);
       this.myForm.reset();
       //Todo save data to server (use program service i created it for you )
     }
-  }
+  }*/
 
 }
