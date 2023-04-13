@@ -39,6 +39,7 @@ import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dash
 import {TrainerBlogsComponent} from "./dashboard/components/trainer-blogs/trainer-blogs.component";
 import {ProfileGuard} from "./@core/guards/profile/profile.guard";
 import {ProgramDetailsComponent} from "./program-details/program-details.component";
+import {DashboardGuard} from "./@core/guards/dashboard/dashboard.guard";
 import {ModifyProgramComponent} from "./modify-program/modify-program.component";
 
 const routes: Routes = [
@@ -62,7 +63,8 @@ const routes: Routes = [
   {path: 'reset-password', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard]},
   {path: 'error-404', component: ErrorComponent},
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [HomeGuard], children: [
+    path: 'dashboard', component: DashboardComponent, canActivate: [HomeGuard, DashboardGuard], children: [
+      {path: '', component: DashboardHomeComponent},
       {path: 'home', component: DashboardHomeComponent},
       {path: 'programs', component: TrainerProgramsComponent},
       {path: 'blogs', component: TrainerBlogsComponent},

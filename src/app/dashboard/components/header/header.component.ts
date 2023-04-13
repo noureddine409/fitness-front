@@ -1,14 +1,40 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../../@core/services/token-storage/token-storage.service";
+import {TOKEN_KEY} from "../../../@shared/constants";
+import {Subscription} from "rxjs";
+import {AppUser} from "../../../@core/models/user.model";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent{
+export class HeaderComponent implements OnInit{
+
+  private currentUserSubscription!: Subscription;
+
+  currentUser!: AppUser | null;
   constructor(private router: Router,private tokenStorageService: TokenStorageService) {
+  }
+
+  ngOnInit() {
+    const token = this.tokenStorageService.getToken(TOKEN_KEY);
+
+    this.currentUserSubscription = this.tokenStorageService.currentUser$.subscribe(
+      user => {
+        this.currentUser = user;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.currentUserSubscription) {
+      this.currentUserSubscription.unsubscribe();
+    }
   }
   goToOtherComponent(url:string) {
     this.router.navigate([url]);

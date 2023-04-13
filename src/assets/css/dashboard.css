@@ -267,6 +267,11 @@
 	border-radius:100%;
 	overflow: hidden;
 }
+
+.ttr-user-avatar > img {
+  width: 32px;
+  height: 32px;
+}
 .ttr-search-bar{
 	position: absolute;
 	width: 100%;
