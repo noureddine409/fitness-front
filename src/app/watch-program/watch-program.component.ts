@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Item} from "../@core/models/Items.model";
 
 @Component({
   selector: 'app-watch-program',
