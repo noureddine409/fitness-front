@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         // Trigger the loader function
         setTimeout(() => {
           jQuery('#loading-icon-bx').remove();
-        }, 1500);
+        }, 1000);
       }
     });
 
