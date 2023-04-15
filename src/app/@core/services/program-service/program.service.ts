@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, Observable, tap} from "rxjs";
-import {ProgramDto} from "../../models/program.model";
 import {SAVE_PROGRAM_API_URL} from "../../../@shared/constants";
-import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +9,18 @@ export class ProgramService {
 
   constructor(private http: HttpClient) { }
 
-  save(programDto: ProgramDto, multipartFiles: File[]): Observable<ProgramDto> {
+  save(program: any, videos: any[], pictures: any[], programPicture: any) {
     const formData = new FormData();
-    formData.append('program', JSON.stringify(programDto));
-    for (const file of multipartFiles) {
-      formData.append('files', file);
+    formData.append('program', program);
+    for (let i = 0; i < videos.length; i++) {
+      formData.append('section-videos', videos[i]);
     }
-    return this.http.post<ProgramDto>(SAVE_PROGRAM_API_URL, formData).pipe(
-      map(response => response as ProgramDto),
-      tap(response => console.log(response)),
-      catchError(error => {
-        console.error(error);
-        throw error;
-      })
-    );
+    for (let i = 0; i < pictures.length; i++) {
+      formData.append('section-pictures', pictures[i]);
+    }
+    formData.append('program-picture', programPicture);
+
+
+    return this.http.post(SAVE_PROGRAM_API_URL, formData);
   }
 }

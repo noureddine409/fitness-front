@@ -19,6 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
 
+    console.log("interceptor is called ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,")
+
     if (request.url.includes('/api/auth/')) {
       return next.handle(request);
     }

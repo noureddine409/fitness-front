@@ -37,7 +37,7 @@
                 <div>
                   <input class="form-control" type="file" accept="image/*" formControlName="program-picture"
                          (change)="onPictureChange($event)">
-                  <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                  <app-validation-message controlName="program-picture" [formGroup]="programForm"
                                           [submitted]="sectionAdded"></app-validation-message>
                 </div>
               </div>
@@ -223,7 +223,7 @@
                       <div>
                         <input class="form-control" type="file" accept="video/*" formControlName="section-video"
                                (change)="onSectionVideoChange($event)">
-                        <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                        <app-validation-message controlName="section-video" [formGroup]="sectionForm"
                                                 [submitted]="sectionAdded"></app-validation-message>
                       </div>
                     </div>
@@ -232,7 +232,7 @@
                       <div>
                         <input class="form-control" type="file" accept="image/*" formControlName="section-picture"
                                (change)="onSectionPictureChange($event)">
-                        <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                        <app-validation-message controlName="section-picture" [formGroup]="sectionForm"
                                                 [submitted]="sectionAdded"></app-validation-message>
                       </div>
                     </div>
@@ -247,7 +247,7 @@
                 </div>
               </form>
               <div class="col-12 text-center">
-                <button type="reset" class="btn" (click)="saveChanges()">Save
+                <button class="btn" (click)="saveChanges()">Save
                   changes
                 </button>
               </div>
