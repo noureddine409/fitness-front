@@ -13,6 +13,10 @@ export class AddProgramComponent implements OnInit {
   programForm!: FormGroup;
   sectionForm!: FormGroup;
 
+  submitted!: boolean;
+
+  sectionAdded!: boolean;
+
   constructor(private programService: ProgramService, private fb: FormBuilder) {
   }
 
@@ -54,12 +58,11 @@ export class AddProgramComponent implements OnInit {
   showTable = false; // Add this line to declare and initialize the variable
   showEquipment = false;
   equipments = new Set(equipments);
-  myequipments = new Set<string>();
+  myEquipments = new Set<string>();
   myOptions = new Set<string>();
 
   chunkedElements: string[][] = [];
 
-  // TODO work with this instead
   items: ProgramSectionDto[] = [];
   details!: ProgramDto;
   multipartVideos: File[] = [];
@@ -77,6 +80,12 @@ export class AddProgramComponent implements OnInit {
   }
 
   addItem() {
+
+    this.sectionAdded = true;
+    if(this.sectionForm.invalid) {
+      return;
+    }
+
     const sectionName = this.sectionForm.get('section-name')!.value;
     const sectionDescription = this.sectionForm.get('section-description')!.value;
     const sectionLevel = this.sectionForm.get('section-level')!.value;
@@ -85,6 +94,7 @@ export class AddProgramComponent implements OnInit {
     this.multipartVideos.push(this.sectionVideo);
     console.log(this.items);
     this.sectionForm.reset();
+    this.sectionAdded = false;
   }
 
   deleteItem(item: ProgramSectionDto) {
@@ -144,11 +154,19 @@ export class AddProgramComponent implements OnInit {
       const index = equipmentArray.controls.findIndex(x => x.value === equipment);
       equipmentArray.removeAt(index);
     }
-    this.myequipments = equipmentArray.value;
-    console.log(this.myequipments);
+    this.myEquipments = equipmentArray.value;
+    console.log(this.myEquipments);
   }
 
   saveChanges(category: string, programLevel: string) {
+
+    this.submitted = true;
+
+    if (this.programForm.invalid) {
+      return;
+    }
+
+
     if (confirm("Are you sure you want to save changes?")) {
       // code to save changes
       const motivation = this.programForm.get('program-motivation')!.value;
@@ -165,7 +183,7 @@ export class AddProgramComponent implements OnInit {
         durationPerDay: Number(duration),
         motivationDescription: motivationDescription,
         description: programDescription,
-        equipments: this.myequipments,
+        equipments: this.myEquipments,
         options: this.myOptions,
         sections: this.items,
         picture: picture

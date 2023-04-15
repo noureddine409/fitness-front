@@ -27,10 +27,8 @@
                 <div>
                   <input class="form-control form-control-danger" type="text" value=""
                          formControlName="program-motivation">
-                  <div class="form-control-feedback alert alert-danger" role="alert"
-                       *ngIf="programForm.get('program-motivation')!.invalid && programForm.get('program-motivation')!.touched">
-                    Please enter a valid program title.
-                  </div>
+                  <app-validation-message formControlName="program-motivation" [formGroup]="programForm"
+                                          [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
 
@@ -52,53 +50,45 @@
                     <option value="all-levels">All Levels</option>
                   </select>
                 </div>
+                <app-validation-message formControlName="program-level" [formGroup]="programForm"
+                                        [submitted]="submitted"></app-validation-message>
               </div>
 
-              <div class="form-group col-6"
-                   [ngClass]="{'has-danger': programForm.get('program-price')!.invalid && programForm.get('program-price')!.touched}">
+              <div class="form-group col-6">
                 <label class="col-form-label">Price (DH)</label>
-                <div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">DH</span>
-                    </div>
-                    <input class="form-control form-control-danger" type="text" value=""
-                           formControlName="program-price">
 
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">DH</span>
                   </div>
-                  <div class="form-control-feedback alert alert-danger" role="alert"
-                       *ngIf="programForm.get('program-price')!.invalid && programForm.get('program-price')!.touched">
-                    Please enter a valid price.
-                  </div>
+                  <input class="form-control form-control-danger" type="text" value=""
+                         formControlName="program-price">
                 </div>
+                <app-validation-message formControlName="program-price" [formGroup]="programForm"
+                                        [submitted]="submitted"></app-validation-message>
               </div>
 
               <div class="form-group col-6">
                 <label class="col-form-label">Category</label>
-                <div>
-                  <select class="form-control" style="height: 40px;" formControlName="program-category" #categoryInput>
-                    <option value="fitness">Fitness</option>
-                    <option value="nutrition">Nutrition</option>
-                    <option value="mindset">Mindset</option>
-                  </select>
-                </div>
+                <select class="form-control" style="height: 40px;" formControlName="program-category" #categoryInput>
+                  <option value="fitness">Fitness</option>
+                  <option value="nutrition">Nutrition</option>
+                  <option value="mindset">Mindset</option>
+                </select>
+                <app-validation-message formControlName="program-category" [formGroup]="programForm"
+                                        [submitted]="submitted"></app-validation-message>
               </div>
 
-              <div class="form-group col-6"
-                   [ngClass]="{'has-danger': programForm.get('program-duration')!.invalid && programForm.get('program-duration')!.touched}">
+              <div class="form-group col-6">
                 <label class="col-form-label">Duration (Minutes/Day)</label>
-                <div>
-                  <div class="input-group">
-                    <input class="form-control" type="number" step="1" value="" formControlName="program-duration">
-                    <div class="input-group-append">
-                      <span class="input-group-text">minutes/day</span>
-                    </div>
-                  </div>
-                  <div class="form-control-feedback alert alert-danger" role="alert"
-                       *ngIf="programForm.get('program-duration')!.invalid && programForm.get('program-duration')!.touched">
-                    Please enter a valid program duration.
+                <div class="input-group">
+                  <input class="form-control" type="number" step="1" value="" formControlName="program-duration">
+                  <div class="input-group-append">
+                    <span class="input-group-text">minutes/day</span>
                   </div>
                 </div>
+                <app-validation-message formControlName="program-duration" [formGroup]="programForm"
+                                        [submitted]="submitted"></app-validation-message>
               </div>
 
               <div class="form-group col-12"
@@ -110,25 +100,17 @@
                   </div>
                 </div>
                 <label class="col-form-label">Motivation description</label>
-                <div>
-                  <textarea class="form-control" formControlName="motivation-description"> </textarea>
-                  <div class="form-control-feedback alert alert-danger" role="alert"
-                       *ngIf="programForm.get('motivation-description')!.invalid && programForm.get('motivation-description')!.touched">
-                    Please enter a complete motivation description.
-                  </div>
-                </div>
+
+                <textarea class="form-control" formControlName="motivation-description"> </textarea>
+                <app-validation-message formControlName="motivation-description" [formGroup]="programForm"
+                                        [submitted]="submitted"></app-validation-message>
               </div>
 
-              <div class="form-group col-12"
-                   [ngClass]="{'has-danger': programForm.get('program-description')!.invalid && programForm.get('program-description')!.touched}">
+              <div class="form-group col-12">
                 <label class="col-form-label">Program description</label>
-                <div>
-                  <textarea class="form-control" formControlName="program-description"> </textarea>
-                  <div class="form-control-feedback alert alert-danger" role="alert"
-                       *ngIf="programForm.get('program-description')!.invalid && programForm.get('program-description')!.touched">
-                    Program description is required.
-                  </div>
-                </div>
+                <textarea class="form-control" formControlName="program-description"> </textarea>
+                <app-validation-message formControlName="program-description" [formGroup]="programForm"
+                                        [submitted]="submitted"></app-validation-message>
               </div>
               <div class="form-group col-12">
                 <button type="button" (click)="showTable = !showTable" class="btn-secondry add-item m-r5"><i
@@ -202,40 +184,32 @@
                   </table>
 
                   <div class="row">
-                      <div class="form-group col-6"
-                           [ngClass]="{'has-danger': sectionForm.get('section-name')!.invalid && sectionForm.get('section-name')!.touched}">
-                        <label class="col-form-label">Section Name</label>
-                        <div>
-                        <input class="form-control" type="text" formControlName="section-name">
-                        </div>
-                        <div class="form-control-feedback alert alert-danger" role="alert"
-                             *ngIf="sectionForm.get('section-name')!.invalid && sectionForm.get('section-name')!.touched">
-                          Please enter a valid section name.
-                        </div>
-                      </div>
+                    <div class="form-group col-6"
+                         [ngClass]="{'has-danger': sectionForm.get('section-name')!.invalid && sectionForm.get('section-name')!.touched}">
+                      <label class="col-form-label">Section Name</label>
+                      <input class="form-control" type="text" formControlName="section-name">
+                      <app-validation-message formControlName="section-name" [formGroup]="sectionForm"
+                                              [submitted]="sectionAdded"></app-validation-message>
+                    </div>
 
-                      <div class="form-group col-6">
-                        <label class="col-form-label">Section Level</label>
-                        <div>
-                          <select class="form-control" style="height: 40px;" formControlName="section-level">
-                            <option value="first">First Level</option>
-                            <option value="second">Second Level</option>
-                            <option value="final">Final</option>
-                          </select>
-                        </div>
+                    <div class="form-group col-6">
+                      <label class="col-form-label">Section Level</label>
+                      <div>
+                        <select class="form-control" style="height: 40px;" formControlName="section-level">
+                          <option value="first">First Level</option>
+                          <option value="second">Second Level</option>
+                          <option value="final">Final</option>
+                        </select>
                       </div>
+                    </div>
 
-                      <div class="form-group col-12"
-                           [ngClass]="{'has-danger': sectionForm.get('section-description')!.invalid && sectionForm.get('section-description')!.touched}">
-                        <label class="col-form-label">Section description</label>
-                        <div>
-                          <textarea class="form-control" formControlName="section-description"> </textarea>
-                          <div class="form-control-feedback alert alert-danger" role="alert"
-                               *ngIf="sectionForm.get('section-description')!.invalid && sectionForm.get('section-description')!.touched">
-                            section description is required.
-                          </div>
-                        </div>
-                      </div>
+                    <div class="form-group col-12"
+                         [ngClass]="{'has-danger': sectionForm.get('section-description')!.invalid && sectionForm.get('section-description')!.touched}">
+                      <label class="col-form-label">Section description</label>
+                      <textarea class="form-control" formControlName="section-description"></textarea>
+                      <app-validation-message formControlName="section-description" [formGroup]="sectionForm"
+                                              [submitted]="sectionAdded"></app-validation-message>
+                    </div>
                     <div class="form-group col-6">
                       <label class="col-form-label">Section Video</label>
                       <div>
@@ -253,16 +227,16 @@
                   </div>
                   <div class="row">
                     <div class="col-md-2">
-                      <button type="button" (click)="addItem()" [disabled]="!sectionForm.valid"
-                              class="btn-secondry add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Item
+                      <button type="button" (click)="addItem()"
+                              class="btn-secondary add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Item
                       </button>
                     </div>
                   </div>
                 </div>
               </form>
               <div class="col-12">
-                <button type="reset" class="btn" (click)="saveChanges(categoryInput.value,programLevelInput.value)"
-                        [disabled]="!programForm.valid">Save changes
+                <button type="reset" class="btn" (click)="saveChanges(categoryInput.value,programLevelInput.value)">Save
+                  changes
                 </button>
               </div>
             </div>

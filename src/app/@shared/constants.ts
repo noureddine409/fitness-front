@@ -149,7 +149,11 @@ export const VALIDATION_MESSAGES = {
   PASSWORD_LOWER_CASE: "Password must contain at least one lowercase letter.",
   PASSWORD_DIGITS: "Password must contain at least one digit.",
   PASSWORD_SPECIAL: "Password must contain at least one special character.",
-  MISMATCH: "Confirm Password does not match."
+  MISMATCH: "Confirm Password does not match.",
+  INVALID_INPUT: "invalid input",
+  MIN_INPUT: "Your input exceeds the maximum allowed length",
+  MAX_INPUT: "Your input does not meet the minimum required length",
+  PATTERN_INPUT_MATCH: "Your input does not match the required pattern"
 
 }
 export const options = ['Strength', 'Dance', 'Nutrition & Recipes', 'Muscle Building', 'HIIT', 'Cardio', 'Core', 'Mobility & Flexibility', 'Recovery', 'Pilates', 'Yoga', 'Bootcamp', 'Slim & Sculpt'];

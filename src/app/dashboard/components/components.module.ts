@@ -10,12 +10,13 @@ import {ListViewComponent} from "./list-view/list-view.component";
 import {SideBarComponent} from "./side-bar/side-bar.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TrainerProgramsComponent} from "./trainer-programs/trainer-programs.component";
+import {ValidationMessageComponent} from "./validation-message/validation-message.component";
 
 const dashboardComponents: Type<any>[] = [AddBlogComponent, AddProgramComponent, BasicCalendarComponent, TrainerProgramsComponent, TrainerBlogsComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent];
 
 
 @NgModule({
-  declarations: [...dashboardComponents],
+  declarations: [...dashboardComponents, ValidationMessageComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule
