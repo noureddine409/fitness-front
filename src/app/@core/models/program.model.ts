@@ -4,18 +4,18 @@ export interface ProgramDto {
   id?: number;//not required
   createdAt?: string;//not required
   updatedAt?: string;//not required
-  name: string | null;
+  name: string;
   level: string;
   price: number;
   category: string;
-  description: string | null;
+  description: string;
   createdBy?: AppUser;//not required
-  motivationDescription?: string |null;//not required
+  motivationDescription?: string;//not required
   durationPerDay: number;
   options: Set<string>;
   equipments: Set<string>;
   sections: ProgramSectionDto[];
-  picture: string | null;
+  picture: string;
 }
 
 export interface ProgramSectionDto {
@@ -23,8 +23,8 @@ export interface ProgramSectionDto {
   id?: number;//not required
   createdAt?: string;//not required
   updatedAt?: string;//not required
-  title: string | null;
-  description: string | null;
+  title: string;
+  description: string;
   level: string;
   video?: SectionVideoDto;//not required
 }
