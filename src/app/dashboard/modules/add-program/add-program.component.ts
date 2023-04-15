@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
@@ -7,7 +7,7 @@ import {ProgramService} from "../../../@core/services/program-service/program.se
 @Component({
   selector: 'app-add-program',
   templateUrl: './add-program.component.html',
-  styleUrls: ['./add-program.component.css']
+  styleUrls: ['./add-program.component.css'],
 })
 export class AddProgramComponent implements OnInit {
   programForm!: FormGroup;
@@ -16,13 +16,22 @@ export class AddProgramComponent implements OnInit {
   submitted!: boolean;
 
   sectionAdded!: boolean;
+  selectedOptions = new Set<string>();
+  selectedEquipments = new Set<string>();
+  myEquipments = new Set(equipments);
+  myOptions = new Set(options);
+  programSectionDto: ProgramSectionDto[] = [];
+  programDto!: ProgramDto;
+  private multipartVideos: File[] = [];
+  private multipartPictures: File[] = [];
+  private picture!: File;
+  private sectionPicture!: File;
+  private sectionVideo!: File;
 
-  constructor(private programService: ProgramService, private fb: FormBuilder) {
+  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder) {
   }
 
-
   ngOnInit() {
-    this.chunkedElements = this.chunkArray(options, 7);
     this.programForm = this.fb.group({
       'program-motivation': ['', [
         Validators.required,
@@ -30,15 +39,15 @@ export class AddProgramComponent implements OnInit {
         Validators.maxLength(255),
         Validators.pattern(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/)
       ]],
-      'program-picture': [null],
+      'program-picture': [null, [Validators.required]],
       'program-price': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]],
       'program-level': ['beginner', Validators.required],
       'program-category': ['fitness', Validators.required],
       'program-duration': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0), Validators.max(1440)]],
       'motivation-description': ['', [Validators.minLength(10)]],
       'program-description': ['', [Validators.required, Validators.minLength(10)]],
-      'program-options': this.fb.array([]),
-      'program-equipments': this.fb.array([])
+      'selected-options': [[], Validators.required],
+      'selected-equipments': [[], Validators.required]
     });
     this.sectionForm = this.fb.group({
       'section-name': ['', [
@@ -47,67 +56,78 @@ export class AddProgramComponent implements OnInit {
         Validators.maxLength(255),
         Validators.pattern(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/)
       ]],
-      'section-video': [null],
+      'section-video': [null, Validators.required],
       'section-description': ['', [Validators.required, Validators.minLength(10)]],
       'section-level': ['first', Validators.required],
-      'section-picture': [null]
+      'section-picture': [null,[Validators.required]]
+    });
+    // Subscribe to valueChanges and update selectedOptions array
+    this.programForm.get('selected-options')!.valueChanges.subscribe(values => {
+      if (values) {
+        const selectedOptions = new Set<string>(values.filter((value: string) => value !== ''));
+        this.selectedOptions = new Set([...this.selectedOptions, ...selectedOptions]);
+      }
+    });
+    // Subscribe to valueChanges and update selectedEquipments array
+    this.programForm.get('selected-equipments')!.valueChanges.subscribe(values => {
+      if (values) {
+        const selectedEquipments = new Set<string>(values.filter((value: string) => value !== ''));
+        this.selectedEquipments = new Set([...this.selectedEquipments, ...selectedEquipments]);
+      }
     });
 
   }
-
-  showTable = false; // Add this line to declare and initialize the variable
-  showEquipment = false;
-  equipments = new Set(equipments);
-  myEquipments = new Set<string>();
-  myOptions = new Set<string>();
-
-  chunkedElements: string[][] = [];
-
-  items: ProgramSectionDto[] = [];
-  details!: ProgramDto;
-  multipartVideos: File[] = [];
-  multipartPictures: File[] = [];
-  picture!: File;
-  sectionPicture!: File;
-  sectionVideo!: File;
-
-  chunkArray(array: any[], size: number): any[][] {
-    const chunkedArray = [];
-    for (let i = 0; i < array.length; i += size) {
-      chunkedArray.push(array.slice(i, i + size));
-    }
-    return chunkedArray;
-  }
-
-  addItem() {
+  addSection() {
 
     this.sectionAdded = true;
-    if(this.sectionForm.invalid) {
+    if (this.sectionForm.invalid) {
       return;
     }
 
     const sectionName = this.sectionForm.get('section-name')!.value;
     const sectionDescription = this.sectionForm.get('section-description')!.value;
-    const sectionLevel = this.sectionForm.get('section-level')!.value;
-    this.items.push({title: sectionName, description: sectionDescription, level: sectionLevel});
+    const sectionLevel = this.sectionForm.get('section-level')!.value.toUpperCase();
+    this.programSectionDto.push({title: sectionName, description: sectionDescription, level: sectionLevel});
     this.multipartPictures.push(this.sectionPicture);
     this.multipartVideos.push(this.sectionVideo);
-    console.log(this.items);
+    console.log(this.programSectionDto);
     this.sectionForm.reset();
     this.sectionAdded = false;
   }
 
-  deleteItem(item: ProgramSectionDto) {
-    this.items = this.items.filter(i => i !== item);
-    this.deleteVideo(this.items.indexOf(item));
-    this.deletePicture(this.items.indexOf(item));
+  removeOption(index: number) {
+    const selectedOptions = this.selectedOptions;
+    let i = 0;
+    for (const option of selectedOptions) {
+      if (i === index) {
+        selectedOptions.delete(option);
+        break;
+      }
+      i++;
+    }
+    console.log(this.selectedOptions);
   }
 
-  deleteVideo(index: number) {
+  removeEquipment(index: number) {
+    const selectedEquipments = this.selectedEquipments;
+    let i = 0;
+    for (const equipment of selectedEquipments) {
+      if (i === index) {
+        selectedEquipments.delete(equipment);
+        break;
+      }
+      i++;
+    }
+    console.log(this.selectedEquipments);
+  }
+
+  deleteSection(sectionDto: ProgramSectionDto) {
+    this.programSectionDto = this.programSectionDto.filter(i => i !== sectionDto);
+    this.deleteFiles(this.programSectionDto.indexOf(sectionDto));
+  }
+
+  deleteFiles(index: number) {
     this.multipartVideos.splice(index, 1);
-  }
-
-  deletePicture(index: number) {
     this.multipartPictures.splice(index, 1);
   }
 
@@ -123,42 +143,13 @@ export class AddProgramComponent implements OnInit {
     }
   }
 
-  //this.multipartPictures.push(file);
-
   onSectionVideoChange(event: any) {
     if (event.target.files && event.target.files.length) {
       this.sectionVideo = event.target.files[0];
     }
   }
 
-  onOptionChange(option: string, isChecked: boolean) {
-    const optionArray = this.programForm.get('program-options') as FormArray;
-
-    if (isChecked) {
-      optionArray.push(new FormControl(option));
-    } else {
-      const index = optionArray.controls.findIndex(x => x.value === option);
-      optionArray.removeAt(index);
-    }
-    this.myOptions = optionArray.value;
-    console.log(this.myOptions);
-  }
-
-
-  onEquipmentChange(equipment: string, isChecked: boolean) {
-    const equipmentArray = this.programForm.get('program-equipments') as FormArray;
-
-    if (isChecked) {
-      equipmentArray.push(new FormControl(equipment));
-    } else {
-      const index = equipmentArray.controls.findIndex(x => x.value === equipment);
-      equipmentArray.removeAt(index);
-    }
-    this.myEquipments = equipmentArray.value;
-    console.log(this.myEquipments);
-  }
-
-  saveChanges(category: string, programLevel: string) {
+  saveChanges() {
 
     this.submitted = true;
 
@@ -175,7 +166,9 @@ export class AddProgramComponent implements OnInit {
       const duration = this.programForm.get('program-duration')!.value;
       const motivationDescription = this.programForm.get('motivation-description')!.value;
       const programDescription = this.programForm.get('program-description')!.value;
-      this.details = {
+      const category = this.programForm.get('program-category')!.value.toUpperCase();
+      const programLevel = this.programForm.get('program-level')!.value.toUpperCase();
+      this.programDto = {
         name: motivation,
         level: programLevel,
         price: Number(price),
@@ -183,19 +176,27 @@ export class AddProgramComponent implements OnInit {
         durationPerDay: Number(duration),
         motivationDescription: motivationDescription,
         description: programDescription,
-        equipments: this.myEquipments,
-        options: this.myOptions,
-        sections: this.items,
+        equipments: this.selectedEquipments,
+        options: this.selectedOptions,
+        sections: this.programSectionDto,
         picture: picture
       };
-      this.programService.save(this.details, this.multipartVideos);
-      console.log(this.details);
+      this.programService.save(this.programDto, this.multipartVideos);
+      console.log(this.programDto);
       console.log(this.multipartVideos);
+      console.log(this.multipartPictures);
       this.multipartVideos = [];
       this.multipartPictures = [];
+      this.programSectionDto = [];
+      this.selectedOptions = new Set();
+      this.selectedEquipments = new Set();
       this.programForm.reset();
       //Todo save data to server (use program service i created it for you )
     }
+  }
+
+  modifyItem(item: ProgramSectionDto) {
+    //item.editMode = !item.editMode;
   }
 
 }

@@ -1,5 +1,0 @@
-<div *ngIf="(submitted && formGroup.controls[formControlName]?.errors) || (formGroup.controls[formControlName].invalid && (formGroup.controls[formControlName].dirty || formGroup.controls[formControlName].touched))">
-  <div class="validation-message">
-    {{ getErrorMessage(formGroup.controls[formControlName].errors)[0] }}
-  </div>
-</div>

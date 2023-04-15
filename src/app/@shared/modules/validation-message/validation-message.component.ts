@@ -16,7 +16,7 @@ export class ValidationMessageComponent {
   submitted!: boolean;
 
   @Input()
-  formControlName!: string;
+  controlName!: string;
 
   getErrorMessage(errors: any) {
     return getErrorMessages(errors);

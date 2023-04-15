@@ -23,11 +23,11 @@
               </div>
               <div class="form-group col-6"
                    [ngClass]="{'has-danger': programForm.get('program-motivation')!.invalid && programForm.get('program-motivation')!.touched}">
-                <label class="col-form-label">Program Motivation</label>
+                <label class="col-form-label">Program Name</label>
                 <div>
                   <input class="form-control form-control-danger" type="text" value=""
                          formControlName="program-motivation">
-                  <app-validation-message formControlName="program-motivation" [formGroup]="programForm"
+                  <app-validation-message controlName="program-motivation" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
@@ -37,20 +37,22 @@
                 <div>
                   <input class="form-control" type="file" accept="image/*" formControlName="program-picture"
                          (change)="onPictureChange($event)">
+                  <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                                          [submitted]="sectionAdded"></app-validation-message>
                 </div>
               </div>
 
               <div class="form-group col-6">
                 <label class="col-form-label">Program Level</label>
                 <div>
-                  <select class="form-control" style="height: 40px;" formControlName="program-level" #programLevelInput>
+                  <select class="form-control" style="height: 40px;" formControlName="program-level">
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="hard">Hard</option>
                     <option value="all-levels">All Levels</option>
                   </select>
                 </div>
-                <app-validation-message formControlName="program-level" [formGroup]="programForm"
+                <app-validation-message controlName="program-level" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
@@ -64,18 +66,18 @@
                   <input class="form-control form-control-danger" type="text" value=""
                          formControlName="program-price">
                 </div>
-                <app-validation-message formControlName="program-price" [formGroup]="programForm"
+                <app-validation-message controlName="program-price" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
               <div class="form-group col-6">
                 <label class="col-form-label">Category</label>
-                <select class="form-control" style="height: 40px;" formControlName="program-category" #categoryInput>
+                <select class="form-control" style="height: 40px;" formControlName="program-category">
                   <option value="fitness">Fitness</option>
                   <option value="nutrition">Nutrition</option>
                   <option value="mindset">Mindset</option>
                 </select>
-                <app-validation-message formControlName="program-category" [formGroup]="programForm"
+                <app-validation-message controlName="program-category" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
@@ -87,7 +89,7 @@
                     <span class="input-group-text">minutes/day</span>
                   </div>
                 </div>
-                <app-validation-message formControlName="program-duration" [formGroup]="programForm"
+                <app-validation-message controlName="program-duration" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
@@ -102,54 +104,58 @@
                 <label class="col-form-label">Motivation description</label>
 
                 <textarea class="form-control" formControlName="motivation-description"> </textarea>
-                <app-validation-message formControlName="motivation-description" [formGroup]="programForm"
+                <app-validation-message controlName="motivation-description" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
               <div class="form-group col-12">
                 <label class="col-form-label">Program description</label>
                 <textarea class="form-control" formControlName="program-description"> </textarea>
-                <app-validation-message formControlName="program-description" [formGroup]="programForm"
+                <app-validation-message controlName="program-description" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
               <div class="form-group col-12">
-                <button type="button" (click)="showTable = !showTable" class="btn-secondry add-item m-r5"><i
-                  class="fa fa-fw fa-plus-circle"></i>Select Program Options
-                </button>
-                <div *ngIf="showTable">
-                  <div class="row">
-                    <div class="col-6" *ngFor="let chunk of chunkedElements">
-                      <ul class="list-group">
-                        <li class="list-group-item border-0" *ngFor="let element of chunk">
-                          <input class="form-check-input me-2" type="checkbox" value="" #optionInput
-                                 (change)="onOptionChange(element, optionInput.checked)">
-                          <label class="form-check-label">{{ element }}</label>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                <label class="col-form-label">Program Options</label>
+                <div>
+                  <select formControlName="selected-options" multiple class="form-control form-control-lg"
+                          style="height: 200px;">
+                    <option class="py-2" *ngFor="let option of myOptions" [value]="option">{{ option }}</option>
+                  </select>
+                  <app-validation-message controlName="selected-options" [formGroup]="programForm"
+                                          [submitted]="submitted"></app-validation-message>
+                </div>
+                <div class="mt-3 d-flex flex-wrap">
+                  <span class="badge badge-pill badge-secondary mr-2 mb-2 d-flex align-items-center"
+                        *ngFor="let option of selectedOptions; let i = index">
+                    {{ option }}
+                    <button type="button" class="close ml-2" aria-label="Close" (click)="removeOption(i)">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </span>
                 </div>
               </div>
 
 
               <div class="form-group col-12">
-                <button type="button" (click)="showEquipment = !showEquipment" class="btn-secondry add-item m-r5"><i
-                  class="fa fa-fw fa-plus-circle"></i>Select Equipment Needed
-                </button>
-
-                <div *ngIf="showEquipment">
-                  <label class="col-form-label">Equipment Needed</label>
-                  <div>
-                    <ul class="list-group">
-                      <li class="list-group-item border-0" *ngFor="let equipment of equipments">
-                        <input class="form-check-input me-2" type="checkbox" value="" #equipmentInput
-                               (change)="onEquipmentChange(equipment, equipmentInput.checked)">
-                        <label class="form-check-label">{{ equipment }}</label>
-                      </li>
-                    </ul>
-                  </div>
+                <label class="col-form-label">Program Equipments</label>
+                <div>
+                  <select formControlName="selected-equipments" multiple class="form-control form-control-lg" style="height: 200px;">
+                    <option class="py-2" *ngFor="let equipment of myEquipments" [value]="equipment">{{ equipment }}</option>
+                  </select>
+                  <app-validation-message controlName="selected-equipments" [formGroup]="programForm"
+                                          [submitted]="submitted"></app-validation-message>
+                </div>
+                <div class="mt-3 d-flex flex-wrap">
+                  <span class="badge badge-pill badge-secondary mr-2 mb-2 d-flex align-items-center"
+                        *ngFor="let equipment of selectedEquipments; let i = index">
+                    {{ equipment }}
+                    <button type="button" class="close ml-2" aria-label="Close" (click)="removeEquipment(i)">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </span>
                 </div>
               </div>
+
               <form class="col-12 m-t20" [formGroup]="sectionForm">
                 <div class="col-12 m-t20">
                   <div class="ml-auto">
@@ -164,23 +170,23 @@
                       <th>Section Name</th>
                       <th>Section Level</th>
                       <th>Section Description</th>
-                      <th>Section Video</th>
-                      <th>Close</th>
+                      <th>Remove</th>
+                      <th>Modify</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="list-item" *ngFor="let item of items">
+                    <tr class="list-item" *ngFor="let item of programSectionDto">
                       <td>{{item.title}}</td>
                       <td>{{item.level}}</td>
                       <td>{{item.description}}</td>
                       <td>
+                        <button (click)="deleteSection(item)" class="btn btn-danger my-button"><i class="fa fa-trash"></i></button>
+                      </td>
                       <td>
-                        <button (click)="deleteItem(item)" class="btn btn-danger my-button"><i class="fa fa-trash"></i>
-                        </button>
+                        <button (click)="modifyItem(item)" class="btn btn-primary my-button"><i class="fa fa-edit"></i></button>
                       </td>
                     </tr>
                     </tbody>
-
                   </table>
 
                   <div class="row">
@@ -188,7 +194,7 @@
                          [ngClass]="{'has-danger': sectionForm.get('section-name')!.invalid && sectionForm.get('section-name')!.touched}">
                       <label class="col-form-label">Section Name</label>
                       <input class="form-control" type="text" formControlName="section-name">
-                      <app-validation-message formControlName="section-name" [formGroup]="sectionForm"
+                      <app-validation-message controlName="section-name" [formGroup]="sectionForm"
                                               [submitted]="sectionAdded"></app-validation-message>
                     </div>
 
@@ -200,6 +206,8 @@
                           <option value="second">Second Level</option>
                           <option value="final">Final</option>
                         </select>
+                        <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                                                [submitted]="sectionAdded"></app-validation-message>
                       </div>
                     </div>
 
@@ -207,7 +215,7 @@
                          [ngClass]="{'has-danger': sectionForm.get('section-description')!.invalid && sectionForm.get('section-description')!.touched}">
                       <label class="col-form-label">Section description</label>
                       <textarea class="form-control" formControlName="section-description"></textarea>
-                      <app-validation-message formControlName="section-description" [formGroup]="sectionForm"
+                      <app-validation-message controlName="section-description" [formGroup]="sectionForm"
                                               [submitted]="sectionAdded"></app-validation-message>
                     </div>
                     <div class="form-group col-6">
@@ -215,6 +223,8 @@
                       <div>
                         <input class="form-control" type="file" accept="video/*" formControlName="section-video"
                                (change)="onSectionVideoChange($event)">
+                        <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                                                [submitted]="sectionAdded"></app-validation-message>
                       </div>
                     </div>
                     <div class="form-group col-6">
@@ -222,20 +232,22 @@
                       <div>
                         <input class="form-control" type="file" accept="image/*" formControlName="section-picture"
                                (change)="onSectionPictureChange($event)">
+                        <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                                                [submitted]="sectionAdded"></app-validation-message>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-2">
-                      <button type="button" (click)="addItem()"
-                              class="btn-secondary add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Item
+                      <button type="button" (click)="addSection()"
+                              class="btn-secondry add-item m-r5 mb-3"><i class="fa fa-fw fa-plus-circle"></i>Add Section
                       </button>
                     </div>
                   </div>
                 </div>
               </form>
-              <div class="col-12">
-                <button type="reset" class="btn" (click)="saveChanges(categoryInput.value,programLevelInput.value)">Save
+              <div class="col-12 text-center">
+                <button type="reset" class="btn" (click)="saveChanges()">Save
                   changes
                 </button>
               </div>
