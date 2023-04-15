@@ -12,10 +12,10 @@ export interface ProgramDto {
   createdBy?: AppUser;//not required
   motivationDescription?: string;//not required
   durationPerDay: number;
-  options: Set<string>;
-  equipments: Set<string>;
+  options: string[];
+  equipments: string[];
   sections: ProgramSectionDto[];
-  picture: string;
+  picture?: string;
 }
 
 export interface ProgramSectionDto {

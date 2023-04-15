@@ -59,7 +59,7 @@ export class AddProgramComponent implements OnInit {
       'section-video': [null, Validators.required],
       'section-description': ['', [Validators.required, Validators.minLength(10)]],
       'section-level': ['first', Validators.required],
-      'section-picture': [null,[Validators.required]]
+      'section-picture': [null, [Validators.required]]
     });
     // Subscribe to valueChanges and update selectedOptions array
     this.programForm.get('selected-options')!.valueChanges.subscribe(values => {
@@ -77,6 +77,7 @@ export class AddProgramComponent implements OnInit {
     });
 
   }
+
   addSection() {
 
     this.sectionAdded = true;
@@ -86,7 +87,7 @@ export class AddProgramComponent implements OnInit {
 
     const sectionName = this.sectionForm.get('section-name')!.value;
     const sectionDescription = this.sectionForm.get('section-description')!.value;
-    const sectionLevel = this.sectionForm.get('section-level')!.value.toUpperCase();
+    const sectionLevel = "FIRST_LEVEL"
     this.programSectionDto.push({title: sectionName, description: sectionDescription, level: sectionLevel});
     this.multipartPictures.push(this.sectionPicture);
     this.multipartVideos.push(this.sectionVideo);
@@ -166,32 +167,40 @@ export class AddProgramComponent implements OnInit {
       const duration = this.programForm.get('program-duration')!.value;
       const motivationDescription = this.programForm.get('motivation-description')!.value;
       const programDescription = this.programForm.get('program-description')!.value;
-      const category = this.programForm.get('program-category')!.value.toUpperCase();
-      const programLevel = this.programForm.get('program-level')!.value.toUpperCase();
+      const category = "FITNESS"
+      const programLevel = "FIRST_LEVEL"
       this.programDto = {
         name: motivation,
         level: programLevel,
+
         price: Number(price),
         category: category,
         durationPerDay: Number(duration),
         motivationDescription: motivationDescription,
         description: programDescription,
-        equipments: this.selectedEquipments,
-        options: this.selectedOptions,
+        equipments: [
+          "DUMBBELLS"
+        ],
+        options:
+          [
+            "DANCE",
+            "YOGA"
+          ],
         sections: this.programSectionDto,
-        picture: picture
-      };
-      this.programService.save(this.programDto, this.multipartVideos);
-      console.log(this.programDto);
-      console.log(this.multipartVideos);
-      console.log(this.multipartPictures);
-      this.multipartVideos = [];
-      this.multipartPictures = [];
-      this.programSectionDto = [];
-      this.selectedOptions = new Set();
-      this.selectedEquipments = new Set();
-      this.programForm.reset();
-      //Todo save data to server (use program service i created it for you )
+      }
+      ;
+
+      console.log("program toa dd", this.programDto)
+      const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
+      const programFile = new File([programBlob], 'program.json');
+      this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
+        value => {
+          console.log(value);
+        },
+        error => {
+          console.log(error);
+        }
+      )
     }
   }
 
