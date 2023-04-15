@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-program',
@@ -28,7 +29,7 @@ export class AddProgramComponent implements OnInit {
   private sectionPicture!: File;
   private sectionVideo!: File;
 
-  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder) {
+  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder, private router: Router) {
   }
 
   ngOnInit() {
@@ -192,10 +193,11 @@ export class AddProgramComponent implements OnInit {
 
       console.log("program toa dd", this.programDto)
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
-      const programFile = new File([programBlob], 'program.json');
       this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
         value => {
           console.log(value);
+          // here redirect me to program details
+          this.router.navigate(["/dashboard/modify-Program"])
         },
         error => {
           console.log(error);
