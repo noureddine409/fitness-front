@@ -1,6 +1,7 @@
 import {NgModule, Type} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule} from "@angular/forms";
+import {ModalComponent} from "../modules/modal/modal.component";
 
 
 export const SHARED_COMPONENTS: Type<any>[] = [];

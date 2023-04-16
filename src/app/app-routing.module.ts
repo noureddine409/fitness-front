@@ -33,14 +33,14 @@ import {TrainerProgramsComponent} from "./dashboard/components/trainer-programs/
 import {BasicCalendarComponent} from "./dashboard/components/basic-calendar/basic-calendar.component";
 import {ListViewComponent} from "./dashboard/components/list-view/list-view.component";
 import {ReviewsComponent} from "./dashboard/components/reviews/reviews.component";
-import {AddProgramComponent} from "./dashboard/modules/add-program/add-program.component";
+import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
 import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.component";
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
 import {TrainerBlogsComponent} from "./dashboard/components/trainer-blogs/trainer-blogs.component";
 import {ProfileGuard} from "./@core/guards/profile/profile.guard";
 import {ProgramDetailsComponent} from "./program-details/program-details.component";
 import {DashboardGuard} from "./@core/guards/dashboard/dashboard.guard";
-import {ModifyProgramComponent} from "./modify-program/modify-program.component";
+import {ModifyProgramComponent} from "./dashboard/components/modify-program/modify-program.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -63,7 +63,7 @@ const routes: Routes = [
   {path: 'reset-password', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard]},
   {path: 'error-404', component: ErrorComponent},
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [HomeGuard, DashboardGuard], children: [
+    path: 'dashboard', component: DashboardComponent,canActivate: [HomeGuard,DashboardGuard], children: [
       {path: '', component: DashboardHomeComponent},
       {path: 'home', component: DashboardHomeComponent},
       {path: 'programs', component: TrainerProgramsComponent},

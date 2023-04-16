@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {ProgramDto} from "../@core/models/program.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  programDto!: ProgramDto;
   constructor(private router:Router) {
   }
-
 }
