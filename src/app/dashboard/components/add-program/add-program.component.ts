@@ -4,8 +4,6 @@ import {equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
-import {OptionsEnum} from "../../../@shared/enums/OptionsEnum";
-import {EquipmentEnum} from "../../../@shared/enums/EquipmentEnum";
 
 @Component({
   selector: 'app-add-program',
@@ -17,6 +15,7 @@ export class AddProgramComponent implements OnInit {
   sectionForm!: FormGroup;
 
   submitted!: boolean;
+  showModal: boolean = false;
 
   sectionAdded!: boolean;
   selectedOptions = new Set<string>();
@@ -85,18 +84,20 @@ export class AddProgramComponent implements OnInit {
 
     this.sectionAdded = true;
     if (this.sectionForm.invalid) {
+      this.showModal = false;
       return;
     }
-
+    this.showModal = true;
     const sectionName = this.sectionForm.get('section-name')!.value;
     const sectionDescription = this.sectionForm.get('section-description')!.value;
-    const sectionLevel = "FIRST_LEVEL"
+    const sectionLevel = this.sectionForm.get('section-level')!.value;
     this.programSectionDto.push({title: sectionName, description: sectionDescription, level: sectionLevel});
     this.multipartPictures.push(this.sectionPicture);
     this.multipartVideos.push(this.sectionVideo);
     console.log(this.programSectionDto);
     this.sectionForm.reset();
     this.sectionAdded = false;
+    //this.showModal = false;
   }
 
   removeOption(index: number) {
@@ -169,8 +170,8 @@ export class AddProgramComponent implements OnInit {
       const duration = this.programForm.get('program-duration')!.value;
       const motivationDescription = this.programForm.get('motivation-description')!.value;
       const programDescription = this.programForm.get('program-description')!.value;
-      const category = "FITNESS"
-      const programLevel = "FIRST_LEVEL"
+      const category = this.programForm.get('program-category')!.value;
+      const programLevel = this.programForm.get('program-level')!.value;
       this.programDto = {
         name: motivation,
         level: programLevel,
@@ -180,27 +181,21 @@ export class AddProgramComponent implements OnInit {
         durationPerDay: Number(duration),
         motivationDescription: motivationDescription,
         description: programDescription,
-        equipments: Array.from(this.selectedEquipments).map(equipment => EquipmentEnum[equipment as keyof typeof EquipmentEnum]),
-        options: Array.from(this.selectedOptions).map(option => OptionsEnum[option as keyof typeof OptionsEnum]),
+        equipments: [...this.selectedEquipments],
+        //Array.from(this.selectedEquipments).map(equipment => EquipmentEnum[equipment as keyof typeof EquipmentEnum]),
+        options: [...this.selectedOptions],
+        //Array.from(this.selectedOptions).map(option => OptionsEnum[option as keyof typeof OptionsEnum]),
         sections: this.programSectionDto,
-      }
-      ;
-
+      };
+      this.programService.setProgramDto(this.programDto,this.picture);
       console.log("program toa dd", this.programDto)
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
       console.log("program toa dd", programBlob)
       console.log("program toa dd", this.multipartVideos)
       console.log("program toa dd", this.multipartPictures)
-      this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
-        value => {
-          console.log(value);
-          // here redirect me to program details
-          this.router.navigate(["/dashboard/modify-Program"]);
-        },
-        error => {
-          console.log(error);
-        }
-      )
+      this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture);
+      // here redirect me to program details
+      this.router.navigate(["/dashboard/modify-Program"]);
     }
   }
 

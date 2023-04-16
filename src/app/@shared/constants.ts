@@ -156,8 +156,9 @@ export const VALIDATION_MESSAGES = {
   PATTERN_INPUT_MATCH: "Your input does not match the required pattern"
 
 }
-export const options = ['STRENGTH', 'DANCE', 'NUTRITION & RECIPES', 'MUSCLE BUILDING', 'HIIT', 'CARDIO', 'CORE', 'MOBILITY & FLEXIBILITY', 'RECOVERY', 'PILATES', 'YOGA', 'BOOTCAMP', 'SLIM & SCULPT'];
+export const options = ['Strength', 'Dance', 'Nutrition & Recipes', 'Muscle Building', 'HIIT', 'Cardio', 'Core', 'Mobility & Flexibility', 'Recovery', 'Pilates', 'Yoga', 'Bootcamp', 'Slim & Sculpt'].map(option => option.charAt(0).toUpperCase() + option.slice(1).toLowerCase());
 
-export const equipments = ['DUMBBELLS', 'ADJUSTABLE BENCH', 'POWER LOOPS', 'CORE COMFORT MAT', 'YOGA MAT', 'RESISTANCE LOOPS'];
+export const equipments = ['Dumbbells', 'Adjustable Bench', 'Power Loops', 'Core Comfort Mat', 'Yoga Mat', 'Resistance Loops'].map(equipment => equipment.charAt(0).toUpperCase() + equipment.slice(1).toLowerCase());
+
 
 

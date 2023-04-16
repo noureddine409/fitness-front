@@ -1,0 +1,22 @@
+<div class="modal fade review-bx-reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="showMessage == true">Reply to review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" [hidden]="!showMessage">
+        <textarea class="form-control" placeholder="Type text"></textarea>
+      </div>
+      <div class="modal-body" *ngIf="showMessage === false">
+        <div class="alert alert-success custom-alert">{{message}}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn mr-auto" *ngIf="showMessage == true" (click)="onReply()">Reply</button>
+        <button type="button" class="btn mr-auto" *ngIf="showMessage === false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Continue</span></button>
+      </div>
+    </div>
+  </div>
+</div>
