@@ -4,6 +4,8 @@ import {equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
+import {OptionsEnum} from "../../../@shared/enums/OptionsEnum";
+import {EquipmentEnum} from "../../../@shared/enums/EquipmentEnum";
 
 @Component({
   selector: 'app-add-program',
@@ -163,7 +165,6 @@ export class AddProgramComponent implements OnInit {
     if (confirm("Are you sure you want to save changes?")) {
       // code to save changes
       const motivation = this.programForm.get('program-motivation')!.value;
-      const picture = this.programForm.get('program-picture')!.value;
       const price = this.programForm.get('program-price')!.value;
       const duration = this.programForm.get('program-duration')!.value;
       const motivationDescription = this.programForm.get('motivation-description')!.value;
@@ -179,25 +180,22 @@ export class AddProgramComponent implements OnInit {
         durationPerDay: Number(duration),
         motivationDescription: motivationDescription,
         description: programDescription,
-        equipments: [
-          "DUMBBELLS"
-        ],
-        options:
-          [
-            "DANCE",
-            "YOGA"
-          ],
+        equipments: Array.from(this.selectedEquipments).map(equipment => EquipmentEnum[equipment as keyof typeof EquipmentEnum]),
+        options: Array.from(this.selectedOptions).map(option => OptionsEnum[option as keyof typeof OptionsEnum]),
         sections: this.programSectionDto,
       }
       ;
 
       console.log("program toa dd", this.programDto)
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
+      console.log("program toa dd", programBlob)
+      console.log("program toa dd", this.multipartVideos)
+      console.log("program toa dd", this.multipartPictures)
       this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
         value => {
           console.log(value);
           // here redirect me to program details
-          this.router.navigate(["/dashboard/modify-Program"])
+          this.router.navigate(["/dashboard/modify-Program"]);
         },
         error => {
           console.log(error);
