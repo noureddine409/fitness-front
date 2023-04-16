@@ -163,20 +163,21 @@
                     <h6 class="m-form__section">Add Section</h6>
                   </div>
                 </div>
-                <div class="col-12">
-                  <table class="table table-striped" id="item-add" style="width:100%;">
+                <div class="col-12 ">
+                  <div class="table-responsive bg-white">
+                    <table class="table" id="item-add" style="width:100%;">
                     <thead>
                     <tr>
-                      <th>Section Name</th>
-                      <th>Section Level</th>
-                      <th>Section Description</th>
-                      <th>Remove</th>
-                      <th>Modify</th>
+                      <th scope="col">Section Name</th>
+                      <th scope="col">Section Level</th>
+                      <th scope="col">Section Description</th>
+                      <th scope="col">Remove</th>
+                      <th scope="col">Modify</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr class="list-item" *ngFor="let item of programSectionDto">
-                      <td>{{item.title}}</td>
+                      <th scope="row" style="color: #666666;">{{item.title}}</th>
                       <td>{{item.level}}</td>
                       <td>{{item.description}}</td>
                       <td>
@@ -187,7 +188,7 @@
                       </td>
                     </tr>
                     </tbody>
-                  </table>
+                  </table></div>
 
                   <div class="row">
                     <div class="form-group col-6"
