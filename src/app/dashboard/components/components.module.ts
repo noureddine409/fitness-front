@@ -13,16 +13,18 @@ import {TrainerProgramsComponent} from "./trainer-programs/trainer-programs.comp
 import {ModifyProgramComponent} from "./modify-program/modify-program.component";
 import {SharedModule} from "../../@shared/shared.module";
 import {ReviewsComponent} from "./reviews/reviews.component";
+import {AuthenticationModule} from "../../authentication/authentication.module";
 
 const dashboardComponents: Type<any>[] = [AddBlogComponent,AddProgramComponent,ModifyProgramComponent, BasicCalendarComponent, TrainerProgramsComponent, TrainerBlogsComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent,ReviewsComponent];
 
 
 @NgModule({
   declarations: [...dashboardComponents],
-  imports: [
-    SharedModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        SharedModule,
+        ReactiveFormsModule,
+        AuthenticationModule
+    ],
   exports: [...dashboardComponents]
 })
 export class ComponentsModule {

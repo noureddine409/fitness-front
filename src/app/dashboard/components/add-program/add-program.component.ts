@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {equipments, options} from "../../../@shared/constants";
+import {ALERT_MESSAGES, equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
@@ -14,6 +14,8 @@ import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/se
 export class AddProgramComponent implements OnInit {
   programForm!: FormGroup;
   sectionForm!: FormGroup;
+
+  errorMessage = "";
 
   submitted!: boolean;
   showModal = false;
@@ -44,8 +46,8 @@ export class AddProgramComponent implements OnInit {
       ]],
       'program-picture': [null, [Validators.required]],
       'program-price': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]],
-      'program-level': ['beginner', Validators.required],
-      'program-category': ['fitness', Validators.required],
+      'program-level': ['BEGINNER', Validators.required],
+      'program-category': ['FITNESS', Validators.required],
       'program-duration': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0), Validators.max(1440)]],
       'motivation-description': ['', [Validators.minLength(10)]],
       'program-description': ['', [Validators.required, Validators.minLength(10)]],
@@ -61,7 +63,7 @@ export class AddProgramComponent implements OnInit {
       ]],
       'section-video': [null, Validators.required],
       'section-description': ['', [Validators.required, Validators.minLength(10)]],
-      'section-level': ['first', Validators.required],
+      'section-level': ['FIRST_LEVEL', Validators.required],
       'section-picture': [null, [Validators.required]]
     });
 
@@ -142,7 +144,6 @@ export class AddProgramComponent implements OnInit {
     }
 
     if (confirm("Are you sure you want to save changes?")) {
-      // code to save changes
       const motivation = this.programForm.get('program-motivation')!.value;
       const price = this.programForm.get('program-price')!.value;
       const duration = this.programForm.get('program-duration')!.value;
@@ -167,14 +168,13 @@ export class AddProgramComponent implements OnInit {
 
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
 
-      console.log(this.multipartVideos)
 
       this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
-        (value) => {
-          this.router.navigate(["/dashboard/modify-Program"]);
+        (program) => {
+          this.router.navigate([`/dashboard/modify-Program/${program.id}`]);
         },
         error => {
-          console.log("error accur")
+          this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
         }
       )
 

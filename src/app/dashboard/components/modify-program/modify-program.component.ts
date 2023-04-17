@@ -27,8 +27,8 @@ export class ModifyProgramComponent implements OnInit {
       data => {
         this.programDto = data;
       },
-      error => {
-
+      () => {
+        this.router.navigate(["/error-404"]);
       }
     )
   }
