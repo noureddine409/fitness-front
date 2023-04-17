@@ -1,5 +1,65 @@
-import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
 import {VALIDATION_MESSAGES} from "../@shared/constants";
+
+
+export function requiredValidator(control: FormControl) {
+  return Validators.required(control) ? null : { required: true };
+}
+
+export function minLengthValidator(length: number) {
+  return (control: FormControl) => {
+    return control.value && control.value.length >= length
+      ? null
+      : { minlength: { requiredLength: length } };
+  };
+}
+
+export function maxLengthValidator(length: number) {
+  return (control: FormControl) => {
+    return control.value && control.value.length <= length
+      ? null
+      : { maxlength: { requiredLength: length } };
+  };
+}
+
+export function patternValidator(pattern: RegExp) {
+  return (control: FormControl) => {
+    return pattern.test(control.value)
+      ? null
+      : { pattern: { requiredPattern: pattern } };
+  };
+}
+
+export function minValidator(min: number) {
+  return (control: FormControl) => {
+    return control.value >= min ? null : { min: { requiredValue: min } };
+  };
+}
+
+export function maxValidator(max: number) {
+  return (control: FormControl) => {
+    return control.value <= max ? null : { max: { requiredValue: max } };
+  };
+}
+
+export function optionsValidator(control: FormControl) {
+  const values = control.value;
+  if (values) {
+    const selectedOptions = new Set<string>(values.filter((value: string) => value !== ''));
+    return selectedOptions.size > 0 ? null : { required: true };
+  }
+  return { required: true };
+}
+
+export function equipmentsValidator(control: FormControl) {
+  const values = control.value;
+  if (values) {
+    const selectedEquipments = new Set<string>(values.filter((value: string) => value !== ''));
+    return selectedEquipments.size > 0 ? null : { required: true };
+  }
+  return { required: true };
+}
+
 
 export function getErrorMessages(errors: any) {
   const messages = [];

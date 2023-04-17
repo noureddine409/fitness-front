@@ -17,10 +17,10 @@
             <div class="teacher-bx">
               <div class="teacher-info">
                 <div class="teacher-thumb">
-                  <img src="../../../../assets/images/testimonials/pic1.jpg" alt=""/>
+                  <img src="{{programDto?.createdBy?.profilePicture}}" alt=""/>
                 </div>
                 <div class="teacher-name">
-                  <h5>Hinata Hyuga</h5>
+                  <h5>{{programDto?.createdBy?.firstName}} {{programDto?.createdBy?.lastName}}</h5>
                   <span>{{programDto.category}} Coach</span>
                 </div>
               </div>
@@ -55,7 +55,7 @@
         <div class="col-lg-9 col-md-8 col-sm-12">
           <div class="courses-post">
             <div class="ttr-post-media media-effect">
-              <a href="#"><img [src]="programPictureUrl" alt="Program Picture"></a>
+              <a href="#"><img [src]="programDto.picture" alt="Program Picture"></a>
             </div>
             <div class="ttr-post-info">
               <div class="ttr-post-title ">

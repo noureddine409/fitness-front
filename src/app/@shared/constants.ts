@@ -111,6 +111,8 @@ export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/fo
 
 export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
 
+export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/"
+
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
 export const ALERT_MESSAGES = {
   REGISTER: {
@@ -156,9 +158,27 @@ export const VALIDATION_MESSAGES = {
   PATTERN_INPUT_MATCH: "Your input does not match the required pattern"
 
 }
-export const options = ['Strength', 'Dance', 'Nutrition & Recipes', 'Muscle Building', 'HIIT', 'Cardio', 'Core', 'Mobility & Flexibility', 'Recovery', 'Pilates', 'Yoga', 'Bootcamp', 'Slim & Sculpt'].map(option => option.charAt(0).toUpperCase() + option.slice(1).toLowerCase());
 
-export const equipments = ['Dumbbells', 'Adjustable Bench', 'Power Loops', 'Core Comfort Mat', 'Yoga Mat', 'Resistance Loops'].map(equipment => equipment.charAt(0).toUpperCase() + equipment.slice(1).toLowerCase());
+export const options = new Map<string, string> ([
+  ["STRENGTH", "Strength"],
+  ["DANCE", "Strength"],
+  ["NUTRITION_RECIPES", "Nutrition & Recipes"],
+  ["MUSCLE_BUILDING", "Muscle Building"],
+  ["HIIT", "HIIT"],
+  ["CARDIO", "Cardio"],
+  ["MOBILITY_FLEXIBILITY", "Mobility & Flexibility"],
+  ["RECOVERY", "Recovery"],
+  ["PILATES", "Pilates"],
+  ["YOGA", "Yoga"],
+  ["SLIM_SCUPLT", "Slim & Sculpt"]
+])
 
-
+export const equipments = new Map<string, string> ([
+  ["DUMBBELLS", "Dumbbells"],
+  ["ADJUSTABLE_BENCH", "Adjustable Bench"],
+  ["CORE_COMFORT_MAT", "Core Comfort Mat"],
+  ["POWER_LOOPS", "Power Loops"],
+  ["YOGA_MAT", "Yoga Mat"],
+  ["Resistance_Loops", "Resistance Loops"]
+])
 

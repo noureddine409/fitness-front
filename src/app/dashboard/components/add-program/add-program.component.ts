@@ -4,6 +4,7 @@ import {equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
+import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/selection-box.util";
 
 @Component({
   selector: 'app-add-program',
@@ -15,13 +16,13 @@ export class AddProgramComponent implements OnInit {
   sectionForm!: FormGroup;
 
   submitted!: boolean;
-  showModal: boolean = false;
+  showModal = false;
 
   sectionAdded!: boolean;
   selectedOptions = new Set<string>();
   selectedEquipments = new Set<string>();
-  myEquipments = new Set(equipments);
-  myOptions = new Set(options);
+  myEquipments: Map<string, string> = equipments
+  myOptions: Map<string, string> = options
   programSectionDto: ProgramSectionDto[] = [];
   programDto!: ProgramDto;
   private multipartVideos: File[] = [];
@@ -63,20 +64,11 @@ export class AddProgramComponent implements OnInit {
       'section-level': ['first', Validators.required],
       'section-picture': [null, [Validators.required]]
     });
-    // Subscribe to valueChanges and update selectedOptions array
-    this.programForm.get('selected-options')!.valueChanges.subscribe(values => {
-      if (values) {
-        const selectedOptions = new Set<string>(values.filter((value: string) => value !== ''));
-        this.selectedOptions = new Set([...this.selectedOptions, ...selectedOptions]);
-      }
-    });
-    // Subscribe to valueChanges and update selectedEquipments array
-    this.programForm.get('selected-equipments')!.valueChanges.subscribe(values => {
-      if (values) {
-        const selectedEquipments = new Set<string>(values.filter((value: string) => value !== ''));
-        this.selectedEquipments = new Set([...this.selectedEquipments, ...selectedEquipments]);
-      }
-    });
+
+
+    updateSetFromValueChanges(this.selectedOptions, 'selected-options', this.programForm);
+    updateSetFromValueChanges(this.selectedEquipments, 'selected-equipments', this.programForm);
+
 
   }
 
@@ -94,37 +86,23 @@ export class AddProgramComponent implements OnInit {
     this.programSectionDto.push({title: sectionName, description: sectionDescription, level: sectionLevel});
     this.multipartPictures.push(this.sectionPicture);
     this.multipartVideos.push(this.sectionVideo);
-    console.log(this.programSectionDto);
     this.sectionForm.reset();
     this.sectionAdded = false;
-    //this.showModal = false;
   }
 
+
+
   removeOption(index: number) {
-    const selectedOptions = this.selectedOptions;
-    let i = 0;
-    for (const option of selectedOptions) {
-      if (i === index) {
-        selectedOptions.delete(option);
-        break;
-      }
-      i++;
-    }
-    console.log(this.selectedOptions);
+    removeFromSetAtIndex(this.selectedOptions, index);
+
   }
 
   removeEquipment(index: number) {
-    const selectedEquipments = this.selectedEquipments;
-    let i = 0;
-    for (const equipment of selectedEquipments) {
-      if (i === index) {
-        selectedEquipments.delete(equipment);
-        break;
-      }
-      i++;
-    }
-    console.log(this.selectedEquipments);
+    removeFromSetAtIndex(this.selectedEquipments, index);
   }
+
+
+
 
   deleteSection(sectionDto: ProgramSectionDto) {
     this.programSectionDto = this.programSectionDto.filter(i => i !== sectionDto);
@@ -154,6 +132,7 @@ export class AddProgramComponent implements OnInit {
     }
   }
 
+
   saveChanges() {
 
     this.submitted = true;
@@ -161,7 +140,6 @@ export class AddProgramComponent implements OnInit {
     if (this.programForm.invalid) {
       return;
     }
-
 
     if (confirm("Are you sure you want to save changes?")) {
       // code to save changes
@@ -172,30 +150,34 @@ export class AddProgramComponent implements OnInit {
       const programDescription = this.programForm.get('program-description')!.value;
       const category = this.programForm.get('program-category')!.value;
       const programLevel = this.programForm.get('program-level')!.value;
+
+      console.log(this.selectedEquipments)
       this.programDto = {
         name: motivation,
         level: programLevel,
-
         price: Number(price),
         category: category,
         durationPerDay: Number(duration),
         motivationDescription: motivationDescription,
         description: programDescription,
         equipments: [...this.selectedEquipments],
-        //Array.from(this.selectedEquipments).map(equipment => EquipmentEnum[equipment as keyof typeof EquipmentEnum]),
         options: [...this.selectedOptions],
-        //Array.from(this.selectedOptions).map(option => OptionsEnum[option as keyof typeof OptionsEnum]),
         sections: this.programSectionDto,
       };
-      this.programService.setProgramDto(this.programDto,this.picture);
-      console.log("program toa dd", this.programDto)
+
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
-      console.log("program toa dd", programBlob)
-      console.log("program toa dd", this.multipartVideos)
-      console.log("program toa dd", this.multipartPictures)
-      this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture);
-      // here redirect me to program details
-      this.router.navigate(["/dashboard/modify-Program"]);
+
+      console.log(this.multipartVideos)
+
+      this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
+        (value) => {
+          this.router.navigate(["/dashboard/modify-Program"]);
+        },
+        error => {
+          console.log("error accur")
+        }
+      )
+
     }
   }
 
@@ -203,4 +185,7 @@ export class AddProgramComponent implements OnInit {
     //item.editMode = !item.editMode;
   }
 
+
 }
+
+

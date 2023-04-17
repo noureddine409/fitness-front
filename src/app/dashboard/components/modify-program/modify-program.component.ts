@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProgramDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-modify-program',
@@ -9,24 +10,27 @@ import {ProgramService} from "../../../@core/services/program-service/program.se
 })
 export class ModifyProgramComponent implements OnInit {
   programDto!: ProgramDto;
-  programPicture!:File;
-  programPictureUrl!: string | ArrayBuffer | null;
 
-  //@Input() programDto!: ProgramDto;
-  constructor(private programService: ProgramService) {
+  programId!: number
+
+  constructor(private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.programDto = this.programService.popProgramDto()
-    this.programPicture=this.programService.popProgramPicture();
-    this.createProgramPictureUrl();
-  }
-  createProgramPictureUrl() {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      this.programPictureUrl = event.target!.result;
-    };
-    reader.readAsDataURL(this.programPicture);
+    const param = this.activatedRoute.snapshot.paramMap.get("id")
+    if(param ==null) {
+      this.router.navigate(['/error-404']);
+      return
+    }
+    this.programId = parseInt(param , 10);
+    this.programService.findById(this.programId).subscribe(
+      data => {
+        this.programDto = data;
+      },
+      error => {
+
+      }
+    )
   }
 
 }

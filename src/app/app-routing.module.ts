@@ -73,7 +73,7 @@ const routes: Routes = [
       {path: 'reviews', component: ReviewsComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'add-Program', component: AddProgramComponent},
-      {path: 'modify-Program', component: ModifyProgramComponent},
+      {path: 'modify-Program/:id', component: ModifyProgramComponent},
 
       {path: 'add-Blog', component: AddBlogComponent},
     ]
