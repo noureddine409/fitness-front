@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProgramDto, ProgramSectionDto} from "../@core/models/program.model";
 import {ProgramService} from "../@core/services/program-service/program.service";
@@ -13,16 +13,17 @@ export class WatchProgramComponent implements OnInit {
   programId!: number;
   selectedSection!: ProgramSectionDto;
 
-constructor(private router: Router, private programService: ProgramService,private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute) {
 
-}
+  }
+
   ngOnInit(): void {
     const param = this.activatedRoute.snapshot.paramMap.get("id")
-    if(param ==null) {
+    if (param == null) {
       this.router.navigate(['/error-404']);
       return
     }
-    this.programId = parseInt(param , 10);
+    this.programId = parseInt(param, 10);
     this.programService.findById(this.programId).subscribe(
       data => {
         this.programDto = data;
