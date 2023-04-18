@@ -25,6 +25,7 @@ import {BlogsModule} from "./blogs/blogs.module";
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {LayoutModule} from "./layout/layout.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {WatchProgramModule} from "./watch-program/watch-program.module";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     BlogsModule,
     AuthenticationModule,
     LayoutModule,
-    DashboardModule
+    DashboardModule,
+    WatchProgramModule
 //...
 
   ],
