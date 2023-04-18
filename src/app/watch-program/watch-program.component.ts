@@ -1,4 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProgramDto, ProgramSectionDto} from "../@core/models/program.model";
+import {ProgramService} from "../@core/services/program-service/program.service";
 
 @Component({
   selector: 'app-watch-program',
@@ -6,24 +9,32 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
   styleUrls: ['./watch-program.component.css']
 })
 export class WatchProgramComponent implements OnInit {
+  programDto!: ProgramDto;
+  programId!: number;
+  selectedSection!: ProgramSectionDto;
 
+constructor(private router: Router, private programService: ProgramService,private activatedRoute: ActivatedRoute) {
+
+}
   ngOnInit(): void {
+    const param = this.activatedRoute.snapshot.paramMap.get("id")
+    if(param ==null) {
+      this.router.navigate(['/error-404']);
+      return
+    }
+    this.programId = parseInt(param , 10);
+    this.programService.findById(this.programId).subscribe(
+      data => {
+        this.programDto = data;
+        this.selectedSection = this.programDto.sections[0];
+      },
+      () => {
+        this.router.navigate(["/error-404"]);
+      }
+    );
+  }
 
-}
-changeUrl(videoUrl: string,id:string) {
-  const acodHead = document.querySelector(id);
-  const videoLink = document.querySelector('.video-bx a') as HTMLAnchorElement;
-
-  acodHead!.addEventListener('click', () => {
-    videoLink.href = videoUrl;
-    console.log(videoLink.href);
-  });
-
-  const videoPopup = document.querySelector('.popup-youtube') as HTMLAnchorElement;
-  const videoLinkClick = document.querySelector('#video-link');
-
-  videoLinkClick?.addEventListener('click', () => {
-    videoPopup?.click();
-  });
-}
+  changeVideo(section: ProgramSectionDto) {
+    this.selectedSection = section;
+  }
 }

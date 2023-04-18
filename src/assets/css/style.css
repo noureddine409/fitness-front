@@ -3068,7 +3068,7 @@ button.back-to-top {
 }
 .why-chooses-bx .faq-bx{
 	max-width: 700px;
-	margin: auto;
+	margin: 0px;
 }
 .why-chooses-bx .faq-bx .panel {
 	background:#fff;

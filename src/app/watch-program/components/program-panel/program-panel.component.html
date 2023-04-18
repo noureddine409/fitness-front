@@ -1,0 +1,10 @@
+<div class="panel">
+  <div class="acod-head" id="cc4">
+    <h6 class="acod-title">
+      <a data-toggle="collapse" [href]="'#' + faqId" class="collapsed" [attr.data-parent]="'#' + faqId">
+        {{programSection.title}} </a> </h6>
+  </div>
+  <div id="{{faqId}}" class="acod-body collapse">
+    <div class="acod-content">{{programSection.description}}</div>
+  </div>
+</div>

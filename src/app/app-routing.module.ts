@@ -47,7 +47,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [HomeGuard]},
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
   {path: 'program-details', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
-  {path: 'watch-program', component: WatchProgramComponent, canActivate: [HomeGuard]},
+  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},
   {path: 'contact-us', component: ContactComponent, canActivate: [HomeGuard]},

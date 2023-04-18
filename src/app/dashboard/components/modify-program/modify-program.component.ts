@@ -41,4 +41,7 @@ export class ModifyProgramComponent implements OnInit {
     )
   }
 
+  goToWatchPage() {
+    this.router.navigate([`/watch-program/${(this.programId)}`]);
+  }
 }
