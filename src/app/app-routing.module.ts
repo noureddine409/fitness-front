@@ -29,7 +29,7 @@ import {RegisterComponent} from "./authentication/components/register/register.c
 import {LoginComponent} from "./authentication/components/login/login.component";
 import {ErrorComponent} from "./authentication/components/error/error.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {TrainerProgramsComponent} from "./dashboard/components/trainer-programs/trainer-programs.component";
+import {TrainerProgramsComponent} from "./dashboard/modules/trainer-programs/trainer-programs.component";
 import {BasicCalendarComponent} from "./dashboard/components/basic-calendar/basic-calendar.component";
 import {ListViewComponent} from "./dashboard/components/list-view/list-view.component";
 import {ReviewsComponent} from "./dashboard/components/reviews/reviews.component";

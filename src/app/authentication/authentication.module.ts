@@ -1,7 +1,6 @@
 import {NgModule, Type} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
-import {AlertComponent} from "./components/alert/alert.component";
 import {CompleteProfileFormComponent} from "./components/complete-profile/complete-profile-form.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {ForgetPasswordComponent} from "./components/forget-password/forget-password.component";
@@ -14,16 +13,18 @@ import {ResetPasswordComponent} from "./components/reset-password/reset-password
 import {VerifyAccountComponent} from "./components/verify-account/verify-account.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
-const authenticationComponents: Type<any>[] = [ActivateAccountComponent,AlertComponent,CompleteProfileFormComponent,ErrorComponent,ForgetPasswordComponent,ForgetPasswordVerifyComponent,ForgetPasswordMailComponent,LoginComponent,ProfileComponent,RegisterComponent,ResetPasswordComponent,VerifyAccountComponent];
+import {SharedModule} from "../@shared/shared.module";
+
+const authenticationComponents: Type<any>[] = [ActivateAccountComponent, CompleteProfileFormComponent, ErrorComponent, ForgetPasswordComponent, ForgetPasswordVerifyComponent, ForgetPasswordMailComponent, LoginComponent, ProfileComponent, RegisterComponent, ResetPasswordComponent, VerifyAccountComponent];
 
 
 @NgModule({
   declarations: [...authenticationComponents],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     GoogleSigninButtonModule
   ],
-  exports:[...authenticationComponents]
+  exports: [...authenticationComponents]
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {
+}

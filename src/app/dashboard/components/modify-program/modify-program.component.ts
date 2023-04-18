@@ -11,8 +11,6 @@ import {equipments, options} from "../../../@shared/constants";
 })
 export class ModifyProgramComponent implements OnInit {
   programDto!: ProgramDto;
-
-
   programId!: number
 
   constructor(private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute) {
