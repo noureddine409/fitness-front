@@ -111,6 +111,8 @@ export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/fo
 
 export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
 
+export const GET_TRAINER_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/me"
+
 export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/"
 
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
@@ -139,6 +141,9 @@ export const ALERT_MESSAGES = {
     ERROR: "Sorry, we were unable to update your password at this time. Please try again later or contact our customer support team for further assistance.",
     SUCCESS: "Your password has been successfully updated!",
     INVALID_PASSWORD : "Invalid Password"
+  },
+  PROGRAM: {
+    ERROR: "Sorry, we were unable to save your program, Please try again later or contact our customer support team for further assistance."
   }
 }
 
@@ -161,7 +166,7 @@ export const VALIDATION_MESSAGES = {
 
 export const options = new Map<string, string> ([
   ["STRENGTH", "Strength"],
-  ["DANCE", "Strength"],
+  ["DANCE", "Dance"],
   ["NUTRITION_RECIPES", "Nutrition & Recipes"],
   ["MUSCLE_BUILDING", "Muscle Building"],
   ["HIIT", "HIIT"],

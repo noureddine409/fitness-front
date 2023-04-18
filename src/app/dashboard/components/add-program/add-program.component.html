@@ -9,6 +9,7 @@
   <div class="row">
     <!-- Your Profile Views Chart -->
     <div class="col-lg-12 m-b30">
+      <app-alert *ngIf="errorMessage" typeAlert="danger" message="{{ errorMessage }}"></app-alert>
       <div class="widget-box">
         <div class="wc-title">
           <h4>Add program</h4>
@@ -38,7 +39,7 @@
                   <input class="form-control" type="file" accept="image/*" formControlName="program-picture"
                          (change)="onPictureChange($event)">
                   <app-validation-message controlName="program-picture" [formGroup]="programForm"
-                                          [submitted]="sectionAdded"></app-validation-message>
+                                          [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
 
@@ -256,7 +257,7 @@
                 </button>
               </div>
             </div>
-            <app-modal *ngIf="showModal" message="Congratulations! The first element is added successfully." [showMessage]="false"></app-modal>
+            <app-modal *ngIf="showModal" message="Section is added successfully." [showMessage]="false"></app-modal>
           </form>
         </div>
       </div>

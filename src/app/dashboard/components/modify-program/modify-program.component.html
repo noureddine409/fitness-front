@@ -8,20 +8,20 @@
         <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
           <div class="course-detail-bx">
             <div class="course-price">
-              <del>$190</del>
-              <h4 class="price">${{programDto.price}}</h4>
+<!--              <del>$190</del>-->
+              <h4 class="price">{{programDto.price}} MAD</h4>
             </div>
-            <div class="course-buy-now text-center">
-              <a href="#" class="btn radius-xl text-uppercase">Enroll Now</a>
-            </div>
+<!--            <div class="course-buy-now text-center">-->
+<!--              <a href="#" class="btn radius-xl text-uppercase">Enroll Now</a>-->
+<!--            </div>-->
             <div class="teacher-bx">
               <div class="teacher-info">
                 <div class="teacher-thumb">
-                  <img src="{{programDto?.createdBy?.profilePicture}}" alt=""/>
+                  <img src="{{programDto.createdBy?.profilePicture}}" alt=""/>
                 </div>
                 <div class="teacher-name">
-                  <h5>{{programDto?.createdBy?.firstName}} {{programDto?.createdBy?.lastName}}</h5>
-                  <span>{{programDto.category}} Coach</span>
+                  <h5>{{programDto.createdBy?.firstName}} {{programDto.createdBy?.lastName}}</h5>
+                  <span>Coach</span>
                 </div>
               </div>
             </div>
@@ -81,13 +81,13 @@
                 <h5 class="m-b5">Program Description</h5>
                 <p>{{programDto.description}}</p>
                 <h5 class="m-b5">Program Includes</h5>
-                <p>{{programDto.options.join(' | ')}}</p>
+                <p>{{ getValuesFromMapOptions(programDto.options)}}</p>
                 <h5 class="m-b5">Outcoming Sections</h5>
                 <ul class="list-checked primary">
                   <li *ngFor="let section of programDto.sections">{{ section.title }}</li>
                 </ul>
                 <h5 class="m-b5">Equipment Needed</h5>
-                <p>{{programDto.equipments.join(' | ')}}</p>
+                <p>{{getValuesFromMapEquipments(programDto.equipments)}}</p>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
                 <h5>First Level</h5>
                 <ul>
                   <li *ngFor="let section of programDto.sections; let i = index">
-                    <div class="curriculum-list-box" *ngIf="section.level === 'first'">
+                    <div class="curriculum-list-box" *ngIf="section.level === 'FIRST_LEVEL'">
                       <span>section {{ i + 1 }}.</span> {{ section.title }}
                     </div>
                   </li>
@@ -108,17 +108,17 @@
                 <h5>Second Level</h5>
                 <ul>
                   <li *ngFor="let section of programDto.sections; let i = index">
-                    <div class="curriculum-list-box" *ngIf="section.level === 'second'">
+                    <div class="curriculum-list-box" *ngIf="section.level === 'SECOND_LEVEL'">
                       <span>section {{ i + 1 }}.</span> {{ section.title }}
                     </div>
                   </li>
                 </ul>
               </li>
               <li>
-                <h5>Final</h5>
+                <h5>Final Level</h5>
                 <ul>
                   <li *ngFor="let section of programDto.sections; let i = index">
-                    <div class="curriculum-list-box" *ngIf="section.level === 'final'">
+                    <div class="curriculum-list-box" *ngIf="section.level === 'THIRD_LEVEL'">
                       <span>section {{ i + 1 }}.</span> {{ section.title }}
                     </div>
                   </li>

@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {FIND_PROGRAM_BY_ID_API_URL, SAVE_PROGRAM_API_URL} from "../../../@shared/constants";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {
+  FIND_PROGRAM_BY_ID_API_URL,
+  GET_TRAINER_PROGRAMS_API_URL,
+  SAVE_PROGRAM_API_URL
+} from "../../../@shared/constants";
 import {ProgramDto} from "../../models/program.model";
 import {Observable} from "rxjs";
 
@@ -35,4 +39,15 @@ export class ProgramService {
 
 
   }
+
+  findTrainerPrograms(page: number = 0, size: number = 3): Observable<ProgramDto[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<ProgramDto[]>(GET_TRAINER_PROGRAMS_API_URL, { params });
+  }
+
+
+
 }

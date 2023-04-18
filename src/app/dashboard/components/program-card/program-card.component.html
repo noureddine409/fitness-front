@@ -1,0 +1,57 @@
+<div class="widget-inner">
+  <div class="card-courses-list admin-courses">
+    <div class="card-courses-media">
+      <img src="{{program.picture}}" alt=""/>
+    </div>
+    <div class="card-courses-full-dec">
+      <div class="card-courses-title">
+        <a (click)="accessProgram(program.id!)"><h4>{{program.name}}</h4></a>
+      </div>
+      <div class="card-courses-list-bx">
+        <ul class="card-courses-view">
+          <li class="card-courses-user">
+            <div class="card-courses-user-pic">
+              <img src="{{program.createdBy?.profilePicture}}" alt=""/>
+            </div>
+            <div class="card-courses-user-info">
+              <h5>Trainer</h5>
+              <h4>{{program.createdBy?.firstName + ' ' + program.createdBy?.lastName}}</h4>
+            </div>
+          </li>
+          <li class="card-courses-categories">
+            <h5>Category</h5>
+            <h4>{{program.category}}</h4>
+          </li>
+          <li class="card-courses-review">
+            <h5>3 Review</h5>
+            <ul class="cours-star">
+              <li class="active"><i class="fa fa-star"></i></li>
+              <li class="active"><i class="fa fa-star"></i></li>
+              <li class="active"><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+            </ul>
+          </li>
+          <li class="card-courses-stats">
+            <a href="#" class="btn button-sm green radius-xl">Pending</a>
+          </li>
+          <li class="card-courses-price">
+            <h5 class="text-primary">{{program.price}} MAD</h5>
+          </li>
+        </ul>
+      </div>
+      <div class="row card-courses-dec">
+        <div class="col-md-12">
+          <h6 class="m-b10">Program Description</h6>
+          <p>{{program.description}}</p>
+        </div>
+        <div class="col-md-12">
+          <a href="#" class="btn green radius-xl outline">Submit</a>
+          <a href="#" class="btn red outline radius-xl ">Cancel</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
