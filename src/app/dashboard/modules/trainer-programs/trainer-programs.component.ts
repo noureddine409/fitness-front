@@ -25,8 +25,11 @@ export class TrainerProgramsComponent implements OnInit{
   }
 
   loadData() {
-    this.programService.findTrainerPrograms(this.currentPage).subscribe(value => {
-      this.Programs = value;
+    this.programService.findTrainerPrograms(this.currentPage).subscribe(response => {
+      this.Programs = response.body!;
+      let headers = response.headers;
+      this.totalPages = Number(headers.get('X-Total-Pages')!) ;
+      console.log(headers);
     })
   }
 

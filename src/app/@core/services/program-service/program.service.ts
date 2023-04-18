@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {
   FIND_PROGRAM_BY_ID_API_URL,
   GET_TRAINER_PROGRAMS_API_URL,
@@ -40,12 +40,12 @@ export class ProgramService {
 
   }
 
-  findTrainerPrograms(page: number = 0, size: number = 3): Observable<ProgramDto[]> {
+  findTrainerPrograms(page: number = 0, size: number = 3): Observable<HttpResponse<ProgramDto[]>> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
 
-    return this.http.get<ProgramDto[]>(GET_TRAINER_PROGRAMS_API_URL, { params });
+    return this.http.get<ProgramDto[]>(GET_TRAINER_PROGRAMS_API_URL, { params, observe: 'response' });
   }
 
 
