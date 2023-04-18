@@ -4,6 +4,7 @@ import {DashboardComponent} from './dashboard.component';
 import {ComponentsModule} from "./components/components.module";
 import {RouterOutlet} from "@angular/router";
 import {SharedModule} from "../@shared/shared.module";
+import {TrainerProgramsModule} from "./modules/trainer-programs/trainer-programs.module";
 
 
 @NgModule({
@@ -11,10 +12,11 @@ import {SharedModule} from "../@shared/shared.module";
     DashboardComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ComponentsModule,
     RouterOutlet,
     SharedModule,
+    TrainerProgramsModule
   ],
     exports: [DashboardComponent]
 })

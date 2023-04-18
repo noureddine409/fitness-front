@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ProgramDto} from "../../../@core/models/program.model";
+import {ProgramDto} from "../../../../../@core/models/program.model";
 import {Router} from "@angular/router";
 
 @Component({

@@ -48,8 +48,8 @@ export class AddProgramComponent implements OnInit {
       'program-level': ['BEGINNER', Validators.required],
       'program-category': ['FITNESS', Validators.required],
       'program-duration': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0), Validators.max(1440)]],
-      'motivation-description': ['', [Validators.minLength(10)]],
-      'program-description': ['', [Validators.required, Validators.minLength(10)]],
+      'motivation-description': ['', [Validators.minLength(10),Validators.maxLength(255)]],
+      'program-description': ['', [Validators.required, Validators.minLength(10),Validators.maxLength(255)]],
       'selected-options': [[]],
       'selected-equipments': [[]]
     });
@@ -60,7 +60,7 @@ export class AddProgramComponent implements OnInit {
         Validators.maxLength(255)
       ]],
       'section-video': [null, Validators.required],
-      'section-description': ['', [Validators.required, Validators.minLength(10)]],
+      'section-description': ['', [Validators.required, Validators.minLength(10),Validators.maxLength(255)]],
       'section-level': ['FIRST_LEVEL', Validators.required],
       'section-picture': [null, [Validators.required]]
     });
