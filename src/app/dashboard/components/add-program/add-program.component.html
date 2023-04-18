@@ -39,7 +39,7 @@
                   <input class="form-control" type="file" accept="image/*" formControlName="program-picture"
                          (change)="onPictureChange($event)">
                   <app-validation-message controlName="program-picture" [formGroup]="programForm"
-                                          [submitted]="sectionAdded"></app-validation-message>
+                                          [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
 
@@ -257,7 +257,7 @@
                 </button>
               </div>
             </div>
-            <app-modal *ngIf="showModal" message="<Section is added successfully." [showMessage]="false"></app-modal>
+            <app-modal *ngIf="showModal" message="Section is added successfully." [showMessage]="false"></app-modal>
           </form>
         </div>
       </div>

@@ -41,8 +41,7 @@ export class AddProgramComponent implements OnInit {
       'program-motivation': ['', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(255),
-        Validators.pattern(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/)
+        Validators.maxLength(255)
       ]],
       'program-picture': [null, [Validators.required]],
       'program-price': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0)]],
@@ -51,15 +50,14 @@ export class AddProgramComponent implements OnInit {
       'program-duration': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(0), Validators.max(1440)]],
       'motivation-description': ['', [Validators.minLength(10)]],
       'program-description': ['', [Validators.required, Validators.minLength(10)]],
-      'selected-options': [[], Validators.required],
-      'selected-equipments': [[], Validators.required]
+      'selected-options': [[]],
+      'selected-equipments': [[]]
     });
     this.sectionForm = this.fb.group({
       'section-name': ['', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(255),
-        Validators.pattern(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/)
+        Validators.maxLength(255)
       ]],
       'section-video': [null, Validators.required],
       'section-description': ['', [Validators.required, Validators.minLength(10)]],

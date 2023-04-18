@@ -111,6 +111,8 @@ export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/fo
 
 export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
 
+export const GET_TRAINER_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/me"
+
 export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/"
 
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
