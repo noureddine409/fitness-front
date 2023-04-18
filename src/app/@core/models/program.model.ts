@@ -8,6 +8,7 @@ export interface ProgramDto {
   name: string;
   level: string;
   price: number;
+  state?: string;
   category: string;
   description: string;
   createdBy?: AppUser;
@@ -38,4 +39,10 @@ export interface SectionVideoDto {
   id?: number;
   createdAt?: string;
   updatedAt?: string;
+}
+
+
+export interface ProgramStateConfig {
+  color: string;
+  text: string;
 }

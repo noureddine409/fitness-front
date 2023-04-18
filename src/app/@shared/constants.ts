@@ -1,4 +1,5 @@
 import {Step} from "../@core/models/step.model";
+import {ProgramStateConfig} from "../@core/models/program.model"
 import {environment} from "../../environements/environements";
 
 
@@ -186,4 +187,13 @@ export const equipments = new Map<string, string> ([
   ["YOGA_MAT", "Yoga Mat"],
   ["Resistance_Loops", "Resistance Loops"]
 ])
+
+
+
+export const programStateConfigMap: Map<string, ProgramStateConfig> = new Map([
+  ['IN_PROGRESS', { color: 'orange', text: 'In Progress' }],
+  ['ARCHIVED', { color: 'gray', text: 'Archived' }],
+  ['SUBMITTED', { color: 'blue', text: 'Submitted' }],
+  ['APPROVED', { color: 'green', text: 'Approved' }],
+]);
 

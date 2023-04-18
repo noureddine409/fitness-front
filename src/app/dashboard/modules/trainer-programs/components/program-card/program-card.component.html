@@ -33,7 +33,7 @@
             </ul>
           </li>
           <li class="card-courses-stats">
-            <a href="#" class="btn button-sm green radius-xl">Pending</a>
+            <a href="#" class="btn button-sm gre {{programStateConfig.get(program.state!)?.color}} radius-xl">{{programStateConfig.get(program.state!)?.text}}</a>
           </li>
           <li class="card-courses-price">
             <h5 class="text-primary">{{program.price}} MAD</h5>

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProgramDto} from "../../../../../@core/models/program.model";
-import {Router} from "@angular/router";
+import {programStateConfigMap} from "../../../../../@shared/constants";
 
 @Component({
   selector: 'app-program-card',
@@ -15,6 +15,7 @@ export class ProgramCardComponent {
   program!: ProgramDto;
 
   @Output() programClick = new EventEmitter<number>();
+  programStateConfig = programStateConfigMap;
 
   accessProgram(id: number) {
     this.programClick.emit(id);

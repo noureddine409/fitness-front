@@ -6,10 +6,10 @@ import {equipments, options} from "../../../@shared/constants";
 
 @Component({
   selector: 'app-modify-program',
-  templateUrl: './modify-program.component.html',
-  styleUrls: ['./modify-program.component.css']
+  templateUrl: './trainer-program.component.html',
+  styleUrls: ['./trainer-program.component.css']
 })
-export class ModifyProgramComponent implements OnInit {
+export class TrainerProgramComponent implements OnInit {
   programDto!: ProgramDto;
   programId!: number
 
