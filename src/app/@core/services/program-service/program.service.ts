@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {
   FIND_PROGRAM_BY_ID_API_URL,
-  GET_TRAINER_PROGRAMS_API_URL,
+  GET_TRAINER_PROGRAMS_API_URL, PROGRAM_CANCEL_API_URL, PROGRAM_DELETE_API_URL, PROGRAM_SUBMIT_API_URL,
   SAVE_PROGRAM_API_URL
 } from "../../../@shared/constants";
 import {ProgramDto} from "../../models/program.model";
@@ -46,6 +46,21 @@ export class ProgramService {
       .set('size', size.toString());
 
     return this.http.get<ProgramDto[]>(GET_TRAINER_PROGRAMS_API_URL, { params, observe: 'response' });
+  }
+
+  submitProgram(id: number): Observable<ProgramDto> {
+    const url = PROGRAM_SUBMIT_API_URL.replace('{id}', id.toString());
+    return this.http.patch<ProgramDto>(url, {});
+  }
+
+  cancelProgramSubmission(id: number): Observable<ProgramDto> {
+    const url = PROGRAM_CANCEL_API_URL.replace('{id}', id.toString());
+    return this.http.patch<ProgramDto>(url, {});
+  }
+
+  deleteProgram(id: number): Observable<boolean> {
+    const url = PROGRAM_DELETE_API_URL.replace('{id}', id.toString());
+    return this.http.delete<boolean>(url)
   }
 
 

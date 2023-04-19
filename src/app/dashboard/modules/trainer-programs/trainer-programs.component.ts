@@ -8,15 +8,17 @@ import {ProgramDto} from "../../../@core/models/program.model";
   templateUrl: './trainer-programs.component.html',
   styleUrls: ['./trainer-programs.component.css']
 })
-export class TrainerProgramsComponent implements OnInit{
+export class TrainerProgramsComponent implements OnInit {
 
   Programs: ProgramDto[] = [];
 
   currentPage: number = 0;
   totalPages: number = 3;
-  constructor(private router:Router, private programService: ProgramService) {
+
+  constructor(private router: Router, private programService: ProgramService) {
   }
-  goToOtherComponent(url:string) {
+
+  goToOtherComponent(url: string) {
     this.router.navigate([url]);
   }
 
@@ -28,11 +30,9 @@ export class TrainerProgramsComponent implements OnInit{
     this.programService.findTrainerPrograms(this.currentPage).subscribe(response => {
       this.Programs = response.body!;
       let headers = response.headers;
-      this.totalPages = Number(headers.get('X-Total-Pages')!) ;
-      console.log(headers);
+      this.totalPages = Number(headers.get('X-Total-Pages')!);
     })
   }
-
 
 
   nextPage() {
@@ -60,6 +60,21 @@ export class TrainerProgramsComponent implements OnInit{
   }
 
   handleProgramClick(id: number) {
-    this.router.navigate(['/dashboard/modify-Program/'+id]);
+    this.router.navigate(['/dashboard/modify-Program/' + id]);
+  }
+
+  onProgramDelete(id: number) {
+    this.programService.deleteProgram(id).subscribe(
+      value => {
+        this.Programs = this.Programs.filter((program) => program.id !== id);
+      },
+      error => {
+        alert("cannot delete this program");
+      }
+    )
+  }
+
+  onProgramCancel(id: number) {
+
   }
 }

@@ -112,6 +112,11 @@ export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/fo
 
 export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
 
+export const PROGRAM_SUBMIT_API_URL = `${environment.apiUrl}/api/programs/{id}/submit`;
+
+export const PROGRAM_CANCEL_API_URL = `${environment.apiUrl}/api/programs/{id}/cancel`;
+
+export const PROGRAM_DELETE_API_URL = `${environment.apiUrl}/api/programs/{id}`
 export const GET_TRAINER_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/me"
 
 export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/"

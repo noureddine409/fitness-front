@@ -14,7 +14,7 @@
           <h4>Your Programs</h4>
         </div>
         <div *ngFor="let program of Programs">
-          <app-program-card [program]="program" (programClick)="handleProgramClick($event)"></app-program-card>
+          <app-program-card [program]="program" (programClick)="handleProgramClick($event)" (programDelete)="onProgramDelete($event)" (programCancel)="onProgramCancel($event)" ></app-program-card>
         </div>
       </div>
       <!-- Pagination ==== -->

@@ -46,8 +46,10 @@
           <p>{{program.description}}</p>
         </div>
         <div class="col-md-12">
-          <a href="#" class="btn green radius-xl outline">Submit</a>
-          <a href="#" class="btn red outline radius-xl ">Cancel</a>
+          <a *ngIf="program.state === 'IN_PROGRESS'" (click)="submitProgram()" class="btn green radius-xl outline">Submit</a>
+          <a *ngIf="program.state === 'IN_PROGRESS' || program.state ==='ARCHIVED'" (click)="deleteProgram()" class="btn red outline radius-xl ">Delete</a>
+          <a *ngIf="program.state === 'SUBMITTED'" (click)="cancelProgram()"  class="btn red outline radius-xl ">Cancel</a>
+
         </div>
       </div>
 
