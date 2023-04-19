@@ -119,7 +119,17 @@ export const PROGRAM_CANCEL_API_URL = `${environment.apiUrl}/api/programs/{id}/c
 export const PROGRAM_DELETE_API_URL = `${environment.apiUrl}/api/programs/{id}`
 export const GET_TRAINER_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/me"
 
-export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/"
+export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/";
+export const SAVE_BLOG_API_URL = environment.apiUrl + "/api/blogs"
+
+export const BLOG_SUBMIT_API_URL = `${environment.apiUrl}/api/blogs/{id}/submit`;
+
+export const BLOG_CANCEL_API_URL = `${environment.apiUrl}/api/blogs/{id}/cancel`;
+
+export const BLOG_DELETE_API_URL = `${environment.apiUrl}/api/blogs/{id}`
+export const GET_TRAINER_BLOGS_API_URL = environment.apiUrl + "/api/blogs/me"
+
+export const FIND_BLOG_BY_ID_API_URL = environment.apiUrl + "/api/blogs/";
 
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
 export const ALERT_MESSAGES = {

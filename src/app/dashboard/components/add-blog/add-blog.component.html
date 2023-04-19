@@ -9,105 +9,70 @@
   <div class="row">
     <!-- Your Profile Views Chart -->
     <div class="col-lg-12 m-b30">
+      <app-alert *ngIf="errorMessage" typeAlert="danger" message="{{ errorMessage }}"></app-alert>
       <div class="widget-box">
         <div class="wc-title">
           <h4>Add blog</h4>
         </div>
         <div class="widget-inner">
-          <form class="edit-profile m-b30">
+          <form class="edit-profile m-b30" [formGroup]="blogForm">
             <div class="row">
               <div class="col-12">
                 <div class="ml-auto">
                   <h3>1. Basic info</h3>
                 </div>
               </div>
-              <div class="form-group col-6">
-                <label class="col-form-label">Blog title</label>
+              <div class="form-group col-6"
+                   [ngClass]="{'has-danger': blogForm.get('blog-name')!.invalid && blogForm.get('blog-name')!.touched}">
+                <label class="col-form-label">Blog Name</label>
                 <div>
-                  <input class="form-control" type="text" value="">
+                  <input class="form-control form-control-danger" type="text" value=""
+                         formControlName="blog-name">
+                  <app-validation-message controlName="blog-name" [formGroup]="blogForm"
+                                          [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
-              <div class="form-group col-6">
-                <label class="col-form-label">Blog title</label>
-                <div>
-                  <input class="form-control" type="text" value="">
-                </div>
-              </div>
-              <div class="form-group col-6">
-                <label class="col-form-label">Blog start</label>
-                <div>
-                  <input class="form-control" type="text" value="">
-                </div>
-              </div>
-              <div class="form-group col-6">
-                <label class="col-form-label">Blog expire</label>
-                <div>
-                  <input class="form-control" type="text" value="">
-                </div>
-              </div>
-              <div class="form-group col-6">
-                <label class="col-form-label">Trainer name</label>
-                <div>
-                  <input class="form-control" type="text" value="">
-                </div>
-              </div>
-              <div class="seperator"></div>
 
-              <div class="col-12 m-t20">
-                <div class="ml-auto m-b5">
-                  <h3>2. Description</h3>
+              <div class="form-group col-6">
+                <label class="col-form-label">Picture</label>
+                <div>
+                  <input class="form-control" type="file" accept="image/*" formControlName="blog-picture"
+                         (change)="onPictureChange($event)">
+                  <app-validation-message controlName="blog-picture" [formGroup]="blogForm"
+                                          [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
+
+
               <div class="form-group col-12">
                 <label class="col-form-label">Blog description</label>
+                <textarea class="form-control" formControlName="blog-description"> </textarea>
+                <app-validation-message controlName="blog-description" [formGroup]="blogForm"
+                                        [submitted]="submitted"></app-validation-message>
+              </div>
+              <div class="form-group col-12">
+                <label class="col-form-label">Blog Tags</label>
                 <div>
-                  <textarea class="form-control"> </textarea>
+                  <input #tagInput formControlName="selected-tags" class="form-control form-control-lg" />
+                  <button (click)="addTag(tagInput.value)">Add Tag</button>
+                  <app-validation-message controlName="selected-tags" [formGroup]="blogForm" [submitted]="submitted"></app-validation-message>
+                </div>
+                <div class="mt-3 d-flex flex-wrap">
+                  <span class="badge badge-pill badge-secondary mr-2 mb-2 d-flex align-items-center" *ngFor="let tag of selectedTags; let i = index">
+                    {{ tag }}
+                    <button type="button" class="close ml-2" aria-label="Close" (click)="removeTag(i)">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </span>
                 </div>
               </div>
-              <div class="col-12 m-t20">
-                <div class="ml-auto">
-                  <h3 class="m-form__section">3. Add Item</h3>
-                </div>
-              </div>
-              <div class="col-12">
-                <table id="item-add" style="width:100%;">
-                  <tr class="list-item">
-                    <td>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <label class="col-form-label">Blog Name</label>
-                          <div>
-                            <input class="form-control" type="text" value="">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <label class="col-form-label">Blog Category</label>
-                          <div>
-                            <input class="form-control" type="text" value="">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <label class="col-form-label">Blog Category</label>
-                          <div>
-                            <input class="form-control" type="text" value="">
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <label class="col-form-label">Close</label>
-                          <div class="form-group">
-                            <a class="delete" href="#"><i class="fa fa-close"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="col-12">
-                <button type="button" class="btn-secondry add-item m-r5"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>
-                <button type="reset" class="btn">Save changes</button>
+
+
+              <div class="col-12 text-center">
+                <a  (click)="saveChanges()" href="#" class="btn" data-toggle="modal" data-target="#exampleModal">Save Changes</a>
               </div>
             </div>
+            <app-modal *ngIf="showModal" message="Blog is added successfully." [showMessage]="false"></app-modal>
           </form>
         </div>
       </div>
