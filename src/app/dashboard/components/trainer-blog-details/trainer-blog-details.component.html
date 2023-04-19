@@ -7,39 +7,21 @@
           <!-- blog start -->
           <div class="recent-news blog-lg">
             <div class="action-box blog-lg">
-              <img src="assets/images/blog/default/thum1.jpg" alt="">
+              <img [src]="blogDto.picture" alt="">
             </div>
             <div class="info-bx">
               <ul class="media-post">
-                <li><a href="#"><i class="fa fa-calendar"></i>May 14 2019</a></li>
+                <li><a href="#"><i class="fa fa-calendar"></i>{{formatDate(blogDto.createdAt!)}}</a></li>
               </ul>
-              <h5 class="post-title"><a href="#">Why every startup should adopt Amazon’s Hot Air. Why every startup should adopt Amazon’s Hot Air.</a></h5>
-              <p>It is used every day in all types of businesses; Email newsletters, websites, print and online advertisements, presentations, social media updates, flyers, and brochures; the list goes on and on</p>
-              <p>David Ogilvy, the advertising legend once said that, On average, five times as many people read the headline as read the body copy. When you have written your headline, you have spent eighty cents out of your dollar." As Ogilvy points out, your headline is the first (and sometimes the only) thing that your audience will read.</p>
-              <p>You just need to enter the keyword and select the keyword type to generate a list of 6 title ideas and suggestions. If you’re not satisfied with the results, you can always hit the refresh button to generate a new list of unique titles.</p>
-              <p>Once you’ve gotten all the titles and have chosen the best one, the next thing you need to do is to craft a magnetic content. Great content marketers excel at creating content that their readers crave, but even the best struggle with delivering content to the right person at the right time.</p>
+              <h5 class="post-title"><a href="#">{{blogDto.name}}</a></h5>
+              <div *ngFor="let desc of splitDescription(blogDto.description)">
+                <p>{{desc}}</p>
+              </div>
               <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
               <div class="widget_tag_cloud">
                 <h6>TAGS</h6>
-                <div class="tagcloud">
-                  <a href="#">Design</a>
-                  <a href="#">User interface</a>
-                  <a href="#">SEO</a>
-                  <a href="#">WordPress</a>
-                  <a href="#">Development</a>
-                  <a href="#">Joomla</a>
-                  <a href="#">Design</a>
-                  <a href="#">User interface</a>
-                  <a href="#">SEO</a>
-                  <a href="#">WordPress</a>
-                  <a href="#">Development</a>
-                  <a href="#">Joomla</a>
-                  <a href="#">Design</a>
-                  <a href="#">User interface</a>
-                  <a href="#">SEO</a>
-                  <a href="#">WordPress</a>
-                  <a href="#">Development</a>
-                  <a href="#">Joomla</a>
+                <div class="tagcloud" *ngFor="let tag from blogDto.tags">
+                  <a href="#">{{tag}}</a>
                 </div>
               </div>
               <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
@@ -125,25 +107,8 @@
             </div>
             <div class="widget widget_tag_cloud">
               <h6 class="widget-title">Tags</h6>
-              <div class="tagcloud">
-                <a href="#">Design</a>
-                <a href="#">User interface</a>
-                <a href="#">SEO</a>
-                <a href="#">WordPress</a>
-                <a href="#">Development</a>
-                <a href="#">Joomla</a>
-                <a href="#">Design</a>
-                <a href="#">User interface</a>
-                <a href="#">SEO</a>
-                <a href="#">WordPress</a>
-                <a href="#">Development</a>
-                <a href="#">Joomla</a>
-                <a href="#">Design</a>
-                <a href="#">User interface</a>
-                <a href="#">SEO</a>
-                <a href="#">WordPress</a>
-                <a href="#">Development</a>
-                <a href="#">Joomla</a>
+              <div class="tagcloud" *ngFor="let tag from blogDto.tags">
+                <a href="#">{{tag}}</a>
               </div>
             </div>
           </aside>

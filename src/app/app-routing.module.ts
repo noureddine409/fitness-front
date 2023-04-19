@@ -75,7 +75,7 @@ const routes: Routes = [
       {path: 'profile', component: ProfileComponent},
       {path: 'add-Program', component: AddProgramComponent},
       {path: 'modify-Program/:id', component: TrainerProgramComponent},
-      {path: 'blog-details', component: TrainerBlogDetailsComponent},
+      {path: 'blog-details/:id', component: TrainerBlogDetailsComponent},
 
       {path: 'add-Blog', component: AddBlogComponent},
     ]

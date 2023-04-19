@@ -35,7 +35,7 @@ export class AddBlogComponent {
         Validators.maxLength(255)
       ]],
       'blog-picture': [null, [Validators.required]],
-      'blog-description': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      'blog-description': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
       'selected-tags': [[],Validators.required],
     });
 
@@ -52,7 +52,7 @@ export class AddBlogComponent {
 
   addTag(tag: string) {
     this.selectedTags.add(tag);
-    console.log(this.selectedTags)
+    console.log(this.selectedTags);
   }
 
   onPictureChange(event: any) {
@@ -71,7 +71,7 @@ export class AddBlogComponent {
     }
 
     if (confirm("Are you sure you want to save changes?")) {
-      this.showModal = true;
+      //this.showModal = true;
       const name = this.blogForm.get('blog-name')!.value;
       const blogDescription = this.blogForm.get('blog-description')!.value;
 
@@ -87,7 +87,7 @@ export class AddBlogComponent {
 
       this.blogService.save(blogBlob, this.picture).subscribe(
         (blog) => {
-          this.router.navigate([`/dashboard/modify-blog/${blog.id}`]);
+          this.router.navigate([`/dashboard/blog-details/${blog.id}`]);
         },
         error => {
           this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
