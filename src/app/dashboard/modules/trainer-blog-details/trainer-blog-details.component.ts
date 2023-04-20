@@ -11,7 +11,8 @@ import {BlogService} from "../../../@core/services/blog-service/blog.service";
 })
 export class TrainerBlogDetailsComponent {
   blogDto!: BlogDto;
-  blogId!: number
+  Blogs: BlogDto[] = [];
+  blogId!: number;
 
   constructor(private router: Router, private blogService: BlogService, private activatedRoute: ActivatedRoute) {
   }
@@ -31,7 +32,19 @@ export class TrainerBlogDetailsComponent {
         this.router.navigate(["/error-404"]);
       }
     )
+    this.loadData();
   }
+  loadData() {
+    this.blogService.findTrainerBlogs().subscribe(response => {
+      this.Blogs = response.body!;
+    })
+  }
+  handleBlogClick(id: number) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/dashboard/blog-details/' + id]);
+  }
+
   splitDescription(description: string): string[] {
     const maxLength = 200;
     const sentences = description.match(/[^.!?]+[.!?]+/g) || [description];

@@ -11,13 +11,13 @@ import {TrainerProgramComponent} from "./trainer-program/trainer-program.compone
 import {SharedModule} from "../../@shared/shared.module";
 import {ReviewsComponent} from "./reviews/reviews.component";
 import {AuthenticationModule} from "../../authentication/authentication.module";
-import { TrainerBlogDetailsComponent } from './trainer-blog-details/trainer-blog-details.component';
+import { TrainerBlogDetailsComponent } from '../modules/trainer-blog-details/trainer-blog-details.component';
 
-const dashboardComponents: Type<any>[] = [TrainerBlogDetailsComponent,AddBlogComponent, AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
+const dashboardComponents: Type<any>[] = [AddBlogComponent, AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
 
 
 @NgModule({
-  declarations: [...dashboardComponents, TrainerBlogDetailsComponent],
+  declarations: [...dashboardComponents],
   imports: [
     SharedModule,
     AuthenticationModule

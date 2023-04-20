@@ -41,7 +41,7 @@ import {ProfileGuard} from "./@core/guards/profile/profile.guard";
 import {ProgramDetailsComponent} from "./program-details/program-details.component";
 import {DashboardGuard} from "./@core/guards/dashboard/dashboard.guard";
 import {TrainerProgramComponent} from "./dashboard/components/trainer-program/trainer-program.component";
-import {TrainerBlogDetailsComponent} from "./dashboard/components/trainer-blog-details/trainer-blog-details.component";
+import {TrainerBlogDetailsComponent} from "./dashboard/modules/trainer-blog-details/trainer-blog-details.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
