@@ -35,8 +35,8 @@ export class TrainerBlogDetailsComponent {
   }
 
   loadData() {
-    this.blogService.findTrainerBlogs().subscribe(response => {
-      this.Blogs = response.body!;
+    this.blogService.findTrainerBlogs(0, 4).subscribe(response => {
+      this.Blogs = response.body!.filter(blog => blog.id !== this.blogId)
     })
   }
 

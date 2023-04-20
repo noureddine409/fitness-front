@@ -73,7 +73,7 @@ export class AddBlogComponent {
     if (confirm("Are you sure you want to save changes?")) {
       //this.showModal = true;
       const name = this.blogForm.get('blog-name')!.value;
-      const blogContent = this.blogForm.get('blog-description')!.value;
+      const blogContent = this.blogForm.get('blog-content')!.value;
 
       console.log(this.selectedTags)
       this.blogDto = {
@@ -81,6 +81,8 @@ export class AddBlogComponent {
         content: blogContent,
         tags: [...this.selectedTags],
       };
+
+      console.log(this.blogDto)
 
       const blogBlob = new Blob([JSON.stringify(this.blogDto)], {type: 'application/json'});
 
