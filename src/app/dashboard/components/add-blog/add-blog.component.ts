@@ -20,7 +20,6 @@ export class AddBlogComponent {
 
   submitted!: boolean;
   selectedTags = new Set<string>();
-  myTags!: Map<string, string>;
   blogDto!: BlogDto;
   private picture!: File;
 
@@ -35,8 +34,8 @@ export class AddBlogComponent {
         Validators.maxLength(255)
       ]],
       'blog-picture': [null, [Validators.required]],
-      'blog-description': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1500)]],
-      'selected-tags': [[],Validators.required],
+      'blog-content': ['', [Validators.required, Validators.minLength(10)]],
+      'selected-tags': [[]],
     });
 
 
@@ -51,6 +50,7 @@ export class AddBlogComponent {
   }
 
   addTag(tag: string) {
+    if(tag.length ==0) return
     this.selectedTags.add(tag);
     console.log(this.selectedTags);
   }
@@ -73,12 +73,12 @@ export class AddBlogComponent {
     if (confirm("Are you sure you want to save changes?")) {
       //this.showModal = true;
       const name = this.blogForm.get('blog-name')!.value;
-      const blogDescription = this.blogForm.get('blog-description')!.value;
+      const blogContent = this.blogForm.get('blog-description')!.value;
 
       console.log(this.selectedTags)
       this.blogDto = {
         name: name,
-        description: blogDescription,
+        content: blogContent,
         tags: [...this.selectedTags],
       };
 
