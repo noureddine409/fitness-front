@@ -11,12 +11,10 @@
             </div>
             <div class="info-bx">
               <ul class="media-post">
-                <li><a href="#"><i class="fa fa-calendar"></i>{{formatDate(blogDto.createdAt!)}}</a></li>
+                <app-blog-date [blog]="blogDto" (blogDateClick)="handleBlogClick($event)"></app-blog-date>
               </ul>
               <h5 class="post-title"><a href="#">{{blogDto.name}}</a></h5>
-              <div *ngFor="let desc of splitDescription(blogDto.description)">
-                <p>{{desc}}</p>
-              </div>
+              <app-blog-description [blog]="blogDto" (blogDateClick)="handleDescClick($event)"></app-blog-description>
               <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
               <div class="widget_tag_cloud">
                 <h6>TAGS</h6>
@@ -41,21 +39,8 @@
         <!-- Side bar start -->
         <div class="col-lg-4 col-xl-4">
           <aside  class="side-bar sticky-top">
-            <div class="widget">
-              <h6 class="widget-title">Search</h6>
-              <div class="search-bx style-1">
-                <form role="search" method="post">
-                  <div class="input-group">
-                    <input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
-                    <span class="input-group-btn">
-													<button type="submit" class="fa fa-search text-primary"></button>
-												</span>
-                  </div>
-                </form>
-              </div>
-            </div>
             <div class="widget recent-posts-entry">
-              <h6 class="widget-title">Recent Blogs</h6>
+              <h6 class="widget-title"><a (click)="goToOtherComponent('/dashboard/blogs/')">Recent Blogs</a></h6>
               <div class="widget-post-bx" *ngFor="let blog of Blogs">
                 <app-blog-item (blogItemClick)="handleBlogClick($event)" [blog]="blog"></app-blog-item>
               </div>

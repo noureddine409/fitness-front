@@ -52,13 +52,15 @@
               </div>
               <div class="form-group col-12">
                 <label class="col-form-label">Blog Tags</label>
-                <div>
-                  <input #tagInput formControlName="selected-tags" class="form-control form-control-lg" />
-                  <button (click)="addTag(tagInput.value)">Add Tag</button>
-                  <app-validation-message controlName="selected-tags" [formGroup]="blogForm" [submitted]="submitted"></app-validation-message>
+                <div class="d-flex align-items-center">
+                  <input #tagInput formControlName="selected-tags" class="form-control form-control-lg"/>
+                  <button class="btn btn-secondary ml-2" (click)="addTag(tagInput.value)">Add Tag</button>
                 </div>
+                <app-validation-message controlName="selected-tags" [formGroup]="blogForm"
+                                        [submitted]="submitted"></app-validation-message>
                 <div class="mt-3 d-flex flex-wrap">
-                  <span class="badge badge-pill badge-secondary mr-2 mb-2 d-flex align-items-center" *ngFor="let tag of selectedTags; let i = index">
+                  <span class="badge badge-pill badge-secondary mr-2 mb-2 d-flex align-items-center"
+                        *ngFor="let tag of selectedTags; let i = index">
                     {{ tag }}
                     <button type="button" class="close ml-2" aria-label="Close" (click)="removeTag(i)">
                       <span aria-hidden="true">&times;</span>
@@ -69,7 +71,8 @@
 
 
               <div class="col-12 text-center">
-                <a  (click)="saveChanges()" href="#" class="btn" data-toggle="modal" data-target="#exampleModal">Save Changes</a>
+                <a (click)="saveChanges()" href="#" class="btn" data-toggle="modal" data-target="#exampleModal">Save
+                  Changes</a>
               </div>
             </div>
             <app-modal *ngIf="showModal" message="Blog is added successfully." [showMessage]="false"></app-modal>

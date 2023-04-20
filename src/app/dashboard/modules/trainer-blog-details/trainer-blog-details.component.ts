@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {equipments, options} from "../../../@shared/constants";
 import {BlogDto} from "../../../@core/models/blog.model";
 import {BlogService} from "../../../@core/services/blog-service/blog.service";
 
@@ -34,43 +33,24 @@ export class TrainerBlogDetailsComponent {
     )
     this.loadData();
   }
+
   loadData() {
     this.blogService.findTrainerBlogs().subscribe(response => {
       this.Blogs = response.body!;
     })
   }
+
   handleBlogClick(id: number) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/dashboard/blog-details/' + id]);
   }
-
-  splitDescription(description: string): string[] {
-    const maxLength = 200;
-    const sentences = description.match(/[^.!?]+[.!?]+/g) || [description];
-    const result = [];
-    let currentString = '';
-    for (const sentence of sentences) {
-      if (currentString.length + sentence.length <= maxLength) {
-        currentString += sentence;
-      } else {
-        result.push(currentString);
-        currentString = sentence;
-      }
-    }
-    if (currentString) {
-      result.push(currentString);
-    }
-    return result;
-  }
-   formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const month = monthNames[date.getMonth()];
-    const day = date.getDate();
-    const year = date.getFullYear();
-    return `${month} ${day} ${year}`;
+  goToOtherComponent(url:string) {
+    this.router.navigate([url]);
   }
 
 
+  handleDescClick($event: number) {
+
+  }
 }
