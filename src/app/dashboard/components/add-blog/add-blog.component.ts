@@ -35,7 +35,7 @@ export class AddBlogComponent {
         Validators.maxLength(255)
       ]],
       'blog-picture': [null, [Validators.required]],
-      'blog-description': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
+      'blog-description': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1500)]],
       'selected-tags': [[],Validators.required],
     });
 

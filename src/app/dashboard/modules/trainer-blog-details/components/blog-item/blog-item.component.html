@@ -5,7 +5,7 @@
       <h6 class="post-title"><a (click)="accessBlog(blog.id!)">{{blog.name}}</a></h6>
     </div>
     <ul class="media-post">
-      <li><a (click)="accessBlog(blog.id!)"><i class="fa fa-calendar"></i>{{formatDate(blog.createdAt!)}}</a></li>
+      <app-blog-date [blog]="blog" (blogDateClick)="handleBlogClick($event)"></app-blog-date>
     </ul>
   </div>
 </div>

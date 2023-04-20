@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BlogDto} from "../../../../../@core/models/blog.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-blog-item',
@@ -7,19 +8,18 @@ import {BlogDto} from "../../../../../@core/models/blog.model";
   styleUrls: ['./blog-item.component.css']
 })
 export class BlogItemComponent {
+  constructor(private router: Router) {
+  }
   @Input()
   blog!: BlogDto;
   @Output() blogItemClick = new EventEmitter<number>();
   accessBlog(id: number) {
     this.blogItemClick.emit(id);
   }
-  formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const month = monthNames[date.getMonth()];
-    const day = date.getDate();
-    const year = date.getFullYear();
-    return `${month} ${day} ${year}`;
+  handleBlogClick(id: number) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/dashboard/blog-details/' + id]);
   }
 
 }
