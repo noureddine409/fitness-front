@@ -8,7 +8,7 @@
           <div class="profile-bx text-center">
             <div class="user-profile-thumb" (click)="fileInput.click()" [style.background-image]="'url(' + user.profilePicture + ')'">
               <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput  />
-<!--              <img [src]="user.profilePicture"  alt=""/>-->
+              <!--              <img [src]="user.profilePicture"  alt=""/>-->
             </div>
             <div class="profile-info">
               <h4>{{user.firstName + ' ' + user.lastName}}</h4>
@@ -374,22 +374,14 @@
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">First Name</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
                         <input class="form-control" type="text" value="{{user.firstName}}" formControlName="firstName">
-                        <div *ngIf="(submitted && updateProfileFormGroup.controls['firstName']?.errors) || (updateProfileFormGroup.controls['firstName'].invalid && (updateProfileFormGroup.controls['firstName'].dirty || updateProfileFormGroup.controls['firstName'].touched))">
-                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['firstName'].errors)">
-                            {{ error }}
-                          </div>
-                        </div>
+                        <app-validation-message [submitted]="submitted" [formGroup]="updateProfileFormGroup" controlName="firstName" />
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Last Name</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
                         <input class="form-control" type="text" value="{{user.lastName}}" formControlName="lastName">
-                        <div *ngIf="(submitted && updateProfileFormGroup.controls['lastName']?.errors) || (updateProfileFormGroup.controls['lastName'].invalid && (updateProfileFormGroup.controls['lastName'].dirty || updateProfileFormGroup.controls['lastName'].touched))">
-                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['lastName'].errors)">
-                            {{ error }}
-                          </div>
-                        </div>
+                        <app-validation-message [submitted]="submitted" [formGroup]="updateProfileFormGroup" controlName="lastName" />
                       </div>
                     </div>
                     <div class="form-group row">
@@ -400,22 +392,14 @@
                           <option value="MALE">
                           <option value="FEMALE">
                         </datalist>
-                        <div *ngIf="(submitted && updateProfileFormGroup.controls['gender']?.errors) || (updateProfileFormGroup.controls['gender'].invalid && (updateProfileFormGroup.controls['gender'].dirty || updateProfileFormGroup.controls['gender'].touched))">
-                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['gender'].errors)">
-                            {{ error }}
-                          </div>
-                        </div>
+                        <app-validation-message [submitted]="submitted" [formGroup]="updateProfileFormGroup" controlName="gender" />
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Birthday</label>
                       <div class="col-12 col-sm-9 col-md-9 col-lg-7">
                         <input class="form-control" type="date" value="{{user.birthDay}}" formControlName="birthday">
-                        <div *ngIf="(submitted && updateProfileFormGroup.controls['birthday']?.errors) || (updateProfileFormGroup.controls['birthday'].invalid && (updateProfileFormGroup.controls['birthday'].dirty || updateProfileFormGroup.controls['birthday'].touched))">
-                          <div *ngFor="let error of getErrorMessage(updateProfileFormGroup.controls['birthday'].errors)">
-                            {{ error }}
-                          </div>
-                        </div>
+                        <app-validation-message [submitted]="submitted" [formGroup]="updateProfileFormGroup" controlName="birthday" />
                       </div>
                     </div>
                     <div class="form-group row">
@@ -516,33 +500,20 @@
                       <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-12 col-sm-8 col-md-8 col-lg-7">
                         <input class="form-control" formControlName="oldPassword" type="password">
-                        <div *ngIf="(resetSubmitted && resetPasswordFormGroup.controls['oldPassword']?.errors) || (resetPasswordFormGroup.controls['oldPassword'].invalid && (resetPasswordFormGroup.controls['oldPassword'].dirty || resetPasswordFormGroup.controls['oldPassword'].touched))">
-                          <div>
-                            {{ getErrorMessage(resetPasswordFormGroup.controls['oldPassword'].errors)[0] }}
-                          </div>
-                        </div>
+                        <app-validation-message [submitted]="resetSubmitted" [formGroup]="resetPasswordFormGroup" controlName="oldPassword" />
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">New Password</label>
                       <div class="col-12 col-sm-8 col-md-8 col-lg-7">
                         <input class="form-control" type="password"  formControlName="password" value="">
-                        <div *ngIf="(resetSubmitted && resetPasswordFormGroup.controls['password']?.errors) || (resetPasswordFormGroup.controls['password'].invalid && (resetPasswordFormGroup.controls['password'].dirty || resetPasswordFormGroup.controls['password'].touched))">
-                          <div *ngFor="let error of getErrorMessage(resetPasswordFormGroup.controls['password'].errors)">
-                            {{ error }}
-                          </div>
-                        </div>
-                      </div>
+                        <app-validation-message [submitted]="resetSubmitted" [formGroup]="resetPasswordFormGroup" controlName="password" />                      </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Re Type New Password</label>
                       <div class="col-12 col-sm-8 col-md-8 col-lg-7">
                         <input class="form-control" type="password"  formControlName="confirmPassword">
-                        <div *ngIf="(resetSubmitted && resetPasswordFormGroup.controls['confirmPassword']?.errors) || (resetPasswordFormGroup.controls['confirmPassword'].invalid && (resetPasswordFormGroup.controls['confirmPassword'].dirty || resetPasswordFormGroup.controls['confirmPassword'].touched))">
-                          <div>
-                            {{ getErrorMessage(resetPasswordFormGroup.controls['confirmPassword'].errors)[0] }}
-                          </div>
-                        </div>
+                        <app-validation-message [submitted]="resetSubmitted" [formGroup]="resetPasswordFormGroup" controlName="confirmPassword" />
                       </div>
                     </div>
                   </div>
