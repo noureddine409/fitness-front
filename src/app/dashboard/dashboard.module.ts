@@ -5,6 +5,7 @@ import {ComponentsModule} from "./components/components.module";
 import {RouterOutlet} from "@angular/router";
 import {SharedModule} from "../@shared/shared.module";
 import {TrainerProgramsModule} from "./modules/trainer-programs/trainer-programs.module";
+import {TrainerBlogsModule} from "./modules/trainer-blogs/trainer-blogs.module";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {TrainerProgramsModule} from "./modules/trainer-programs/trainer-programs
     ComponentsModule,
     RouterOutlet,
     SharedModule,
-    TrainerProgramsModule
+    TrainerProgramsModule,
+    TrainerBlogsModule
   ],
     exports: [DashboardComponent]
 })

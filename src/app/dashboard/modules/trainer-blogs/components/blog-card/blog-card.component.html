@@ -1,0 +1,52 @@
+<div class="widget-inner">
+  <div class="card-courses-list admin-courses">
+    <div class="card-courses-media">
+      <img src="{{blog.picture}}" alt=""/>
+    </div>
+    <div class="card-courses-full-dec">
+      <div class="card-courses-title">
+        <a (click)="accessBlog(blog.id!)"><h4>{{blog.name}}</h4></a>
+      </div>
+      <div class="card-courses-list-bx">
+        <ul class="card-courses-view">
+          <li class="card-courses-user">
+            <div class="card-courses-user-pic">
+              <img src="{{blog.createdBy?.profilePicture}}" alt=""/>
+            </div>
+            <div class="card-courses-user-info">
+              <h5>Trainer</h5>
+              <h4>{{blog.createdBy?.firstName + ' ' + blog.createdBy?.lastName}}</h4>
+            </div>
+          </li>
+          <li class="card-courses-review">
+            <h5>3 Review</h5>
+            <ul class="cours-star">
+              <li class="active"><i class="fa fa-star"></i></li>
+              <li class="active"><i class="fa fa-star"></i></li>
+              <li class="active"><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+            </ul>
+          </li>
+          <li class="card-courses-stats">
+            <a href="#" class="btn button-sm gre {{blogStateConfig.get(blog.state!)?.color}} radius-xl">{{blogStateConfig.get(blog.state!)?.text}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row card-courses-dec">
+        <div class="col-md-12">
+          <h6 class="m-b10">Blog Description</h6>
+          <p>{{blog.description}}</p>
+        </div>
+        <div class="col-md-12">
+          <a *ngIf="blog.state === 'IN_PROGRESS'" (click)="submitBlog()" class="btn green radius-xl outline">Submit</a>
+          <a *ngIf="blog.state === 'IN_PROGRESS'" (click)="deleteBlog()" class="btn red outline radius-xl ">Delete</a>
+          <a *ngIf="blog.state === 'SUBMITTED'" (click)="cancelBlog()"  class="btn red outline radius-xl ">Cancel</a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
