@@ -36,7 +36,7 @@ import {ReviewsComponent} from "./dashboard/components/reviews/reviews.component
 import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
 import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.component";
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
-import {TrainerBlogsComponent} from "./dashboard/components/trainer-blogs/trainer-blogs.component";
+import {TrainerBlogsComponent} from "./dashboard/modules/trainer-blogs/trainer-blogs.component";
 import {ProfileGuard} from "./@core/guards/profile/profile.guard";
 import {ProgramDetailsComponent} from "./program-details/program-details.component";
 import {DashboardGuard} from "./@core/guards/dashboard/dashboard.guard";

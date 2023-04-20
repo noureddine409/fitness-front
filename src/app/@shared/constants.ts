@@ -1,6 +1,7 @@
 import {Step} from "../@core/models/step.model";
 import {ProgramStateConfig} from "../@core/models/program.model"
 import {environment} from "../../environements/environements";
+import {BlogStateConfig} from "../@core/models/blog.model";
 
 
 export const TOKEN_KEY = 'auth-token';
@@ -206,9 +207,13 @@ export const equipments = new Map<string, string> ([
 
 
 export const programStateConfigMap: Map<string, ProgramStateConfig> = new Map([
-  ['IN_PROGRESS', { color: 'orange', text: 'In Progress' }],
+  ['IN_PROGRESS', { color: 'orange', text: 'Pending' }],
   ['ARCHIVED', { color: 'gray', text: 'Archived' }],
   ['SUBMITTED', { color: 'blue', text: 'Submitted' }],
   ['APPROVED', { color: 'green', text: 'Approved' }],
+]);
+export const blogStateConfigMap: Map<string, BlogStateConfig> = new Map([
+  ['IN_PROGRESS', { color: 'orange', text: 'Pending' }],
+  ['SUBMITTED', { color: 'blue', text: 'Submitted' }],
 ]);
 

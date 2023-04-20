@@ -20,8 +20,8 @@
               <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
               <div class="widget_tag_cloud">
                 <h6>TAGS</h6>
-                <div class="tagcloud" *ngFor="let tag from blogDto.tags">
-                  <a href="#">{{tag}}</a>
+                <div class="tagcloud">
+                  <a href="#" *ngFor="let tag of blogDto.tags">{{tag}}</a>
                 </div>
               </div>
               <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
@@ -105,10 +105,10 @@
                 <li><div><a href="#"><img src="assets/images/gallery/pic4.jpg" alt=""></a></div></li>
               </ul>
             </div>
-            <div class="widget widget_tag_cloud">
-              <h6 class="widget-title">Tags</h6>
-              <div class="tagcloud" *ngFor="let tag from blogDto.tags">
-                <a href="#">{{tag}}</a>
+            <div class="widget_tag_cloud">
+              <h6>TAGS</h6>
+              <div class="tagcloud">
+                <a href="#" *ngFor="let tag of blogDto.tags">{{tag}}</a>
               </div>
             </div>
           </aside>

@@ -12,3 +12,7 @@ export interface BlogDto {
   tags: string[];
   picture?: string;
 }
+export interface BlogStateConfig {
+  color: string;
+  text: string;
+}
