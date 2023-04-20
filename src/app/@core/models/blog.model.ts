@@ -7,7 +7,7 @@ export interface BlogDto {
   updatedAt?: string;
   name: string;
   state?: string;
-  description: string;
+  content: string;
   createdBy?: AppUser;
   tags: string[];
   picture?: string;
