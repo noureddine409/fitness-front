@@ -36,7 +36,10 @@
       <div class="row card-courses-dec">
         <div class="col-md-12">
           <h6 class="m-b10">Blog Description</h6>
-          <p>{{blog.description}}</p>
+          <p>
+            {{blog.description | slice:0:200}}...
+            <a style="color: #428BCA;" (click)="accessBlog(blog.id!)">Read More</a>
+          </p>
         </div>
         <div class="col-md-12">
           <a *ngIf="blog.state === 'IN_PROGRESS'" (click)="submitBlog()" class="btn green radius-xl outline">Submit</a>

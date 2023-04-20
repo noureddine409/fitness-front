@@ -1,0 +1,7 @@
+.style-1 {
+  color: red;
+}
+.style-1:hover,
+.style:focus {
+  color: darkred;
+}
