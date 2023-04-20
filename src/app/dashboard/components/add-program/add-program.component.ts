@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ALERT_MESSAGES, equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
 import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/selection-box.util";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-program',
   templateUrl: './add-program.component.html',
   styleUrls: ['./add-program.component.css'],
 })
-export class AddProgramComponent implements OnInit {
+export class AddProgramComponent implements OnInit, OnDestroy {
   programForm!: FormGroup;
   sectionForm!: FormGroup;
 
@@ -168,19 +169,29 @@ export class AddProgramComponent implements OnInit {
 
 
       this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
-        (program) => {
-          this.router.navigate([`/dashboard/modify-Program/${program.id}`]);
+        event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            const percentDone = Math.round(100 * event.loaded / event.total!);
+
+          } else if (event instanceof HttpResponse) {
+            const program = event.body;
+            this.router.navigate([`/dashboard/modify-Program/${program!.id}`]);
+          }
         },
         error => {
           this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
         }
-      )
+      );
 
     }
   }
 
   modifyItem(item: ProgramSectionDto) {
     //item.editMode = !item.editMode;
+  }
+
+  ngOnDestroy() {
+    alert("are you sure??")
   }
 
 
