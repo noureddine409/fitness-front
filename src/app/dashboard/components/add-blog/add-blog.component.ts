@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ALERT_MESSAGES} from "../../../@shared/constants";
-import {Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
 import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/selection-box.util";
 import {BlogService} from "../../../@core/services/blog-service/blog.service";
 import {BlogDto} from "../../../@core/models/blog.model";
@@ -19,6 +19,7 @@ export class AddBlogComponent {
   errorMessage = "";
 
   submitted!: boolean;
+  loading!: boolean;
   selectedTags = new Set<string>();
   blogDto!: BlogDto;
   private picture!: File;
@@ -62,7 +63,7 @@ export class AddBlogComponent {
   }
 
   saveChanges() {
-
+    // Set the submitted flag to true
     this.submitted = true;
 
     if (this.blogForm.invalid) {
@@ -71,7 +72,9 @@ export class AddBlogComponent {
     }
 
     if (confirm("Are you sure you want to save changes?")) {
-      //this.showModal = true;
+      // Set the loading flag to true
+      this.loading = true;
+
       const name = this.blogForm.get('blog-name')!.value;
       const blogContent = this.blogForm.get('blog-content')!.value;
 
@@ -86,18 +89,22 @@ export class AddBlogComponent {
 
       const blogBlob = new Blob([JSON.stringify(this.blogDto)], {type: 'application/json'});
 
-
       this.blogService.save(blogBlob, this.picture).subscribe(
         (blog) => {
+          // Set the loading flag to false
+          this.loading = false;
           this.router.navigate([`/dashboard/blog-details/${blog.id}`]);
         },
         error => {
+          // Set the loading flag to false
+          this.loading = false;
           this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
         }
       )
-
     }
   }
+
+
 
 
 }

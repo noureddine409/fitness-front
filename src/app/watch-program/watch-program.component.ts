@@ -34,6 +34,9 @@ export class WatchProgramComponent implements OnInit {
       }
     );
   }
+  goToOtherComponent(url:string) {
+    this.router.navigate([url]);
+  }
 
   changeVideo(section: ProgramSectionDto) {
     this.selectedSection = section;

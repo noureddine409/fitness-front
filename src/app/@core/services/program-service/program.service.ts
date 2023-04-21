@@ -29,9 +29,7 @@ export class ProgramService {
     }
     formData.append('program-picture', programPicture);
 
-    const req = new HttpRequest('POST', SAVE_PROGRAM_API_URL, formData, {
-      reportProgress: true
-    });
+    const req = new HttpRequest('POST', SAVE_PROGRAM_API_URL, formData);
 
     return this.http.request<ProgramDto>(req);
   }
