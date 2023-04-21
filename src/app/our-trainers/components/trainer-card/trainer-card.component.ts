@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {TrainerModel} from "../../../@core/models/trainer.model";
+import {AppUser} from "../../../@core/models/user.model";
 
 @Component({
   selector: 'app-trainer-card',
@@ -7,6 +7,6 @@ import {TrainerModel} from "../../../@core/models/trainer.model";
   styleUrls: ['./trainer-card.component.css']
 })
 export class TrainerCardComponent {
-  @Input() trainer!:TrainerModel;
+  @Input() trainer!:AppUser;
 
 }
