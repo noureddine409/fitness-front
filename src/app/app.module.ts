@@ -40,7 +40,6 @@ import {WatchProgramModule} from "./watch-program/watch-program.module";
     RouterModule.forRoot([]),
     HomeModule,
     OurServicesItemsModule,
-    ProgramsModule,
     OurProgramsModule,
     BlogsModule,
     AuthenticationModule,

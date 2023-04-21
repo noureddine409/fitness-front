@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ProgramsModule} from "./programs.module";
+import {ProgramDto} from "../@core/models/program.model";
 
 @Component({
   selector: 'app-programs',
@@ -6,6 +8,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./programs.component.css']
 })
 export class ProgramsComponent implements OnInit {
+  @Input() programsTitle!: string;
+  @Input() programsDescription!: string;
+  @Input() programs!: ProgramDto[];
   ngOnInit() {
   }
 }
