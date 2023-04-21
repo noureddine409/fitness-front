@@ -1,12 +1,12 @@
 <div class="item">
   <div class="cours-bx">
     <div class="action-box">
-      <img src="../../assets/images/programs/pic1.jpg" alt="">
+      <img [src]=program.picture alt="">
       <a href="#" class="btn">Read More</a>
     </div>
     <div class="info-bx text-center">
-      <h5><a (click)="goToOtherComponent('/program-details')">More weights. More reps. More sweat</a></h5>
-      <span>Fitness</span>
+      <h5><a class="a1" (click)="goToOtherComponent('/program-details')">{{program.name}}</a></h5>
+      <span>{{program.category}}</span>
     </div>
     <div class="cours-more-info">
       <div class="review">
@@ -20,8 +20,8 @@
         </ul>
       </div>
       <div class="price">
-        <del>$190</del>
-        <h5>$120</h5>
+        <h5>{{program.price}}</h5>
+        <del>-</del>
       </div>
     </div>
   </div>
