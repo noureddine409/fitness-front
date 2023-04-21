@@ -25,6 +25,7 @@ import {AuthenticationModule} from "./authentication/authentication.module";
 import {LayoutModule} from "./layout/layout.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {WatchProgramModule} from "./watch-program/watch-program.module";
+import {OurTrainersModule} from "./our-trainers/our-trainers.module";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {WatchProgramModule} from "./watch-program/watch-program.module";
     HomeModule,
     OurServicesItemsModule,
     OurProgramsModule,
+    OurTrainersModule,
     BlogsModule,
     AuthenticationModule,
     LayoutModule,

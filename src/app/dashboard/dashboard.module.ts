@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {DashboardComponent} from './dashboard.component';
 import {ComponentsModule} from "./components/components.module";
 import {RouterOutlet} from "@angular/router";
@@ -20,8 +19,9 @@ import {TrainerBlogDetailsModule} from "./modules/trainer-blog-details/trainer-b
     SharedModule,
     TrainerProgramsModule,
     TrainerBlogsModule,
-    TrainerBlogDetailsModule
+    TrainerBlogDetailsModule,
   ],
-    exports: [DashboardComponent]
+  exports: [DashboardComponent]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}
