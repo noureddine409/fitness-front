@@ -1,12 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule, Type} from '@angular/core';
+import {ServiceItemComponent} from './service-item/service-item.component';
+import {SharedModule} from "../../@shared/shared.module";
 
-
+const ourServicesItemsComponents: Type<any>[] = [ServiceItemComponent];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...ourServicesItemsComponents,
+  ],
   imports: [
-    CommonModule
-  ]
+    SharedModule
+  ],
+  exports: [...ourServicesItemsComponents]
 })
-export class ComponentsModule { }
+export class ComponentsModule {
+}

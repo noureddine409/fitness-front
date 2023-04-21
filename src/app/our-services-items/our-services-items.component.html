@@ -4,46 +4,13 @@
   <div class="container div1">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-6">
-        <div class="service-bx">
-          <div class="action-box">
-            <img src="../../assets/images/our-services/pic1.jpg" alt="">
-          </div>
-          <div class="info-bx text-center">
-            <div class="feature-box-sm radius bg-white">
-              <i class="fa fa-bank text-primary"></i>
-            </div>
-            <h4><a routerLink="/home#fitness">FITNESS</a></h4>
-            <a (click)="setScrollPosition(2000)"  class="btn radius-xl">View More</a>
-          </div>
-        </div>
+        <app-service-item [serviceItem]=serviceItems[0]></app-service-item>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-6">
-        <div class="service-bx">
-          <div class="action-box">
-            <img src="../../assets/images/our-services/pic2.jpg" alt="">
-          </div>
-          <div class="info-bx text-center">
-            <div class="feature-box-sm radius bg-white">
-              <i class="fa fa-book text-primary"></i>
-            </div>
-            <h4><a href="#">NUTRITION</a></h4>
-            <a (click)="setScrollPosition(2570)" class="btn radius-xl">View More</a>
-          </div>
-        </div>
+        <app-service-item [serviceItem]=serviceItems[1]></app-service-item>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="service-bx m-b0">
-          <div class="action-box">
-            <img src="../../assets/images/our-services/pic3.jpg" alt="">
-          </div>
-          <div class="info-bx text-center">
-            <div class="feature-box-sm radius bg-white">
-              <i class="fa fa-file-text-o text-primary"></i>
-            </div>
-            <h4><a href="#">MINDSET</a></h4>
-            <a (click)="setScrollPosition(3150)" class="btn radius-xl">View More</a>
-          </div>
-        </div>
+        <app-service-item [serviceItem]=serviceItems[2]></app-service-item>
       </div>
     </div>
   </div>

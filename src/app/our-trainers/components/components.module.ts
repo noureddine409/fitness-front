@@ -1,12 +1,13 @@
 import {NgModule, Type} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {SharedModule} from "../../@shared/shared.module";
 
 const ourTrainersComponents: Type<any>[] = [];
 
 @NgModule({
   declarations: [...ourTrainersComponents],
   imports: [
-    CommonModule
+    SharedModule
   ],
   exports:[...ourTrainersComponents]
 })
