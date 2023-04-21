@@ -12,7 +12,7 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
   templateUrl: './add-program.component.html',
   styleUrls: ['./add-program.component.css'],
 })
-export class AddProgramComponent implements OnInit, OnDestroy {
+export class AddProgramComponent implements OnInit {
   programForm!: FormGroup;
   sectionForm!: FormGroup;
 
@@ -20,6 +20,7 @@ export class AddProgramComponent implements OnInit, OnDestroy {
 
   submitted!: boolean;
   showModal = false;
+  loading!: boolean;
 
   sectionAdded!: boolean;
   selectedOptions = new Set<string>();
@@ -72,7 +73,6 @@ export class AddProgramComponent implements OnInit, OnDestroy {
 
 
   }
-
   addSection() {
 
     this.sectionAdded = true;
@@ -135,7 +135,6 @@ export class AddProgramComponent implements OnInit, OnDestroy {
 
 
   saveChanges() {
-
     this.submitted = true;
 
     if (this.programForm.invalid) {
@@ -143,6 +142,9 @@ export class AddProgramComponent implements OnInit, OnDestroy {
     }
 
     if (confirm("Are you sure you want to save changes?")) {
+      // Set the loading flag to true
+      this.loading = true;
+
       const motivation = this.programForm.get('program-motivation')!.value;
       const price = this.programForm.get('program-price')!.value;
       const duration = this.programForm.get('program-duration')!.value;
@@ -167,31 +169,33 @@ export class AddProgramComponent implements OnInit, OnDestroy {
 
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
 
-
       this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
         event => {
           if (event.type === HttpEventType.UploadProgress) {
             const percentDone = Math.round(100 * event.loaded / event.total!);
-
+            console.log({percentDone});
+            // Update the innerHTML of the loading-icon-bx div with the value of percentDone
+            document.getElementById('loading-icon-bx')!.innerHTML = `Saving... ${percentDone}%`;
           } else if (event instanceof HttpResponse) {
+            // Set the loading flag to false
+            this.loading = false;
             const program = event.body;
             this.router.navigate([`/dashboard/modify-Program/${program!.id}`]);
           }
         },
         error => {
+          // Set the loading flag to false
+          this.loading = false;
           this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
         }
       );
-
     }
   }
 
+
+
   modifyItem(item: ProgramSectionDto) {
     //item.editMode = !item.editMode;
-  }
-
-  ngOnDestroy() {
-    alert("are you sure??")
   }
 
 
