@@ -7,6 +7,7 @@ import {SharedModule} from "../@shared/shared.module";
 import {TrainerProgramsModule} from "./modules/trainer-programs/trainer-programs.module";
 import {TrainerBlogsModule} from "./modules/trainer-blogs/trainer-blogs.module";
 import {TrainerBlogDetailsModule} from "./modules/trainer-blog-details/trainer-blog-details.module";
+import {AddProgramModule} from "./modules/add-program/add-program.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {TrainerBlogDetailsModule} from "./modules/trainer-blog-details/trainer-b
     SharedModule,
     TrainerProgramsModule,
     TrainerBlogsModule,
-    TrainerBlogDetailsModule
+    TrainerBlogDetailsModule,
+    AddProgramModule
   ],
     exports: [DashboardComponent]
 })

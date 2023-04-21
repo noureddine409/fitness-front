@@ -33,7 +33,7 @@ import {TrainerProgramsComponent} from "./dashboard/modules/trainer-programs/tra
 import {BasicCalendarComponent} from "./dashboard/components/basic-calendar/basic-calendar.component";
 import {ListViewComponent} from "./dashboard/components/list-view/list-view.component";
 import {ReviewsComponent} from "./dashboard/components/reviews/reviews.component";
-import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
+import {AddProgramComponent} from "./dashboard/modules/add-program/add-program.component";
 import {AddBlogComponent} from "./dashboard/components/add-blog/add-blog.component";
 import {DashboardHomeComponent} from "./dashboard/components/dashboard-home/dashboard-home.component";
 import {TrainerBlogsComponent} from "./dashboard/modules/trainer-blogs/trainer-blogs.component";
