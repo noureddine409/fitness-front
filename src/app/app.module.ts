@@ -17,7 +17,6 @@ import {environment} from "../environements/environements";
 import {AuthInterceptor} from "./@core/interceptor/auth.interceptor";
 import {RouterModule} from "@angular/router";
 import {HomeModule} from "./home/home.module";
-import {OurServicesModule} from "./our-services/our-services.module";
 import {OurServicesItemsModule} from "./our-services-items/our-services-items.module";
 import {OurProgramsModule} from "./our-programs/our-programs.module";
 import {ProgramsModule} from "./programs/programs.module";
@@ -40,7 +39,6 @@ import {WatchProgramModule} from "./watch-program/watch-program.module";
     GoogleSigninButtonModule,
     RouterModule.forRoot([]),
     HomeModule,
-    OurServicesModule,
     OurServicesItemsModule,
     ProgramsModule,
     OurProgramsModule,
