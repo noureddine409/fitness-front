@@ -2,7 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse} from "@angular/common/http";
 import {
   FIND_PROGRAM_BY_ID_API_URL,
-  GET_TRAINER_PROGRAMS_API_URL, PROGRAM_CANCEL_API_URL, PROGRAM_DELETE_API_URL, PROGRAM_SUBMIT_API_URL,
+  GET_TRAINER_PROGRAMS_API_URL,
+  PROGRAM_CANCEL_API_URL,
+  PROGRAM_DELETE_API_URL,
+  PROGRAM_SUBMIT_API_URL,
+  SAVE_BLOG_API_URL,
   SAVE_PROGRAM_API_URL
 } from "../../../@shared/constants";
 import {ProgramDto} from "../../models/program.model";
@@ -18,7 +22,7 @@ export class ProgramService {
 
 
 
-  save(program: any, videos: any[], pictures: any[], programPicture: any): Observable<HttpEvent<ProgramDto>> {
+  save(program: any, videos: any[], pictures: any[], programPicture: any): Observable<ProgramDto> {
     const formData = new FormData();
     formData.append('program', program);
     for (let i = 0; i < videos.length; i++) {
@@ -29,9 +33,7 @@ export class ProgramService {
     }
     formData.append('program-picture', programPicture);
 
-    const req = new HttpRequest('POST', SAVE_PROGRAM_API_URL, formData);
-
-    return this.http.request<ProgramDto>(req);
+    return this.http.post<ProgramDto>(SAVE_PROGRAM_API_URL, formData);
   }
 
   findById(programId: number) : Observable<ProgramDto>{

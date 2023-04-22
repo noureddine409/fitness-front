@@ -170,18 +170,10 @@ export class AddProgramComponent implements OnInit {
       const programBlob = new Blob([JSON.stringify(this.programDto)], {type: 'application/json'});
 
       this.programService.save(programBlob, this.multipartVideos, this.multipartPictures, this.picture).subscribe(
-        event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            const percentDone = Math.round(100 * event.loaded / event.total!);
-            console.log({percentDone});
-            // Update the innerHTML of the loading-icon-bx div with the value of percentDone
-            document.getElementById('loading-icon-bx')!.innerHTML = `Saving... ${percentDone}%`;
-          } else if (event instanceof HttpResponse) {
-            // Set the loading flag to false
-            this.loading = false;
-            const program = event.body;
-            this.router.navigate([`/dashboard/modify-Program/${program!.id}`]);
-          }
+        (program) => {
+          // Set the loading flag to false
+          this.loading = false;
+          this.router.navigate([`/dashboard/modify-Program/${program!.id}`]);
         },
         error => {
           // Set the loading flag to false

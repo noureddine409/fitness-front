@@ -43,6 +43,7 @@
         </div>
         <div class="col-md-12">
           <a *ngIf="blog.state === 'IN_PROGRESS'" (click)="submitBlog()" class="btn green radius-xl outline">Submit</a>
+          <a *ngIf="blog.state === 'IN_PROGRESS'" (click)="modifyBlog()" class="btn yellow radius-xl outline">Modify</a>
           <a *ngIf="blog.state === 'IN_PROGRESS'" (click)="deleteBlog()" class="btn red outline radius-xl ">Delete</a>
           <a *ngIf="blog.state === 'SUBMITTED'" (click)="cancelBlog()"  class="btn red outline radius-xl ">Cancel</a>
 

@@ -112,6 +112,7 @@ export const RESET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/reset-pass
 export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/forget-password/verify-token"
 
 export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
+export const UPDATE_PROGRAM_API_URL = environment.apiUrl + "/api/programs/{id}"
 
 export const PROGRAM_SUBMIT_API_URL = `${environment.apiUrl}/api/programs/{id}/submit`;
 
@@ -122,6 +123,7 @@ export const GET_TRAINER_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/
 
 export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/";
 export const SAVE_BLOG_API_URL = environment.apiUrl + "/api/blogs"
+export const UPDATE_BLOG_API_URL = environment.apiUrl + "/api/blogs/{id}"
 
 export const BLOG_SUBMIT_API_URL = `${environment.apiUrl}/api/blogs/{id}/submit`;
 

@@ -14,9 +14,7 @@ export interface AppUser {
   gender: "MALE"|"FEMALE";
   address?: Address;
   phoneNumber?: PhoneNumber;
-
   profileCompleted: boolean;
-
   socialMedia?: SocialMedia;
   roles?: UserRole[];
 
@@ -31,7 +29,6 @@ export interface UserPatch {
   gender?: "MALE"|"FEMALE";
   address?: Address;
   phoneNumber?: PhoneNumber;
-
   socialMedia?: SocialMedia;
 
 
