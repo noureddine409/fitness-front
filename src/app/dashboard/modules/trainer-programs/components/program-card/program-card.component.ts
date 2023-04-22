@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProgramDto} from "../../../../../@core/models/program.model";
 import {programStateConfigMap} from "../../../../../@shared/constants";
 import {ProgramService} from "../../../../../@core/services/program-service/program.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-program-card',
@@ -10,7 +11,7 @@ import {ProgramService} from "../../../../../@core/services/program-service/prog
 })
 export class ProgramCardComponent {
 
-  constructor(private programService: ProgramService) {
+  constructor(private programService: ProgramService, private router: Router) {
   }
 
 
@@ -49,5 +50,9 @@ export class ProgramCardComponent {
       }
     )
 
+  }
+
+  updateProgram() {
+      this.router.navigate([`/dashboard/modify-Program/${this.program.id}`]);
   }
 }

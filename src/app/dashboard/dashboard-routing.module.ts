@@ -8,7 +8,7 @@ import {ListViewComponent} from "./components/list-view/list-view.component";
 import {ReviewsComponent} from "./components/reviews/reviews.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {TrainerProfileComponent} from "./components/trainer-profile/trainer-profile.component";
-import {AddProgramComponent} from "./components/add-program/add-program.component";
+import {ModifyProgramComponent} from "./components/add-program/add-program.component";
 import {ModifyBlogComponent} from "./components/add-blog/add-blog.component";
 import {NgModule} from "@angular/core";
 
@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'trainer-profile', component: TrainerProfileComponent},
 
-  {path: 'add-Program', component: AddProgramComponent},
+  {path: 'add-Program', component: ModifyProgramComponent},
 
   {path: 'add-Blog', component: ModifyBlogComponent},
 ];
