@@ -9,7 +9,7 @@ import {ReviewsComponent} from "./components/reviews/reviews.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {TrainerProfileComponent} from "./components/trainer-profile/trainer-profile.component";
 import {AddProgramComponent} from "./components/add-program/add-program.component";
-import {AddBlogComponent} from "./components/add-blog/add-blog.component";
+import {ModifyBlogComponent} from "./components/add-blog/add-blog.component";
 import {NgModule} from "@angular/core";
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
 
   {path: 'add-Program', component: AddProgramComponent},
 
-  {path: 'add-Blog', component: AddBlogComponent},
+  {path: 'add-Blog', component: ModifyBlogComponent},
 ];
 
 @NgModule({

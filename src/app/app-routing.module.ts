@@ -42,6 +42,7 @@ import {DashboardGuard} from "./@core/guards/dashboard/dashboard.guard";
 import {TrainerProgramComponent} from "./dashboard/components/trainer-program/trainer-program.component";
 import {TrainerBlogDetailsComponent} from "./dashboard/modules/trainer-blog-details/trainer-blog-details.component";
 import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
+import {ModifyBlogComponent} from "./dashboard/components/modify-blog/modify-blog.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -76,6 +77,7 @@ const routes: Routes = [
       {path: 'add-Program', component: AddProgramComponent},
       {path: 'modify-Program/:id', component: TrainerProgramComponent},
       {path: 'blog-details/:id', component: TrainerBlogDetailsComponent},
+      {path: 'modify-Blog/:id', component: ModifyBlogComponent},
 
       {path: 'add-Blog', component: AddBlogComponent},
     ]

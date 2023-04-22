@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BlogService} from "../../../../../@core/services/blog-service/blog.service";
 import {BlogDto} from "../../../../../@core/models/blog.model";
 import {blogStateConfigMap} from "../../../../../@shared/constants";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-blog-card',
@@ -10,7 +11,7 @@ import {blogStateConfigMap} from "../../../../../@shared/constants";
 })
 export class BlogCardComponent {
 
-  constructor(private blogService: BlogService) {
+  constructor(private blogService: BlogService, private router: Router) {
   }
 
 
@@ -48,5 +49,9 @@ export class BlogCardComponent {
       }
     )
 
+  }
+
+  modifyBlog() {
+    this.router.navigate([`/dashboard/modify-Blog/${this.blog.id}`]);
   }
 }

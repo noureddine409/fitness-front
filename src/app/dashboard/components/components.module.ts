@@ -10,8 +10,9 @@ import {SharedModule} from "../../@shared/shared.module";
 import {ReviewsComponent} from "./reviews/reviews.component";
 import {AuthenticationModule} from "../../authentication/authentication.module";
 import {AddProgramComponent} from "./add-program/add-program.component";
+import {ModifyBlogComponent} from "./modify-blog/modify-blog.component";
 
-const dashboardComponents: Type<any>[] = [AddBlogComponent,AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
+const dashboardComponents: Type<any>[] = [ModifyBlogComponent,AddBlogComponent,AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
 
 
 @NgModule({
