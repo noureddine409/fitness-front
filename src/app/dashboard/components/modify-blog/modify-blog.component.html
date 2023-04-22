@@ -34,16 +34,6 @@
                 </div>
               </div>
 
-              <div class="form-group col-6">
-                <label class="col-form-label">Picture</label>
-                <div>
-                  <input class="form-control" type="file" accept="image/*" formControlName="blog-picture"
-                         (change)="onPictureChange($event)">
-                  <app-validation-message controlName="blog-picture" [formGroup]="blogForm"
-                                          [submitted]="submitted"></app-validation-message>
-                </div>
-              </div>
-
 
               <div class="form-group col-12">
                 <label class="col-form-label">Blog Content</label>

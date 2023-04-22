@@ -4,7 +4,7 @@ import {ALERT_MESSAGES} from "../../../@shared/constants";
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/selection-box.util";
 import {BlogService} from "../../../@core/services/blog-service/blog.service";
-import {BlogDto} from "../../../@core/models/blog.model";
+import {BlogDto, BlogPatchDto} from "../../../@core/models/blog.model";
 
 @Component({
   selector: 'app-modify-blog',
@@ -14,14 +14,13 @@ import {BlogDto} from "../../../@core/models/blog.model";
 export class ModifyBlogComponent {
   showModal = false;
   blogForm!: FormGroup;
-  sectionForm!: FormGroup;
 
   errorMessage = "";
 
   submitted!: boolean;
   loading!: boolean;
   selectedTags = new Set<string>();
-  blogDto!: BlogDto;
+  blogPatchDto!: BlogPatchDto;
   blogId!: number;
   blogData!: BlogDto;
   private picture!: File;
@@ -54,7 +53,6 @@ export class ModifyBlogComponent {
         Validators.minLength(3),
         Validators.maxLength(255)
       ]],
-      'blog-picture': [this.blogData.picture, [Validators.required]],
       'blog-content': [this.blogData.content, [Validators.required, Validators.minLength(10)]],
       'selected-tags': [this.blogData.tags],
     });
@@ -71,12 +69,6 @@ export class ModifyBlogComponent {
     if(tag.length ==0) return
     this.selectedTags.add(tag);
     console.log(this.selectedTags);
-  }
-
-  onPictureChange(event: any) {
-    if (event.target.files && event.target.files.length) {
-      this.picture = event.target.files[0];
-    }
   }
 
   saveChanges() {
@@ -96,17 +88,15 @@ export class ModifyBlogComponent {
       const blogContent = this.blogForm.get('blog-content')!.value;
 
       console.log(this.selectedTags)
-      this.blogDto = {
+      this.blogPatchDto = {
         name: name,
         content: blogContent,
         tags: [...this.selectedTags],
       };
 
-      console.log(this.blogDto)
+      console.log(this.blogPatchDto)
 
-      const blogBlob = new Blob([JSON.stringify(this.blogDto)], {type: 'application/json'});
-
-      this.blogService.save(blogBlob, this.picture).subscribe(
+      this.blogService.update(this.blogId,this.blogPatchDto).subscribe(
         (blog) => {
           // Set the loading flag to false
           this.loading = false;
