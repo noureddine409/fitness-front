@@ -60,7 +60,7 @@ export class TrainerProgramsComponent implements OnInit {
   }
 
   handleProgramClick(id: number) {
-    this.router.navigate(['/dashboard/modify-Program/' + id]);
+    this.router.navigate(['/dashboard/program-details/' + id]);
   }
 
   onProgramDelete(id: number) {

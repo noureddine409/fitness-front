@@ -173,7 +173,7 @@ export class AddProgramComponent implements OnInit {
         (program) => {
           // Set the loading flag to false
           this.loading = false;
-          this.router.navigate([`/dashboard/modify-Program/${program!.id}`]);
+          this.router.navigate([`/dashboard/program-details/${program!.id}`]);
         },
         error => {
           // Set the loading flag to false

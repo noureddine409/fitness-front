@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {equipments, options} from "../../../@shared/constants";
 
 @Component({
-  selector: 'app-modify-program',
+  selector: 'app-program-details',
   templateUrl: './trainer-program.component.html',
   styleUrls: ['./trainer-program.component.css']
 })

@@ -7,9 +7,9 @@ import {
   PROGRAM_DELETE_API_URL,
   PROGRAM_SUBMIT_API_URL,
   SAVE_BLOG_API_URL,
-  SAVE_PROGRAM_API_URL
+  SAVE_PROGRAM_API_URL, UPDATE_PROGRAM_API_URL
 } from "../../../@shared/constants";
-import {ProgramDto} from "../../models/program.model";
+import {ProgramDto, ProgramPatchDto} from "../../models/program.model";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -34,6 +34,12 @@ export class ProgramService {
     formData.append('program-picture', programPicture);
 
     return this.http.post<ProgramDto>(SAVE_PROGRAM_API_URL, formData);
+  }
+  update(id: number, programPatchDto: ProgramPatchDto): Observable<ProgramDto>{
+    const formData = new FormData();
+    formData.append('programPatchDto', JSON.stringify(programPatchDto));
+    const url = UPDATE_PROGRAM_API_URL.replace('{id}', id.toString());
+    return this.http.patch<ProgramDto>(url, programPatchDto);
   }
 
   findById(programId: number) : Observable<ProgramDto>{

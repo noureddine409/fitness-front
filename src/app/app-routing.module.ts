@@ -43,6 +43,7 @@ import {TrainerProgramComponent} from "./dashboard/components/trainer-program/tr
 import {TrainerBlogDetailsComponent} from "./dashboard/modules/trainer-blog-details/trainer-blog-details.component";
 import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
 import {ModifyBlogComponent} from "./dashboard/components/modify-blog/modify-blog.component";
+import {ModifyProgramComponent} from "./dashboard/components/modify-program/modify-program.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -75,9 +76,10 @@ const routes: Routes = [
       {path: 'reviews', component: ReviewsComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'add-Program', component: AddProgramComponent},
-      {path: 'modify-Program/:id', component: TrainerProgramComponent},
+      {path: 'program-details/:id', component: TrainerProgramComponent},
       {path: 'blog-details/:id', component: TrainerBlogDetailsComponent},
       {path: 'modify-Blog/:id', component: ModifyBlogComponent},
+      {path: 'modify-Program/:id', component: ModifyProgramComponent},
 
       {path: 'add-Blog', component: AddBlogComponent},
     ]
