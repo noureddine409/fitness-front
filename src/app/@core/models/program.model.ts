@@ -41,7 +41,11 @@ export interface ProgramSectionDto {
   level: string;
   video?: SectionVideoDto;
 }
-
+export interface ProgramSectionPatchDto {
+  title?: string;
+  description?: string;
+  level?: string;
+}
 export interface SectionVideoDto {
   videoUrl?: string;
 

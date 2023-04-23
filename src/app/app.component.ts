@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 import {NavigationStart, Router} from "@angular/router";
 
@@ -13,11 +13,14 @@ declare global {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit ,AfterContentChecked{
 
 
-  constructor(private elRef: ElementRef, private router: Router) {
+  constructor(private elRef: ElementRef, private router: Router,private changeDetector: ChangeDetectorRef) {
 
+  }
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 
   ngOnInit() {

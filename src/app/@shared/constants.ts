@@ -113,6 +113,7 @@ export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/fo
 
 export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
 export const UPDATE_PROGRAM_API_URL = environment.apiUrl + "/api/programs/{id}"
+export const UPDATE_SECTION_API_URL = environment.apiUrl + "/api/programs/sections/{id}"
 
 export const PROGRAM_SUBMIT_API_URL = `${environment.apiUrl}/api/programs/{id}/submit`;
 
@@ -194,7 +195,7 @@ export const options = new Map<string, string> ([
   ["RECOVERY", "Recovery"],
   ["PILATES", "Pilates"],
   ["YOGA", "Yoga"],
-  ["SLIM_SCUPLT", "Slim & Sculpt"]
+  ["SLIM_SCULPT", "Slim & Sculpt"]
 ])
 
 export const equipments = new Map<string, string> ([
@@ -203,7 +204,7 @@ export const equipments = new Map<string, string> ([
   ["CORE_COMFORT_MAT", "Core Comfort Mat"],
   ["POWER_LOOPS", "Power Loops"],
   ["YOGA_MAT", "Yoga Mat"],
-  ["Resistance_Loops", "Resistance Loops"]
+  ["RESISTANCE_LOOPS", "Resistance Loops"]
 ])
 
 

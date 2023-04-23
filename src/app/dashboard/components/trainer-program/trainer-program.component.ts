@@ -44,4 +44,22 @@ export class TrainerProgramComponent implements OnInit {
   goToWatchPage() {
     this.router.navigate([`/watch-program/${(this.programId)}`]);
   }
+  splitDescription(description: string): string[] {
+    const maxLength = 200;
+    const sentences = description.match(/[^.!?]+[.!?]+/g) || [description];
+    const result = [];
+    let currentString = '';
+    for (const sentence of sentences) {
+      if (currentString.length + sentence.length <= maxLength) {
+        currentString += sentence;
+      } else {
+        result.push(currentString);
+        currentString = sentence;
+      }
+    }
+    if (currentString) {
+      result.push(currentString);
+    }
+    return result;
+  }
 }

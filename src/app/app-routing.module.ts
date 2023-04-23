@@ -43,7 +43,8 @@ import {TrainerProgramComponent} from "./dashboard/components/trainer-program/tr
 import {TrainerBlogDetailsComponent} from "./dashboard/modules/trainer-blog-details/trainer-blog-details.component";
 import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
 import {ModifyBlogComponent} from "./dashboard/components/modify-blog/modify-blog.component";
-import {ModifyProgramComponent} from "./dashboard/components/modify-program/modify-program.component";
+import {ModifyProgramComponent} from "./dashboard/modules/modify-program/modify-program.component";
+import {ModifySectionComponent} from "./dashboard/modules/modify-program/components/modify-section/modify-section.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

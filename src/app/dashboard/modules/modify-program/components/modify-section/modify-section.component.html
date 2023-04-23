@@ -1,0 +1,69 @@
+<div id="loading-icon-bx" *ngIf="loading"></div>
+<div class="panel" style="background: #E0F1FF;margin-bottom: 6px;">
+  <div class="acod-head">
+    <h6 class="acod-title">
+      <a data-toggle="collapse" [href]="'#' + faqId" class="collapsed" [attr.data-parent]="'#' + faqId">
+        {{programSectionDto.title}} </a></h6>
+  </div>
+  <div id="{{faqId}}" class="acod-body collapse">
+    <form class="col-12 m-t20" [formGroup]="sectionForm">
+      <div class="col-12 ">
+        <div class="row">
+          <div class="form-group col-6"
+               [ngClass]="{'has-danger': sectionForm.get('section-name')!.invalid && sectionForm.get('section-name')!.touched}">
+            <label class="col-form-label">Section Name</label>
+            <input class="form-control" type="text" formControlName="section-name">
+          </div>
+
+          <div class="form-group col-6">
+            <label class="col-form-label">Section Level</label>
+            <div>
+              <select class="form-control" style="height: 40px;" formControlName="section-level">
+                <option value="FIRST_LEVEL">First Level</option>
+                <option value="SECOND_LEVEL">Second Level</option>
+                <option value="THIRD_LEVEL">Final</option>
+              </select>
+              <app-validation-message controlName="section-level" [formGroup]="sectionForm"
+                                      [submitted]="sectionAdded"></app-validation-message>
+            </div>
+          </div>
+
+          <div class="form-group col-12"
+               [ngClass]="{'has-danger': sectionForm.get('section-description')!.invalid && sectionForm.get('section-description')!.touched}">
+            <label class="col-form-label">Section description</label>
+            <textarea class="form-control" formControlName="section-description"></textarea>
+            <app-validation-message controlName="section-description" [formGroup]="sectionForm"
+                                    [submitted]="sectionAdded"></app-validation-message>
+          </div>
+          <div class="form-group col-6">
+            <label class="col-form-label">Section Video</label>
+            <div>
+              <input class="form-control" type="file" accept="video/*" formControlName="video"
+                     (change)="onSectionVideoChange($event)">
+              <app-validation-message controlName="video" [formGroup]="sectionForm"
+                                      [submitted]="sectionAdded"></app-validation-message>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <label class="col-form-label">Picture</label>
+            <div>
+              <input class="form-control" type="file" accept="image/*" formControlName="preview-image"
+                     (change)="onSectionPictureChange($event)">
+              <app-validation-message controlName="preview-image" [formGroup]="sectionForm"
+                                      [submitted]="sectionAdded"></app-validation-message>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <a (click)="modifySection()" href="#" class="btn" data-toggle="modal" data-target="#exampleModal">Modify
+              Section</a>
+          </div>
+        </div>
+      </div>
+      <app-modal *ngIf="showModal" message="Section updated successfully!!" [showMessage]="false"></app-modal>
+    </form>
+  </div>
+</div>
+
+

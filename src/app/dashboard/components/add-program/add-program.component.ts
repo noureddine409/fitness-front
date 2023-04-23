@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ALERT_MESSAGES, equipments, options} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
@@ -12,7 +12,7 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
   templateUrl: './add-program.component.html',
   styleUrls: ['./add-program.component.css'],
 })
-export class AddProgramComponent implements OnInit {
+export class AddProgramComponent implements OnInit,AfterContentChecked {
   programForm!: FormGroup;
   sectionForm!: FormGroup;
 
@@ -35,7 +35,10 @@ export class AddProgramComponent implements OnInit {
   private sectionPicture!: File;
   private sectionVideo!: File;
 
-  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder, private router: Router) {
+  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder, private router: Router,private changeDetector: ChangeDetectorRef) {
+  }
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 
   ngOnInit() {
