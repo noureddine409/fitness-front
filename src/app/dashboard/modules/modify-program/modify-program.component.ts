@@ -26,9 +26,10 @@ export class ModifyProgramComponent implements OnInit {
   selectedEquipments = new Set<string>();
   myEquipments: Map<string, string> = equipments
   myOptions: Map<string, string> = options
-  programPatchDto!: ProgramPatchDto;
+  programDto!: ProgramPatchDto;
   programId!: number;
   programData!: ProgramDto;
+  programSections: ProgramSectionDto[] = [];
 
   constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
   }
@@ -43,6 +44,8 @@ export class ModifyProgramComponent implements OnInit {
     this.programService.findById(this.programId).subscribe(
       data => {
         this.programData = data;
+        this.programSections=this.programData.sections;
+        console.log(this.programSections);
         this.initializeProgramForm();
       },
       () => {
@@ -104,7 +107,7 @@ export class ModifyProgramComponent implements OnInit {
       const programLevel = this.programForm.get('program-level')!.value;
 
       console.log(this.selectedEquipments)
-      this.programPatchDto = {
+      this.programDto = {
         name: motivation,
         level: programLevel,
         price: Number(price),
@@ -116,7 +119,7 @@ export class ModifyProgramComponent implements OnInit {
         options: [...this.selectedOptions],
       };
 
-      this.programService.update(this.programId, this.programPatchDto).subscribe(
+      this.programService.update(this.programId, this.programDto).subscribe(
         (program) => {
           // Set the loading flag to false
           this.loading = false;
@@ -129,11 +132,6 @@ export class ModifyProgramComponent implements OnInit {
         }
       );
     }
-  }
-
-
-  modifyItem(item: ProgramSectionDto) {
-    //item.editMode = !item.editMode;
   }
 
 

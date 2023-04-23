@@ -7,9 +7,9 @@ import {
   PROGRAM_DELETE_API_URL,
   PROGRAM_SUBMIT_API_URL,
   SAVE_BLOG_API_URL,
-  SAVE_PROGRAM_API_URL, UPDATE_PROGRAM_API_URL
+  SAVE_PROGRAM_API_URL, UPDATE_PROGRAM_API_URL, UPDATE_SECTION_API_URL
 } from "../../../@shared/constants";
-import {ProgramDto, ProgramPatchDto} from "../../models/program.model";
+import {ProgramDto, ProgramPatchDto, ProgramSectionDto, ProgramSectionPatchDto} from "../../models/program.model";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -37,9 +37,17 @@ export class ProgramService {
   }
   update(id: number, programPatchDto: ProgramPatchDto): Observable<ProgramDto>{
     const formData = new FormData();
-    formData.append('programPatchDto', JSON.stringify(programPatchDto));
+    formData.append('programDto', JSON.stringify(programPatchDto));
     const url = UPDATE_PROGRAM_API_URL.replace('{id}', id.toString());
     return this.http.patch<ProgramDto>(url, programPatchDto);
+  }
+  updateSection(id: number, sectionPatchDto: any,video: any, picture: any): Observable<ProgramSectionDto>{
+    const formData = new FormData();
+    formData.append('section', sectionPatchDto);
+    formData.append('video', video);
+    formData.append('preview-image', picture);
+    const url = UPDATE_SECTION_API_URL.replace('{id}', id.toString());
+    return this.http.patch<ProgramSectionDto>(url, formData);
   }
 
   findById(programId: number) : Observable<ProgramDto>{

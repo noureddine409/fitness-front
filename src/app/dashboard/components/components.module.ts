@@ -11,9 +11,8 @@ import {ReviewsComponent} from "./reviews/reviews.component";
 import {AuthenticationModule} from "../../authentication/authentication.module";
 import {AddProgramComponent} from "./add-program/add-program.component";
 import {ModifyBlogComponent} from "./modify-blog/modify-blog.component";
-import {ModifyProgramComponent} from "./modify-program/modify-program.component";
 
-const dashboardComponents: Type<any>[] = [ModifyBlogComponent,ModifyProgramComponent,AddBlogComponent,AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
+const dashboardComponents: Type<any>[] = [ModifyBlogComponent, AddBlogComponent, AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
 
 
 @NgModule({
