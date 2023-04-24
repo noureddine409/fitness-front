@@ -1,6 +1,6 @@
 import {AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ALERT_MESSAGES, equipments, options} from "../../../@shared/constants";
+import {ALERT_MESSAGES, equipments, categories} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
@@ -26,7 +26,7 @@ export class AddProgramComponent implements OnInit,AfterContentChecked {
   selectedOptions = new Set<string>();
   selectedEquipments = new Set<string>();
   myEquipments: Map<string, string> = equipments
-  myOptions: Map<string, string> = options
+  myOptions: Map<string, string> = categories
   programSectionDto: ProgramSectionDto[] = [];
   programDto!: ProgramDto;
   private multipartVideos: File[] = [];

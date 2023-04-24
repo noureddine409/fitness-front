@@ -187,7 +187,10 @@ export const VALIDATION_MESSAGES = {
 
 }
 
-export const options = new Map<string, string> ([
+export const categories = new Map<string, string> ([
+  ["FITNESS","Fitness"],
+  ["NUTRITION","Nutrition"],
+  ["MINDSET","Mindset"],
   ["STRENGTH", "Strength"],
   ["DANCE", "Dance"],
   ["NUTRITION_RECIPES", "Nutrition & Recipes"],
