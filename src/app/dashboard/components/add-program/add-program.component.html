@@ -75,7 +75,7 @@
               <div class="form-group col-6">
                 <label class="col-form-label">Category</label>
                 <select class="form-control" style="height: 40px;" formControlName="program-category">
-                  <option class="py-2" *ngFor="let option of myOptions.keys()" [value]="option">{{ myOptions.get(option) }}</option>
+                  <option class="py-2" *ngFor="let option of myOptions | keyvalue" [value]="option">{{ option.value }}</option>
                 </select>
                 <app-validation-message controlName="program-category" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
@@ -119,7 +119,7 @@
                 <div>
                   <select formControlName="selected-options" multiple class="form-control form-control-lg"
                           style="height: 200px;">
-                    <option class="py-2" *ngFor="let option of myOptions.keys()" [value]="option">{{ myOptions.get(option) }}</option>
+                    <option class="py-2" *ngFor="let option of myOptions | keyvalue" [value]="option.key">{{ option.value }}</option>
                   </select>
                   <app-validation-message controlName="selected-options" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>
@@ -141,8 +141,8 @@
                 <div>
                   <select formControlName="selected-equipments" multiple class="form-control form-control-lg"
                           style="height: 200px;">
-                    <option class="py-2" *ngFor="let equipment of myEquipments.keys()"
-                            [value]="equipment">{{ myEquipments.get(equipment) }}</option>
+                    <option class="py-2" *ngFor="let equipment of myEquipments | keyvalue"
+                            [value]="equipment">{{ myEquipments.get(equipment.key) }}</option>
                   </select>
                   <app-validation-message controlName="selected-equipments" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>
