@@ -142,7 +142,7 @@
                   <select formControlName="selected-equipments" multiple class="form-control form-control-lg"
                           style="height: 200px;">
                     <option class="py-2" *ngFor="let equipment of myEquipments | keyvalue"
-                            [value]="equipment">{{ myEquipments.get(equipment.key) }}</option>
+                            [value]="equipment.key">{{ equipment.value }}</option>
                   </select>
                   <app-validation-message controlName="selected-equipments" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>
