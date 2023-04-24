@@ -134,6 +134,9 @@ export const BLOG_DELETE_API_URL = `${environment.apiUrl}/api/blogs/{id}`
 export const GET_TRAINER_BLOGS_API_URL = environment.apiUrl + "/api/blogs/me"
 
 export const FIND_BLOG_BY_ID_API_URL = environment.apiUrl + "/api/blogs/";
+export const GET_ALL_JOIN_REQUESTS= environment.apiUrl + "/api/join-us";
+export const REQUEST_JOIN_API_URL = environment.apiUrl + "/api/join-us";
+export const TREAT_JOIN_REQUEST_API_URL = environment.apiUrl + "/api/join-us/treat/{id}";
 
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
 export const ALERT_MESSAGES = {
