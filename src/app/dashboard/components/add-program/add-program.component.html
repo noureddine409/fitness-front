@@ -27,7 +27,7 @@
                    [ngClass]="{'has-danger': programForm.get('program-motivation')!.invalid && programForm.get('program-motivation')!.touched}">
                 <label class="col-form-label">Program Name</label>
                 <div>
-                  <input class="form-control form-control-danger" type="text" value=""
+                  <input class="form-control form-control-danger" type="text" value="" placeholder="Your program name"
                          formControlName="program-motivation">
                   <app-validation-message controlName="program-motivation" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>
@@ -59,13 +59,13 @@
               </div>
 
               <div class="form-group col-6">
-                <label class="col-form-label">Price (DH)</label>
+                <label class="col-form-label">Price</label>
 
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">DH</span>
                   </div>
-                  <input class="form-control form-control-danger" type="text" value=""
+                  <input class="form-control form-control-danger" type="text" value="" placeholder="(DH)"
                          formControlName="program-price">
                 </div>
                 <app-validation-message controlName="program-price" [formGroup]="programForm"
@@ -82,9 +82,9 @@
               </div>
 
               <div class="form-group col-6">
-                <label class="col-form-label">Duration (Minutes/Day)</label>
+                <label class="col-form-label">Duration</label>
                 <div class="input-group">
-                  <input class="form-control" type="number" step="1" value="" formControlName="program-duration">
+                  <input class="form-control" type="number" step="1" value="" placeholder="(Minutes/Day)" formControlName="program-duration">
                   <div class="input-group-append">
                     <span class="input-group-text">minutes/day</span>
                   </div>
@@ -103,14 +103,14 @@
                 </div>
                 <label class="col-form-label">Motivation description</label>
 
-                <textarea class="form-control" formControlName="motivation-description"> </textarea>
+                <textarea class="form-control" formControlName="motivation-description" placeholder="here you can give a small motivation to your program ..."> </textarea>
                 <app-validation-message controlName="motivation-description" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
               <div class="form-group col-12">
                 <label class="col-form-label">Program description</label>
-                <textarea class="form-control" formControlName="program-description"> </textarea>
+                <textarea class="form-control" formControlName="program-description" placeholder="Your program description ..."> </textarea>
                 <app-validation-message controlName="program-description" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
               </div>
@@ -199,7 +199,7 @@
                     <div class="form-group col-6"
                          [ngClass]="{'has-danger': sectionForm.get('section-name')!.invalid && sectionForm.get('section-name')!.touched}">
                       <label class="col-form-label">Section Name</label>
-                      <input class="form-control" type="text" formControlName="section-name">
+                      <input class="form-control" type="text" formControlName="section-name" placeholder="Your section name">
                       <app-validation-message controlName="section-name" [formGroup]="sectionForm"
                                               [submitted]="sectionAdded"></app-validation-message>
                     </div>
@@ -220,7 +220,7 @@
                     <div class="form-group col-12"
                          [ngClass]="{'has-danger': sectionForm.get('section-description')!.invalid && sectionForm.get('section-description')!.touched}">
                       <label class="col-form-label">Section description</label>
-                      <textarea class="form-control" formControlName="section-description"></textarea>
+                      <textarea class="form-control" formControlName="section-description" placeholder="Your section description ..."></textarea>
                       <app-validation-message controlName="section-description" [formGroup]="sectionForm"
                                               [submitted]="sectionAdded"></app-validation-message>
                     </div>

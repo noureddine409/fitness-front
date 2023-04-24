@@ -45,6 +45,7 @@ import {AddProgramComponent} from "./dashboard/components/add-program/add-progra
 import {ModifyBlogComponent} from "./dashboard/components/modify-blog/modify-blog.component";
 import {ModifyProgramComponent} from "./dashboard/modules/modify-program/modify-program.component";
 import {ModifySectionComponent} from "./dashboard/modules/modify-program/components/modify-section/modify-section.component";
+import {JoinUsComponent} from "./join-us/join-us.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -66,6 +67,7 @@ const routes: Routes = [
   {path: 'forget-password-verify', component: ForgetPasswordVerifyComponent},
   {path: 'reset-password', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard]},
   {path: 'error-404', component: ErrorComponent},
+  {path:'join-us',component:JoinUsComponent},
   {
     path: 'dashboard', component: DashboardComponent,canActivate: [HomeGuard,DashboardGuard], children: [
       {path: '', component: DashboardHomeComponent},

@@ -98,7 +98,7 @@ export class AddBlogComponent {
         error => {
           // Set the loading flag to false
           this.loading = false;
-          this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
+          this.errorMessage = ALERT_MESSAGES.BLOG.ERROR;
         }
       )
     }

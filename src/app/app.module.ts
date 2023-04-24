@@ -19,13 +19,13 @@ import {RouterModule} from "@angular/router";
 import {HomeModule} from "./home/home.module";
 import {OurServicesItemsModule} from "./our-services-items/our-services-items.module";
 import {OurProgramsModule} from "./our-programs/our-programs.module";
-import {ProgramsModule} from "./programs/programs.module";
 import {BlogsModule} from "./blogs/blogs.module";
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {LayoutModule} from "./layout/layout.module";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {WatchProgramModule} from "./watch-program/watch-program.module";
 import {OurTrainersModule} from "./our-trainers/our-trainers.module";
+import {JoinUsModule} from "./join-us/join-us.module";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import {OurTrainersModule} from "./our-trainers/our-trainers.module";
     AuthenticationModule,
     LayoutModule,
     DashboardModule,
-    WatchProgramModule
+    WatchProgramModule,
+    JoinUsModule
 //...
 
   ],

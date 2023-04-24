@@ -5,8 +5,8 @@ export interface JoinDto{
   message: string;
   experience: string;
   approved: boolean;
-  sender: AppUser;
-  documents: string[];
+  sender?: AppUser;
+  documents?: string[];
 }
 export interface JoinTreatDto{
   accepted: boolean;

@@ -1,0 +1,6 @@
+.widget-box {
+  background-color: #E0F1FF;
+  box-shadow: 0 3px 10px 0px rgba(0,0,0,.08);
+  border-radius: 4px;
+  height: 100%;
+}
