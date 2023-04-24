@@ -78,7 +78,7 @@
               </ul>
             </li>
             <li *ngIf="currentUser && hasDashboardAccess" class="add-mega-menu"><a href="/dashboard/home">Dashboard</a></li>
-            <li *ngIf="currentUser && !hasDashboardAccess " class="add-mega-menu"><a href="/dashboard/home">Become Trainer</a></li>
+            <li *ngIf="currentUser && !hasDashboardAccess " class="add-mega-menu"><a (click)="goToOtherComponent('/join-us')">Become Trainer</a></li>
             <li *ngIf="!currentUser" class="add-mega-menu"><a href="/login">Login</a></li>
 
             <li *ngIf="currentUser" style="width: fit-content;display: inline-block">

@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit ,AfterContentChecked{
   }
 
   shouldShowHeaderAndFooter(): boolean {
-    const excludedRoutes = ['/login', '/register', '/forget-password', '/forget-password-email', '/forget-password-verify', '/reset-password', '/complete-profile', '/activate-account', '/verify-account', '/error-404', '/watch-program','/dashboard'];
+    const excludedRoutes = ['/login', '/register', '/forget-password', '/forget-password-email', '/forget-password-verify', '/reset-password', '/complete-profile','/congratulation', '/activate-account', '/verify-account', '/error-404', '/watch-program','/dashboard'];
     const currentRoute = this.router.url.split('?')[0];
     return !excludedRoutes.some(route => currentRoute.startsWith(route));
   }

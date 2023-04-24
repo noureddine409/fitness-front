@@ -167,6 +167,12 @@ export const ALERT_MESSAGES = {
   },
   PROGRAM: {
     ERROR: "Sorry, we were unable to save your program, Please try again later or contact our customer support team for further assistance."
+  },
+  BLOG: {
+    ERROR: "Sorry, we were unable to save your blog, Please try again later or contact our customer support team for further assistance."
+  },
+  REQUEST: {
+    ERROR: "Sorry, we were unable to save your request, Please try again later or contact our customer support team for further assistance."
   }
 }
 
