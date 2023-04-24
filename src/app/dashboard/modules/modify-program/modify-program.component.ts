@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ALERT_MESSAGES, equipments, options} from "../../../@shared/constants";
+import {ALERT_MESSAGES, equipments, categories} from "../../../@shared/constants";
 import {ProgramDto, ProgramPatchDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -25,7 +25,7 @@ export class ModifyProgramComponent implements OnInit {
   selectedOptions = new Set<string>();
   selectedEquipments = new Set<string>();
   myEquipments: Map<string, string> = equipments
-  myOptions: Map<string, string> = options
+  myOptions: Map<string, string> = categories
   programDto!: ProgramPatchDto;
   programId!: number;
   programData!: ProgramDto;

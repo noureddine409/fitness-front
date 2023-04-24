@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProgramDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {equipments, options} from "../../../@shared/constants";
+import {equipments, categories} from "../../../@shared/constants";
 
 @Component({
   selector: 'app-program-details',
@@ -17,7 +17,10 @@ export class TrainerProgramComponent implements OnInit {
   }
 
   getValuesFromMapOptions(keys: string[]): string {
-    return keys.map(key => options.get(key)).join(' | ');
+    return keys.map(key => categories.get(key)).join(' | ');
+  }
+  getValueFromMapCategories(key: string): string {
+    return categories.get(key) || '';
   }
 
   getValuesFromMapEquipments(keys: string[]): string {
