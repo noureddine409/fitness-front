@@ -89,6 +89,13 @@ export const LOGIN_API_URL = environment.apiUrl + '/api/auth/login';
 
 export const REGISTER_API_URL = environment.apiUrl + '/api/auth/register'
 
+export const CREATE_ORDER_API_URL = environment.apiUrl + "/api/enrollments/create-order/{id}"
+
+export const COMPLETE_ORDER_API_URL = environment.apiUrl + "/api/enrollments/complete-order"
+
+export const FIND_ENROLLMENT_API_URL = environment.apiUrl + "/api/enrollments/exists/{id}"
+
+
 export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
 
 export const REFRESH_TOKEN_API = environment.apiUrl + '/api/auth/token';

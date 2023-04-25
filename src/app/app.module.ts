@@ -26,12 +26,17 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 import {WatchProgramModule} from "./watch-program/watch-program.module";
 import {OurTrainersModule} from "./our-trainers/our-trainers.module";
 import {JoinUsModule} from "./join-us/join-us.module";
+import { CompleteOrderComponent } from './complete-order/complete-order.component';
+import {CommonModule} from "@angular/common";
+import {ProgramDetailsModule} from "./program-details/program-details.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompleteOrderComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -48,7 +53,8 @@ import {JoinUsModule} from "./join-us/join-us.module";
     LayoutModule,
     DashboardModule,
     WatchProgramModule,
-    JoinUsModule
+    JoinUsModule,
+    ProgramDetailsModule
 //...
 
   ],
