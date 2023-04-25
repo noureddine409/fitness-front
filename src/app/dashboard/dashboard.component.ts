@@ -1,18 +1,12 @@
-import {AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from "@angular/router";
+import {AfterViewInit, Component} from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements AfterViewInit,AfterContentChecked {
-  ngAfterContentChecked(): void {
-    this.changeDetector.detectChanges();
-  }
-  constructor(private router: Router, private changeDetector: ChangeDetectorRef) {
+export class DashboardComponent implements AfterViewInit {
 
-  }
 
   ngAfterViewInit(): void {
 

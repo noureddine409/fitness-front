@@ -1,6 +1,6 @@
 <!-- Breadcrumb row END -->
 <!-- inner page banner END -->
-<div class="content-block">
+<div class="content-block" *ngIf="programDto">
   <!-- About Us -->
   <div class="section-area section-sp1">
     <div class="container">
@@ -82,7 +82,7 @@
                 <p>{{ getValuesFromMapOptions(programDto.options)}}</p>
                 <h5 class="m-b5">Outcoming Sections</h5>
                 <ul class="list-checked primary">
-                  <li *ngFor="let section of programDto.sections">{{ section.title }}</li>
+                  <li *ngFor="let section of programDto?.sections">{{ section.title }}</li>
                 </ul>
                 <h5 class="m-b5">Equipment Needed</h5>
                 <p>{{getValuesFromMapEquipments(programDto.equipments)}}</p>

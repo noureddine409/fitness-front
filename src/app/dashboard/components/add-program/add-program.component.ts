@@ -1,18 +1,17 @@
-import {AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ALERT_MESSAGES, equipments, categories} from "../../../@shared/constants";
+import {ALERT_MESSAGES, categories, equipments} from "../../../@shared/constants";
 import {ProgramDto, ProgramSectionDto} from "../../../@core/models/program.model";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {Router} from "@angular/router";
 import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/selection-box.util";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-program',
   templateUrl: './add-program.component.html',
   styleUrls: ['./add-program.component.css'],
 })
-export class AddProgramComponent implements OnInit,AfterContentChecked {
+export class AddProgramComponent implements OnInit {
   programForm!: FormGroup;
   sectionForm!: FormGroup;
 
@@ -35,11 +34,9 @@ export class AddProgramComponent implements OnInit,AfterContentChecked {
   private sectionPicture!: File;
   private sectionVideo!: File;
 
-  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder, private router: Router,private changeDetector: ChangeDetectorRef) {
+  constructor(private readonly programService: ProgramService, private readonly fb: FormBuilder, private router: Router) {
   }
-  ngAfterContentChecked(): void {
-    this.changeDetector.detectChanges();
-  }
+
 
   ngOnInit() {
     this.programForm = this.fb.group({

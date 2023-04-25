@@ -16,20 +16,19 @@
           <h4>Modify program</h4>
         </div>
         <div class="widget-inner">
-          <form class="edit-profile m-b30" [formGroup]="programForm">
+          <form class="edit-profile m-b30" *ngIf="programForm"  [formGroup]="programForm">
             <div class="row">
               <div class="col-12">
                 <div class="ml-auto">
                   <h3>1. Basic info</h3>
                 </div>
               </div>
-              <div class="form-group col-6"
-                   [ngClass]="{'has-danger': programForm.get('program-motivation')!.invalid && programForm.get('program-motivation')!.touched}">
+              <div class="form-group col-6">
                 <label class="col-form-label">Program Name</label>
                 <div>
-                  <input class="form-control form-control-danger" type="text" value=""
+                  <input class="form-control form-control-danger" type="text"
                          formControlName="program-motivation">
-                  <app-validation-message controlName="program-motivation" [formGroup]="programForm"
+                  <app-validation-message [formGroup]="programForm" controlName="program-motivation"
                                           [submitted]="submitted"></app-validation-message>
                 </div>
               </div>
@@ -55,7 +54,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">DH</span>
                   </div>
-                  <input class="form-control form-control-danger" type="text" value=""
+                  <input class="form-control form-control-danger" type="text"
                          formControlName="program-price">
                 </div>
                 <app-validation-message controlName="program-price" [formGroup]="programForm"
@@ -65,7 +64,7 @@
               <div class="form-group col-6">
                 <label class="col-form-label">Category</label>
                 <select class="form-control" style="height: 40px;" formControlName="program-category">
-                  <option class="py-2" *ngFor="let option of myOptions.keys()" [value]="option">{{ myOptions.get(option) }}</option>
+                  <option class="py-2" *ngFor="let option of myOptions | keyvalue" [value]="option.key">{{ option.value }}</option>
                 </select>
                 <app-validation-message controlName="program-category" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>
@@ -74,7 +73,7 @@
               <div class="form-group col-6">
                 <label class="col-form-label">Duration (Minutes/Day)</label>
                 <div class="input-group">
-                  <input class="form-control" type="number" step="1" value="" formControlName="program-duration">
+                  <input class="form-control" type="number" step="1" formControlName="program-duration">
                   <div class="input-group-append">
                     <span class="input-group-text">minutes/day</span>
                   </div>
@@ -83,8 +82,7 @@
                                         [submitted]="submitted"></app-validation-message>
               </div>
 
-              <div class="form-group col-12"
-                   [ngClass]="{'has-danger': programForm.get('motivation-description')!.invalid && programForm.get('motivation-description')!.touched}">
+              <div class="form-group col-12">
                 <div class="seperator"></div>
                 <div class="col-12 m-t20">
                   <div class="ml-auto m-b5">
@@ -109,7 +107,7 @@
                 <div>
                   <select formControlName="selected-options" multiple class="form-control form-control-lg"
                           style="height: 200px;">
-                    <option class="py-2" *ngFor="let option of myOptions.keys()" [value]="option">{{ myOptions.get(option) }}</option>
+                    <option class="py-2" *ngFor="let option of myOptions | keyvalue" [value]="option.key">{{ option.value }}</option>
                   </select>
                   <app-validation-message controlName="selected-options" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>
@@ -131,8 +129,8 @@
                 <div>
                   <select formControlName="selected-equipments" multiple class="form-control form-control-lg"
                           style="height: 200px;">
-                    <option class="py-2" *ngFor="let equipment of myEquipments.keys()"
-                            [value]="equipment">{{ myEquipments.get(equipment) }}</option>
+                    <option class="py-2" *ngFor="let equipment of myEquipments | keyvalue"
+                            [value]="equipment.key">{{ equipment.value }}</option>
                   </select>
                   <app-validation-message controlName="selected-equipments" [formGroup]="programForm"
                                           [submitted]="submitted"></app-validation-message>

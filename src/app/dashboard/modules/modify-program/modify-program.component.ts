@@ -13,7 +13,6 @@ import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/se
 })
 export class ModifyProgramComponent implements OnInit {
   programForm!: FormGroup;
-  sectionForm!: FormGroup;
 
   errorMessage = "";
 
@@ -43,7 +42,6 @@ export class ModifyProgramComponent implements OnInit {
       data => {
         this.programData = data;
         this.programSections=this.programData.sections;
-        console.log(this.programSections);
         this.initializeProgramForm();
       },
       () => {
