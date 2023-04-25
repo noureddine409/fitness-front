@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProgramService} from "../../../../../@core/services/program-service/program.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProgramDto, ProgramSectionDto, ProgramSectionPatchDto} from "../../../../../@core/models/program.model";
+import {ProgramSectionDto, ProgramSectionPatchDto} from "../../../../../@core/models/program.model";
 import {ALERT_MESSAGES} from "../../../../../@shared/constants";
 
 @Component({
@@ -33,10 +33,10 @@ export class ModifySectionComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(255)
     ]],
-    'video': [null,Validators.required],
+    'video': [null],
     'section-description': [this.programSectionDto.description, [Validators.minLength(10),Validators.maxLength(255)]],
     'section-level': [this.programSectionDto.level],
-    'preview-image': [null,Validators.required]
+    'preview-image': [null]
   });
   }
   modifySection() {

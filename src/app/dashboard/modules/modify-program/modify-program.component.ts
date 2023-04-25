@@ -18,10 +18,8 @@ export class ModifyProgramComponent implements OnInit {
   errorMessage = "";
 
   submitted!: boolean;
-  showModal = false;
   loading!: boolean;
 
-  sectionAdded!: boolean;
   selectedOptions = new Set<string>();
   selectedEquipments = new Set<string>();
   myEquipments: Map<string, string> = equipments
