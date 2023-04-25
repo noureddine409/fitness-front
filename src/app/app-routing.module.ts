@@ -46,6 +46,7 @@ import {ModifyBlogComponent} from "./dashboard/components/modify-blog/modify-blo
 import {ModifyProgramComponent} from "./dashboard/modules/modify-program/modify-program.component";
 import {JoinUsComponent} from "./join-us/join-us.component";
 import {CompleteOrderComponent} from "./complete-order/complete-order.component";
+import {WatchProgramGuard} from "./@core/guards/watch-program/watch-program.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -53,7 +54,7 @@ const routes: Routes = [
   {path: 'complete', component: CompleteOrderComponent},
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
   {path: 'program-details/:id', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
-  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard]},
+  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard, WatchProgramGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},
   {path: 'contact-us', component: ContactComponent, canActivate: [HomeGuard]},
