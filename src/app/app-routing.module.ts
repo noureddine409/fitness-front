@@ -44,14 +44,15 @@ import {TrainerBlogDetailsComponent} from "./dashboard/modules/trainer-blog-deta
 import {AddProgramComponent} from "./dashboard/components/add-program/add-program.component";
 import {ModifyBlogComponent} from "./dashboard/components/modify-blog/modify-blog.component";
 import {ModifyProgramComponent} from "./dashboard/modules/modify-program/modify-program.component";
-import {ModifySectionComponent} from "./dashboard/modules/modify-program/components/modify-section/modify-section.component";
 import {JoinUsComponent} from "./join-us/join-us.component";
+import {CompleteOrderComponent} from "./complete-order/complete-order.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent, canActivate: [HomeGuard]},
+  {path: 'complete', component: CompleteOrderComponent},
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
-  {path: 'program-details', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
+  {path: 'program-details/:id', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
   {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},
