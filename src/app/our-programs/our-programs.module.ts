@@ -3,14 +3,16 @@ import {CommonModule} from '@angular/common';
 import {OurProgramsComponent} from "./our-programs.component";
 import {ComponentsModule} from "./components/components.module";
 import {ProgramsModule} from "../programs/programs.module";
+import {ProgramsComponentsModule} from "../programs/components/components.module";
+import {SharedModule} from "../@shared/shared.module";
 
 
 @NgModule({
   declarations: [OurProgramsComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     ComponentsModule,
-    ProgramsModule
+    ProgramsComponentsModule
   ],
   exports: [OurProgramsComponent]
 })

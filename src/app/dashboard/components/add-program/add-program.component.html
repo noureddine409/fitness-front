@@ -75,7 +75,7 @@
               <div class="form-group col-6">
                 <label class="col-form-label">Category</label>
                 <select class="form-control" style="height: 40px;" formControlName="program-category">
-                  <option class="py-2" *ngFor="let option of myOptions | keyvalue" [value]="option">{{ option.value }}</option>
+                  <option class="py-2" *ngFor="let option of myOptions | keyvalue" [value]="option.key">{{ option.value }}</option>
                 </select>
                 <app-validation-message controlName="program-category" [formGroup]="programForm"
                                         [submitted]="submitted"></app-validation-message>

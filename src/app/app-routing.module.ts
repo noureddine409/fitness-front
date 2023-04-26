@@ -54,7 +54,7 @@ const routes: Routes = [
   {path: 'complete', component: CompleteOrderComponent},
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
   {path: 'program-details/:id', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
-  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard, WatchProgramGuard]},
+  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},
   {path: 'contact-us', component: ContactComponent, canActivate: [HomeGuard]},
