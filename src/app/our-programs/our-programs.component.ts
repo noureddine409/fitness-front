@@ -1,87 +1,170 @@
 import {Component, OnInit} from '@angular/core';
 import {ProgramDto} from "../@core/models/program.model";
+import {Router} from "@angular/router";
+import {ProgramService} from "../@core/services/program-service/program.service";
+import {SearchDto} from "../@core/models/search.model";
 
 @Component({
   selector: 'app-our-programs',
   templateUrl: './our-programs.component.html',
   styleUrls: ['./our-programs.component.css']
 })
-export class OurProgramsComponent implements OnInit{
+export class OurProgramsComponent implements OnInit {
   programs!: ProgramDto[];
-  constructor() {
-    this.programs = [
-      {
-        id: 1,
-        name: "Yoga for Beginners",
-        level: "Beginner",
-        price: 29.99,
-        category: "Yoga",
-        description: "Learn the basics of yoga with this comprehensive program.",
-        durationPerDay: 30,
-        options: ["Downloadable Worksheets", "Email Support"],
-        equipments: ["Yoga Mat", "Yoga Blocks", "Yoga Strap"],
-        picture: "../../assets/images/programs/pic4.jpg",
-        sections: []
-      },
-      {
-        id: 2,
-        name: "30-Day Bodyweight Challenge",
-        level: "Intermediate",
-        price: 19.99,
-        category: "Mindset",
-        description: "Transform your body in just 30 days with this challenging program.",
-        durationPerDay: 45,
-        options: ["Daily Coaching Calls", "Online Community"],
-        equipments: [],
-        picture: "../../assets/images/programs/pic1.jpg",
-        sections: []
-      },
-      {
-        id: 3,
-        name: "Beginner Nutrition Course",
-        level: "Beginner",
-        price: 49.99,
-        category: "Nutrition",
-        description: "Learn to play the guitar from scratch with this comprehensive course.",
-        durationPerDay: 60,
-        options: ["Sheet Music", "Practice Tracks"],
-        equipments: ["Acoustic Guitar"],
-        picture: "../../assets/images/programs/pic2.jpg",
-        sections: []
-      },
-      {
-        name: "Fitness For Beginners",
-        level: "Beginner",
-        price: 0,
-        category: "Fitness",
-        description: "Learn the fundamentals of digital marketing with this free introductory course.",
-        durationPerDay: 15,
-        options: [],
-        equipments: [],
-        picture: "../../assets/images/programs/pic3.jpg",
-        sections: []
-      },
-      {
-        id: 4,
-        name: "Intermediate Spanish Conversation",
-        level: "Intermediate",
-        price: 39.99,
-        category: "Mindset",
-        description: "Improve your conversational Spanish with this engaging intermediate-level course.",
-        durationPerDay: 30,
-        options: ["Weekly Video Calls", "Interactive Exercises"],
-        equipments: [],
-        picture: "../../assets/images/programs/pic1.jpg",
-        sections: []
-      }
+  searchDto!: SearchDto;
+  currentPage: number = 0;
+  currentFitnessPage: number = 0;
+  currentNutritionPage: number = 0;
+  currentMindsetPage: number = 0;
+  currentYogaPage: number = 0;
+  totalPages: number = 3;
+  totalFitnessPages: number = 3;
+  totalNutritionPages: number = 3;
+  totalMindsetPages: number = 3;
+  totalYogaPages: number = 3;
+  category: string = "all";
 
-
-
-
-
-
-    ]
+  constructor(private router: Router, private programService: ProgramService) {
   }
+
+  goToOtherComponent(url: string) {
+    this.router.navigate([url]);
+  }
+
   ngOnInit() {
+    this.loadData("all");
+  }
+
+  loadData(category: string) {
+    this.programs = [];
+    this.searchDto = {
+      page: this.currentPage,
+      size: 6,
+      keyword: ""
+    }
+    let programServiceMethod;
+    switch (category) {
+      case 'FITNESS':
+        this.category = 'FITNESS';
+        programServiceMethod = this.programService.findByCategory('FITNESS', this.currentFitnessPage);
+        break;
+      case 'NUTRITION':
+        this.category = 'NUTRITION';
+        programServiceMethod = this.programService.findByCategory('NUTRITION', this.currentNutritionPage);
+        break;
+      case 'MINDSET':
+        this.category = 'MINDSET';
+        programServiceMethod = this.programService.findByCategory('MINDSET', this.currentMindsetPage);
+        break;
+      case 'YOGA':
+        this.category = 'YOGA';
+        programServiceMethod = this.programService.findByCategory('YOGA', this.currentYogaPage);
+        break;
+      default:
+        this.category = 'all';
+        programServiceMethod = this.programService.search(this.searchDto);
+        break;
+    }
+    programServiceMethod.subscribe(response => {
+      this.programs = response.body!;
+      let headers = response.headers;
+      switch (category) {
+        case 'FITNESS':
+          this.totalFitnessPages = Number(headers.get('X-Total-Pages')!);
+          break;
+        case 'NUTRITION':
+          this.totalNutritionPages = Number(headers.get('X-Total-Pages')!);
+          break;
+        case 'MINDSET':
+          this.totalMindsetPages = Number(headers.get('X-Total-Pages')!);
+          break;
+        case 'YOGA':
+          this.totalYogaPages = Number(headers.get('X-Total-Pages')!);
+          break;
+        default:
+          this.totalPages = Number(headers.get('X-Total-Pages')!);
+      }
+    });
+  }
+
+  increasePage(category: string) {
+    switch (category) {
+      case 'FITNESS':
+        this.currentFitnessPage++;
+        break;
+      case 'NUTRITION':
+        this.currentNutritionPage++;
+        break;
+      case 'MINDSET':
+        this.currentMindsetPage++;
+        break;
+      case 'YOGA':
+        this.currentYogaPage++;
+        break;
+      default:
+        this.currentPage++;
+    }
+  }
+
+  decreasePage(category: string) {
+    switch (category) {
+      case 'FITNESS':
+        this.currentFitnessPage--;
+        break;
+      case 'NUTRITION':
+        this.currentNutritionPage--;
+        break;
+      case 'MINDSET':
+        this.currentMindsetPage--;
+        break;
+      case 'YOGA':
+        this.currentYogaPage--;
+        break;
+      default:
+        this.currentPage--;
+    }
+  }
+
+  nextPage(category: string) {
+    if (this.currentPage < this.totalPages - 1) {
+      this.increasePage(category);
+      this.loadData(category);
+    }
+  }
+
+  previousPage(category: string) {
+    if (this.currentPage > 0) {
+      this.decreasePage(category);
+      this.loadData(category);
+    }
+  }
+
+  generatePageRange(category: string) {
+    let currentPage, totalPage;
+    switch (category) {
+      case 'FITNESS':
+        currentPage = this.currentFitnessPage;
+        totalPage = this.totalFitnessPages;
+        break;
+      case 'NUTRITION':
+        currentPage = this.currentNutritionPage;
+        totalPage = this.totalNutritionPages;
+        break;
+      case 'MINDSET':
+        currentPage = this.currentMindsetPage;
+        totalPage = this.totalMindsetPages;
+        break;
+      case 'YOGA':
+        currentPage = this.currentYogaPage;
+        totalPage = this.totalYogaPages;
+        break;
+      default:
+        currentPage = this.currentPage;
+        totalPage = this.totalPages;
+        break;
+    }
+    const start = Math.max(0, currentPage - 2);
+    const end = Math.min(totalPage - 1, currentPage + 2);
+    return Array.from({length: end - start + 1}, (_, i) => start + i);
   }
 }

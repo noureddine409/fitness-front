@@ -11,4 +11,4 @@ const programsComponents: Type<any>[] = [ProgramComponent];
   ],
   exports:[...programsComponents]
 })
-export class ComponentsModule { }
+export class ProgramsComponentsModule { }
