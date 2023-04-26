@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {
   FIND_PROGRAM_BY_ID_API_URL,
-  GET_CATEGORY_PROGRAMS_API_URL,
   GET_TRAINER_PROGRAMS_API_URL,
   PROGRAM_CANCEL_API_URL,
   PROGRAM_DELETE_API_URL,
