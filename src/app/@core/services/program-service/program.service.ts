@@ -39,17 +39,10 @@ export class ProgramService {
     return this.http.post<ProgramDto>(SAVE_PROGRAM_API_URL, formData);
   }
 
-  search(searchDto: SearchDto): Observable<HttpResponse<ProgramDto[]>> {
-    return this.http.post<ProgramDto[]>(SEARCH_PROGRAM_API_URL, searchDto, {observe: 'response'});
+  search(searchDto: SearchDto, category: string): Observable<HttpResponse<ProgramDto[]>> {
+    const url = SEARCH_PROGRAM_API_URL.replace("{category}", category);
+    return this.http.post<ProgramDto[]>(url, searchDto, {observe: 'response'});
   }
-  findByCategory(category: string, page: number = 0, size: number = 8): Observable<HttpResponse<ProgramDto[]>> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
-      .set('category', category);
-    return this.http.get<ProgramDto[]>(GET_CATEGORY_PROGRAMS_API_URL, {params, observe: 'response'});
-  }
-
 
   update(id: number, programPatchDto: ProgramPatchDto): Observable<ProgramDto> {
     const formData = new FormData();
