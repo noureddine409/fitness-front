@@ -2,16 +2,19 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {
   FIND_PROGRAM_BY_ID_API_URL,
+  GET_CATEGORY_PROGRAMS_API_URL,
   GET_TRAINER_PROGRAMS_API_URL,
   PROGRAM_CANCEL_API_URL,
   PROGRAM_DELETE_API_URL,
   PROGRAM_SUBMIT_API_URL,
   SAVE_PROGRAM_API_URL,
+  SEARCH_PROGRAM_API_URL,
   UPDATE_PROGRAM_API_URL,
   UPDATE_SECTION_API_URL
 } from "../../../@shared/constants";
 import {ProgramDto, ProgramPatchDto, ProgramSectionDto} from "../../models/program.model";
 import {Observable} from "rxjs";
+import {SearchDto} from "../../models/search.model";
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +38,18 @@ export class ProgramService {
 
     return this.http.post<ProgramDto>(SAVE_PROGRAM_API_URL, formData);
   }
+
+  search(searchDto: SearchDto): Observable<HttpResponse<ProgramDto[]>> {
+    return this.http.post<ProgramDto[]>(SEARCH_PROGRAM_API_URL, searchDto, {observe: 'response'});
+  }
+  findByCategory(category: string, page: number = 0, size: number = 8): Observable<HttpResponse<ProgramDto[]>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('category', category);
+    return this.http.get<ProgramDto[]>(GET_CATEGORY_PROGRAMS_API_URL, {params, observe: 'response'});
+  }
+
 
   update(id: number, programPatchDto: ProgramPatchDto): Observable<ProgramDto> {
     const formData = new FormData();
