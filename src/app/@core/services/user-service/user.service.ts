@@ -4,12 +4,12 @@ import {Observable} from "rxjs";
 import {
   GET_CURRENT_USER_API_URL,
   RESET_PASSWORD_URL,
+  SEARCH_TRAINER_API_URL,
   UPDATE_PROFILE_PICTURE_API_URL,
   UPDATE_USER_API_URL
 } from "../../../@shared/constants";
 import {AppUser, UserPatch} from "../../models/user.model";
 import {SearchDto} from "../../models/search.model";
-import {environment} from "../../../../environements/environements";
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,6 @@ export class UserService {
   }
 
   searchTrainers(searchDto: SearchDto): Observable<HttpResponse<AppUser[]>> {
-    const SEARCH_TRAINER_API_URL = environment.apiUrl + '/api/users/search/trainers'
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
 
