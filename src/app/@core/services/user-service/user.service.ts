@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {
   GET_CURRENT_USER_API_URL,
@@ -7,7 +7,9 @@ import {
   UPDATE_PROFILE_PICTURE_API_URL,
   UPDATE_USER_API_URL
 } from "../../../@shared/constants";
-import {UserPatch} from "../../models/user.model";
+import {AppUser, UserPatch} from "../../models/user.model";
+import {SearchDto} from "../../models/search.model";
+import {environment} from "../../../../environements/environements";
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +40,13 @@ export class UserService {
     const body = {oldPassword, newPassword };
     return this.http.patch<any>(RESET_PASSWORD_URL, body);
   }
+
+  searchTrainers(searchDto: SearchDto): Observable<HttpResponse<AppUser[]>> {
+    const SEARCH_TRAINER_API_URL = environment.apiUrl + '/api/users/search/trainers'
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    return this.http.post<AppUser[]>(SEARCH_TRAINER_API_URL, searchDto, { headers, observe: 'response' });
+  }
+
 }
