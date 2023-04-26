@@ -100,6 +100,8 @@ export const GET_CATEGORY_PROGRAMS_API_URL = environment.apiUrl + "/api/programs
 
 export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
 
+export const CREATE_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}"
+
 export const REFRESH_TOKEN_API = environment.apiUrl + '/api/auth/token';
 
 export const VERIFY_ACCOUNT_API = environment.apiUrl + '/api/auth/verify';

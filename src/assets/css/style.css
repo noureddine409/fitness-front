@@ -1480,7 +1480,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     -webkit-border-radius: 0;
 	text-transform: capitalize;
 	border-width: 0 0 2px 0;
-	color: #f1f1f1;
+	color: rgba(0, 0, 0, 1.00);
 	background: transparent;
 	font-size: 15px;
 }

@@ -40,7 +40,31 @@ export interface ProgramSectionDto {
   description: string;
   level: string;
   video?: SectionVideoDto;
+
+  comments?: CommentDto[];
 }
+
+export interface CommentDto {
+  id?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  comment: string;
+  createdBy: AppUser
+
+  replies: CommentReplyDto[]
+}
+
+export interface CommentReplyDto {
+
+  id?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  reply: string;
+  createdBy: AppUser;
+}
+
+
+
 export interface ProgramSectionPatchDto {
   title?: string;
   description?: string;

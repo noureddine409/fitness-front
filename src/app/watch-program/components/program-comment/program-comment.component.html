@@ -1,7 +1,9 @@
-<div class="comment-body">
-  <div class="comment-author vcard"> <img  class="avatar photo" src="assets/images/testimonials/pic2.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-  <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet.
-    In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis,
-    ac elementum ligula blandit ac.</p>
+<div *ngIf="comment" class="comment-body">
+  <div class="comment-author vcard">
+    <img class="avatar photo" src="{{comment.createdBy.profilePicture}}" alt="">
+    <cite class="fn">{{comment.createdBy.firstName + ' ' + comment.createdBy.lastName}}</cite>
+    <span class="says">says:</span>
+  </div>
+  <div class="comment-meta"><a href="#">{{ comment.createdAt | date:'medium':'':'en-US' }}</a></div>
+  <p>{{comment.comment}}</p>
 </div>

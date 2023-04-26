@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProgramDto, ProgramSectionDto} from "../@core/models/program.model";
 import {ProgramService} from "../@core/services/program-service/program.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CommentService} from "../@core/services/comment/comment.service";
 
 @Component({
   selector: 'app-watch-program',
@@ -13,11 +15,23 @@ export class WatchProgramComponent implements OnInit {
   programId!: number;
   selectedSection!: ProgramSectionDto;
 
-  constructor(private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute) {
+  commentForm!: FormGroup;
+
+  errorMessage = "";
+
+  submitted = false;
+
+  constructor(private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute,
+              private formBuilder: FormBuilder, private commentService: CommentService) {
 
   }
 
   ngOnInit(): void {
+    this.commentForm = this.formBuilder.group(
+      {
+        comment: this.formBuilder.control(null, [Validators.required])
+      }
+    )
     const param = this.activatedRoute.snapshot.paramMap.get("id")
     if (param == null) {
       this.router.navigate(['/error-404']);
@@ -40,5 +54,17 @@ export class WatchProgramComponent implements OnInit {
 
   changeVideo(section: ProgramSectionDto) {
     this.selectedSection = section;
+  }
+
+  handleAddComment() {
+    if(this.commentForm.invalid) {
+      return
+    }
+
+    this.commentService.addComment(this.selectedSection.id!, this.commentForm.value.comment).subscribe(
+      value => {
+        this.selectedSection.comments?.push(value);
+      }
+    )
   }
 }

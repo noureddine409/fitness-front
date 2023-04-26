@@ -33,27 +33,34 @@
     <br>
     <div class="clear" id="comment-list">
       <div class="comments-area" id="comments">
-        <h2 class="comments-title white-text">2 Comments</h2>
+        <h2 class="comments-title white-text">{{selectedSection.comments?.length}} Comments</h2>
         <div class="clearfix m-b20">
           <!-- comment list END -->
-          <ol class="comment-list">
+          <ol class="comment-list" *ngFor="let comment of selectedSection.comments">
             <li class="comment">
-              <app-program-comment></app-program-comment>
-              <ol class="children">
+              <app-program-comment [comment]="comment"></app-program-comment>
+              <ol class="children" *ngFor="let reply of comment.replies ">
                 <li class="comment odd parent">
-                  <app-program-comment></app-program-comment>
-                  <!-- list END -->
+                  <app-comment-reply [reply]="reply"></app-comment-reply>
                 </li>
               </ol>
               <!-- list END -->
             </li>
-            <li class="comment">
-              <app-program-comment></app-program-comment>
-            </li>
           </ol>
           <!-- comment list END -->
           <!-- Form -->
-          <app-program-create-comment></app-program-create-comment>
+          <div class="comment-respond" id="respond">
+            <h4 class="comment-reply-title" id="reply-title">Leave a Comment <small> <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a> </small> </h4>
+            <form class="comment-form" id="commentform" [formGroup]="commentForm" (ngSubmit)="handleAddComment()">
+              <p class="comment-form-comment">
+                <textarea class="comment-text" rows="8" placeholder="Comment" id="comment" formControlName="comment"></textarea>
+              </p>
+              <p class="form-submit">
+                <input type="submit" class="submit" id="submit">
+              </p>
+            </form>
+          </div>
+
           <!-- Form -->
         </div>
       </div>

@@ -1,0 +1,9 @@
+<div *ngIf="reply" class="comment-body">
+  <div class="comment-author vcard">
+    <img class="avatar photo" src="{{reply.createdBy.profilePicture}}" alt="">
+    <cite class="fn">{{reply.createdBy.firstName + ' ' + reply.createdBy.lastName}}</cite>
+    <span class="says">says:</span>
+  </div>
+  <div class="comment-meta"><a href="#">{{ reply.createdAt | date:'medium':'':'en-US' }}</a></div>
+  <p>{{reply.reply}}</p>
+</div>
