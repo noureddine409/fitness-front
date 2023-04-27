@@ -133,6 +133,8 @@ export const UPDATE_PROGRAM_API_URL = environment.apiUrl + "/api/programs/{id}"
 export const UPDATE_SECTION_API_URL = environment.apiUrl + "/api/programs/sections/{id}"
 
 export const PROGRAM_SUBMIT_API_URL = `${environment.apiUrl}/api/programs/{id}/submit`;
+export const PROGRAM_VALIDATE_API_URL = `${environment.apiUrl}/api/programs/{id}/validate`;
+  export const PROGRAM_REJECT_API_URL = `${environment.apiUrl}/api/programs/{id}/archive`;
 
 export const PROGRAM_CANCEL_API_URL = `${environment.apiUrl}/api/programs/{id}/cancel`;
 

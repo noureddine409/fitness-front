@@ -1,0 +1,60 @@
+<div class="ttr-sidebar">
+  <div class="ttr-sidebar-wrapper content-scroll">
+    <!-- side menu logo start -->
+    <div class="ttr-sidebar-logo">
+      <a (click)="goToOtherComponent('/dashboard/admin')">
+        <img alt="" src="assets/images/logo.png" class="logo-img">
+      </a>
+      <div class="ttr-sidebar-toggle-button">
+        <i class="ti-arrow-left"></i>
+      </div>
+    </div>
+
+    <!-- side menu logo end -->
+    <!-- sidebar menu start -->
+    <nav class="ttr-sidebar-navi">
+      <ul>
+        <li>
+          <a (click)="goToOtherComponent('/dashboard/admin')" class="ttr-material-button">
+            <span class="ttr-icon"><i class="ti-home"></i></span>
+            <span class="ttr-label">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="goToOtherComponent('/dashboard/admin/programs')" class="ttr-material-button">
+            <span class="ttr-icon"><i class="ti-home"></i></span>
+            <span class="ttr-label">Programs</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="goToOtherComponent('/dashboard/admin/requests')" class="ttr-material-button">
+            <span class="ttr-icon"><i class="ti-comments"></i></span>
+            <span class="ttr-label">Join Requests</span>
+          </a>
+        </li>
+        <li>
+          <a href="/profile" class="ttr-material-button">
+            <span class="ttr-icon"><i class="ti-user"></i></span>
+            <span class="ttr-label">My Profile</span>
+          </a>
+        </li>
+        <li class="ttr-seperate"></li>
+      </ul>
+      <!-- sidebar menu end -->
+    </nav>
+    <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical"
+         style="display: none;">
+      <div class="mCSB_draggerContainer">
+        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
+             style="position: absolute; min-height: 0px; height: 0px; top: 0px;">
+          <div class="mCSB_dragger_bar" style="line-height: 0px;"></div>
+        </div>
+        <div class="mCSB_draggerRail"></div>
+      </div>
+    </div>
+
+
+    <!-- sidebar menu end -->
+  </div>
+</div>
+

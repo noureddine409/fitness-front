@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {TrainerProgramsComponent} from "./trainer-programs.component";
 import {SharedModule} from "../../../@shared/shared.module";
-import {ComponentsModule} from "./components/components.module";
+import {TrProgramsComponentsModule} from "./components/components.module";
 
 
 @NgModule({
   declarations: [TrainerProgramsComponent],
   imports: [
     SharedModule,
-    ComponentsModule
+    TrProgramsComponentsModule
   ],
   exports: [TrainerProgramsComponent]
 })

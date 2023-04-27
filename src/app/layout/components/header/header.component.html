@@ -76,7 +76,12 @@
                 <li><a (click)="goToOtherComponent('/contact-us')">Contact Us</a></li>
               </ul>
             </li>
-            <li *ngIf="currentUser && hasDashboardAccess" class="add-mega-menu"><a href="/dashboard/home">Dashboard</a></li>
+            <li *ngIf="currentUser && hasDashboardAccess"><a href="javascript:;">Dashboard <i class="fa fa-chevron-down"></i></a>
+              <ul class="sub-menu">
+                <li class="add-mega-menu"><a href="/dashboard/home">Trainer</a></li>
+                <li class="add-mega-menu"><a href="/dashboard/admin">Admin</a></li>
+              </ul>
+            </li>
             <li *ngIf="currentUser && !hasDashboardAccess " class="add-mega-menu"><a (click)="goToOtherComponent('/join-us')">Become Trainer</a></li>
             <li *ngIf="!currentUser" class="add-mega-menu"><a href="/login">Login</a></li>
 
