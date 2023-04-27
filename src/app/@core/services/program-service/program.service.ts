@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {
-  FIND_PROGRAM_BY_ID_API_URL,
+  FIND_PROGRAM_BY_ID_API_URL, GET_PROGRAMS_BY_ENROLLED_USER,
   GET_TRAINER_PROGRAMS_API_URL,
   PROGRAM_CANCEL_API_URL,
   PROGRAM_DELETE_API_URL,
@@ -41,6 +41,14 @@ export class ProgramService {
   search(searchDto: SearchDto, category: string): Observable<HttpResponse<ProgramDto[]>> {
     const url = SEARCH_PROGRAM_API_URL.replace("{category}", category);
     return this.http.post<ProgramDto[]>(url, searchDto, {observe: 'response'});
+  }
+
+  getUserEnrolledPrograms(page =0, size = 6) {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<ProgramDto[]>(GET_PROGRAMS_BY_ENROLLED_USER, {params, observe: 'response'});
   }
 
   update(id: number, programPatchDto: ProgramPatchDto): Observable<ProgramDto> {

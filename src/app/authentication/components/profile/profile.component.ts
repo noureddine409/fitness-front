@@ -4,7 +4,9 @@ import {AppUser, UserPatch} from "../../../@core/models/user.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../../@core/services/token-storage/token-storage.service";
 import {ALERT_MESSAGES} from "../../../@shared/constants";
-import {getErrorMessages, matchPassword, passwordValidator} from "../../../utils/validation.util";
+import {matchPassword, passwordValidator} from "../../../utils/validation.util";
+import {ProgramDto} from "../../../@core/models/program.model";
+import {ProgramService} from "../../../@core/services/program-service/program.service";
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +14,9 @@ import {getErrorMessages, matchPassword, passwordValidator} from "../../../utils
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  totalPages: number = 3
+  currentPage = 0;
 
   updateProfileFormGroup!: FormGroup;
 
@@ -26,12 +31,10 @@ export class ProfileComponent implements OnInit {
 
   resetSubmitted = false;
 
+  programs: ProgramDto[] = [];
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private tokenStorageService: TokenStorageService) {
-  }
 
-  getErrorMessage(errors: any) {
-    return getErrorMessages(errors);
+  constructor(private programService: ProgramService, private userService: UserService, private formBuilder: FormBuilder, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -63,13 +66,17 @@ export class ProfileComponent implements OnInit {
             instagram: this.formBuilder.control(this.user?.socialMedia?.instagram)
           }
         )
-      },
-      error => {
-        console.log(error)
-        console.log("err")
       }
     )
 
+
+  this.programService.getUserEnrolledPrograms(this.currentPage).subscribe(
+    value => {
+      this.programs = value.body!
+      let headers = value.headers;
+      this.totalPages = Number(headers.get('X-Total-Pages')!);
+    }
+  )
 
   }
 
@@ -189,5 +196,33 @@ export class ProfileComponent implements OnInit {
         }
         this.resetSubmitted = false;
       })
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.loadData();
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadData();
+    }
+  }
+
+  generatePageRange() {
+    const pageRange = [];
+    const start = Math.max(0, this.currentPage - 2);
+    const end = Math.min(this.totalPages - 1, this.currentPage + 2);
+    for (let i = start; i <= end; i++) {
+      pageRange.push(i);
+    }
+    return pageRange;
+  }
+
+  loadData() {
+
   }
 }

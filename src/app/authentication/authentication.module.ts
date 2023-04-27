@@ -1,5 +1,4 @@
 import {NgModule, Type} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
 import {CompleteProfileFormComponent} from "./components/complete-profile/complete-profile-form.component";
 import {ErrorComponent} from "./components/error/error.component";
@@ -11,10 +10,10 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 import {VerifyAccountComponent} from "./components/verify-account/verify-account.component";
-import {ReactiveFormsModule} from "@angular/forms";
 import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 import {SharedModule} from "../@shared/shared.module";
-
+import {ProgramsModule} from "../programs/programs.module";
+import {ProgramsComponentsModule} from "../programs/components/components.module";
 const authenticationComponents: Type<any>[] = [ActivateAccountComponent, CompleteProfileFormComponent, ErrorComponent, ForgetPasswordComponent, ForgetPasswordVerifyComponent, ForgetPasswordMailComponent, LoginComponent, ProfileComponent, RegisterComponent, ResetPasswordComponent, VerifyAccountComponent];
 
 
@@ -22,7 +21,9 @@ const authenticationComponents: Type<any>[] = [ActivateAccountComponent, Complet
   declarations: [...authenticationComponents],
   imports: [
     SharedModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    ProgramsModule,
+    ProgramsComponentsModule
   ],
   exports: [...authenticationComponents]
 })

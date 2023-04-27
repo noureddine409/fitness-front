@@ -2,10 +2,10 @@
   <div class="cours-bx">
     <div class="action-box">
       <img [src]=program.picture alt="">
-      <a href="#" class="btn">Read More</a>
+      <a (click)="goToOtherComponent('/program-details/' + program.id)" class="btn">Read More</a>
     </div>
     <div class="info-bx text-center">
-      <h5><a class="a1" (click)="goToOtherComponent('/program-details')">{{program.name}}</a></h5>
+      <h5><a class="a1" (click)="goToOtherComponent('/program-details/' + program.id)">{{program.name}}</a></h5>
       <span>{{program.category}}</span>
     </div>
     <div class="cours-more-info">
@@ -20,7 +20,7 @@
         </ul>
       </div>
       <div class="price">
-        <h5>{{program.price}}</h5>
+        <h5>{{program.price}} MAD</h5>
         <del>-</del>
       </div>
     </div>
