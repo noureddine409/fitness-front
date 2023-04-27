@@ -29,6 +29,7 @@ import {JoinUsModule} from "./join-us/join-us.module";
 import { CompleteOrderComponent } from './complete-order/complete-order.component';
 import {CommonModule} from "@angular/common";
 import {ProgramDetailsModule} from "./program-details/program-details.module";
+import {ContactModule} from "./contact/contact.module";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {ProgramDetailsModule} from "./program-details/program-details.module";
     DashboardModule,
     WatchProgramModule,
     JoinUsModule,
-    ProgramDetailsModule
+    ProgramDetailsModule,
+    ContactModule
 //...
 
   ],

@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="col-lg-7 col-md-7">
-        <form class="contact-bx">
+        <form class="contact-bx" [formGroup]="contactFormGroup" (ngSubmit)="handleSubmit()">
           <div class="ajax-message"></div>
           <div class="heading-bx left">
             <h2 class="title-head">Get In <span>Touch</span></h2>
@@ -34,7 +34,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <label>Your Name</label>
-                  <input name="name" type="text" required class="form-control valid-character">
+                  <input type="text" class="form-control valid-character" formControlName="name">
                 </div>
               </div>
             </div>
@@ -42,7 +42,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <label>Your Email Address</label>
-                  <input name="email" type="email" class="form-control" required >
+                  <input name="email" type="email" class="form-control" formControlName="email">
                 </div>
               </div>
             </div>
@@ -50,7 +50,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <label>Your Phone</label>
-                  <input name="phone" type="text" required class="form-control int-value">
+                  <input name="phone" type="text" class="form-control int-value" formControlName="phone">
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <label>Subject</label>
-                  <input name="subject" type="text" required class="form-control">
+                  <input name="subject" type="text" class="form-control" formControlName="subject">
                 </div>
               </div>
             </div>
@@ -66,15 +66,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <label>Type Message</label>
-                  <textarea name="message" rows="4" class="form-control" required ></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="g-recaptcha" data-sitekey="6Lf2gYwUAAAAAJLxwnZTvpJqbYFWqVyzE-8BWhVe" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                  <input class="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha">
+                  <textarea name="message" rows="4" class="form-control" formControlName="body" ></textarea>
                 </div>
               </div>
             </div>

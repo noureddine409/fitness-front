@@ -98,6 +98,8 @@ export const FIND_ENROLLMENT_API_URL = environment.apiUrl + "/api/enrollments/ex
 export const SEARCH_PROGRAM_API_URL = environment.apiUrl + "/api/programs/search/category={category}"
 
 export const GET_PROGRAMS_BY_ENROLLED_USER = environment.apiUrl + "/api/programs/enrollments"
+
+export const CONTACT_US_API_URL = environment.apiUrl + '/api/contact-us'
 export const GET_CATEGORY_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/category"
 
 export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
