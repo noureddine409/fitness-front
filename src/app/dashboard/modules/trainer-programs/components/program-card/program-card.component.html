@@ -49,7 +49,7 @@
           <a *ngIf="(program.state === 'SUBMITTED' || program.state ==='ARCHIVED') && isAdmin==true" (click)="validateProgram()"  class="btn green outline radius-xl ">Validate</a>
           <a *ngIf="(program.state === 'IN_PROGRESS') && isAdmin==false" (click)="submitProgram()" class="btn green radius-xl outline">Submit</a>
           <a *ngIf="(program.state === 'IN_PROGRESS' || program.state ==='ARCHIVED') && isAdmin==false" (click)="updateProgram()" class="btn yellow outline radius-xl ">Modify</a>
-          <a *ngIf="(program.state === 'APPROVED') && isAdmin==true" (click)="rejectProgram()"  class="btn red outline radius-xl ">Reject</a>
+          <a *ngIf="(program.state === 'SUBMITTED') && isAdmin==true" (click)="rejectProgram()"  class="btn red outline radius-xl ">Reject</a>
           <a *ngIf="(program.state === 'IN_PROGRESS' || program.state ==='ARCHIVED') && isAdmin==false" (click)="deleteProgram()" class="btn red outline radius-xl ">Delete</a>
           <a *ngIf="(program.state === 'SUBMITTED') && isAdmin==false" (click)="cancelProgram()"  class="btn red outline radius-xl ">Cancel</a>
 
