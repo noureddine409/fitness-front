@@ -77,4 +77,9 @@ export class TrainerProgramsComponent implements OnInit {
   onProgramCancel(id: number) {
 
   }
+
+
+  onProgramSubmit(id: number) {
+
+  }
 }

@@ -1,10 +1,14 @@
 <div id="loading-icon-bx"></div>
 <!-- header start -->
+<ng-container *ngIf="shouldShowHeaderAndFooter()">
 <app-header ></app-header>
 <!-- header end -->
+</ng-container>
+<ng-container *ngIf="shouldShowHeaderAndFooter()">
 <!-- Left sidebar menu start -->
 <app-side-bar></app-side-bar>
 <!-- Left sidebar menu end -->
+</ng-container>
 
 <!--Main container start -->
 <main class="ttr-wrapper">

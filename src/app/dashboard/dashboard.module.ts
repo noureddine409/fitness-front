@@ -7,6 +7,7 @@ import {TrainerProgramsModule} from "./modules/trainer-programs/trainer-programs
 import {TrainerBlogsModule} from "./modules/trainer-blogs/trainer-blogs.module";
 import {TrainerBlogDetailsModule} from "./modules/trainer-blog-details/trainer-blog-details.module";
 import {ModifyProgramModule} from "./modules/modify-program/modify-program.module";
+import {AdminModule} from "./modules/admin/admin.module";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {ModifyProgramModule} from "./modules/modify-program/modify-program.modul
     TrainerProgramsModule,
     TrainerBlogsModule,
     TrainerBlogDetailsModule,
-    ModifyProgramModule
+    ModifyProgramModule,
+    AdminModule
   ],
   exports: [DashboardComponent]
 })

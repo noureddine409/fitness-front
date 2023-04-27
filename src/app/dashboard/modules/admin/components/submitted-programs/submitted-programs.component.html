@@ -13,8 +13,8 @@
         <div class="wc-title">
           <h4>Your Programs</h4>
         </div>
-        <div *ngFor="let program of Programs">
-          <app-program-card [program]="program" (programClick)="handleProgramClick($event)" (programDelete)="onProgramDelete($event)" (programCancel)="onProgramCancel($event)" (programSubmit)="onProgramSubmit($event)" [isAdmin]="false"></app-program-card>
+        <div *ngFor="let program of programs">
+          <app-program-card [program]="program" (programClick)="handleProgramClick($event)" (programDelete)="onProgramDelete($event)" (programCancel)="onProgramCancel($event)" [isAdmin]="true"></app-program-card>
         </div>
       </div>
       <!-- Pagination ==== -->

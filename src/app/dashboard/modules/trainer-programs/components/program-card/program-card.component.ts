@@ -18,12 +18,15 @@ export class ProgramCardComponent {
 
   @Input()
   program!: ProgramDto;
+  @Input()
+  isAdmin!: boolean;
 
   @Output() programClick = new EventEmitter<number>();
 
   @Output() programDelete = new EventEmitter<number>();
 
   @Output() programCancel = new EventEmitter<number>();
+  @Output() programSubmit = new EventEmitter<number>();
   programStateConfig = programStateConfigMap;
 
   accessProgram(id: number) {
@@ -54,5 +57,22 @@ export class ProgramCardComponent {
 
   updateProgram() {
       this.router.navigate([`/dashboard/modify-Program/${this.program.id}`]);
+  }
+
+  validateProgram() {
+    this.programService.validateProgram(this.program.id!).subscribe(
+      value => {
+        this.program = value;
+      }
+    )
+  }
+
+  rejectProgram() {
+this.programService.rejectProgram(this.program.id!).subscribe(
+      value => {
+        this.program = value;
+      }
+    )
+
   }
 }

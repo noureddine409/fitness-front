@@ -11,5 +11,5 @@ export const TrainerProgramsComponents: Type<any>[] = [ProgramCardComponent];
   ],
   exports: [...TrainerProgramsComponents]
 })
-export class ComponentsModule {
+export class TrProgramsComponentsModule {
 }

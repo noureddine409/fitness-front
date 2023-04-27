@@ -1,4 +1,5 @@
 import {AfterViewInit, Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +7,13 @@ import {AfterViewInit, Component} from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
+  constructor(private router: Router) {
+  }
+  shouldShowHeaderAndFooter(): boolean {
+    const excludedRoutes = ['/dashboard/admin'];
+    const currentRoute = this.router.url.split('?')[0];
+    return !excludedRoutes.some(route => currentRoute.startsWith(route));
+  }
 
 
   ngAfterViewInit(): void {

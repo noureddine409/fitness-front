@@ -47,6 +47,12 @@ import {ModifyProgramComponent} from "./dashboard/modules/modify-program/modify-
 import {JoinUsComponent} from "./join-us/join-us.component";
 import {CompleteOrderComponent} from "./complete-order/complete-order.component";
 import {WatchProgramGuard} from "./@core/guards/watch-program/watch-program.guard";
+import {AdminHomeComponent} from "./dashboard/modules/admin/components/admin-home/admin-home.component";
+import {AdminComponent} from "./dashboard/modules/admin/admin.component";
+import {
+  SubmittedProgramsComponent
+} from "./dashboard/modules/admin/components/submitted-programs/submitted-programs.component";
+import {JoinRequestsComponent} from "./dashboard/modules/admin/components/join-requests/join-requests.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -54,7 +60,7 @@ const routes: Routes = [
   {path: 'complete', component: CompleteOrderComponent},
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
   {path: 'program-details/:id', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
-  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard]},
+  {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard,WatchProgramGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},
   {path: 'contact-us', component: ContactComponent, canActivate: [HomeGuard]},
@@ -74,6 +80,12 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent,canActivate: [HomeGuard,DashboardGuard], children: [
       {path: '', component: DashboardHomeComponent},
       {path: 'home', component: DashboardHomeComponent},
+      {path: 'admin',component:AdminComponent, children: [
+          {path: '', component: AdminHomeComponent},
+          {path: 'home', component: AdminHomeComponent},
+          {path: 'programs', component: SubmittedProgramsComponent},
+          {path: 'requests',component:JoinRequestsComponent},
+        ]},
       {path: 'programs', component: TrainerProgramsComponent},
       {path: 'blogs', component: TrainerBlogsComponent},
       {path: 'basic-calendar', component: BasicCalendarComponent},

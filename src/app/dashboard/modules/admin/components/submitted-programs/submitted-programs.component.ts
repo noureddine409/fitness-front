@@ -1,14 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ProgramDto} from "../@core/models/program.model";
-import {SearchDto} from "../@core/models/search.model";
-import {ProgramService} from "../@core/services/program-service/program.service";
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {ProgramDto} from "../../../../../@core/models/program.model";
+import {SearchDto} from "../../../../../@core/models/search.model";
+import {ProgramService} from "../../../../../@core/services/program-service/program.service";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-our-programs',
-  templateUrl: './our-programs.component.html',
-  styleUrls: ['./our-programs.component.css']
+  selector: 'app-submitted-programs',
+  templateUrl: './submitted-programs.component.html',
+  styleUrls: ['./submitted-programs.component.css']
 })
-export class OurProgramsComponent implements OnInit {
+export class SubmittedProgramsComponent {
 
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef;
 
@@ -24,7 +25,7 @@ export class OurProgramsComponent implements OnInit {
   totalPages!: number
   currentPage = 0;
 
-  constructor(private programService: ProgramService) {
+  constructor(private programService: ProgramService, private router: Router) {
   }
 
   ngOnInit() {
@@ -67,7 +68,7 @@ export class OurProgramsComponent implements OnInit {
       page: this.currentPage,
       size: 9
     }
-    this.programService.search(this.searchCriteria, this.selectedCategory,'APPROVED').subscribe(
+    this.programService.search(this.searchCriteria, this.selectedCategory,'SUBMITTED').subscribe(
       value => {
         this.programs = value.body!
         let headers = value.headers;
@@ -79,5 +80,23 @@ export class OurProgramsComponent implements OnInit {
   onSearchPrograms(searchTerm: string) {
     this.searchKeyword = searchTerm;
     this.loadData()
+  }
+  handleProgramClick(id: number) {
+    this.router.navigate(['/dashboard/program-details/' + id]);
+  }
+
+  onProgramDelete(id: number) {
+    this.programService.deleteProgram(id).subscribe(
+      value => {
+        this.programs = this.programs.filter((program) => program.id !== id);
+      },
+      error => {
+        alert("cannot delete this program");
+      }
+    )
+  }
+
+  onProgramCancel($event: number) {
+
   }
 }
