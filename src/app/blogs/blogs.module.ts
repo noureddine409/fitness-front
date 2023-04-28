@@ -4,11 +4,11 @@ import {BlogsComponent} from "./blogs.component";
 import {ComponentsModule} from "./components/components.module";
 
 
-
 @NgModule({
   declarations: [BlogsComponent],
   imports: [
     CommonModule,
+    ComponentsModule,
     ComponentsModule
   ],
   exports:[BlogsComponent]

@@ -1,14 +1,14 @@
 import {NgModule, Type} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {MainSliderComponent} from "../../home/components/main-slider/main-slider.component";
+import {CommonModule} from '@angular/common';
+import { BlogCardComponent } from './blog-card/blog-card.component';
 
 const blogsComponents: Type<any>[] = [];
 
 @NgModule({
-  declarations: [...blogsComponents],
+  declarations: [...blogsComponents, BlogCardComponent],
   imports: [
     CommonModule
   ],
-  exports:[...blogsComponents]
+  exports: [...blogsComponents, BlogCardComponent]
 })
 export class ComponentsModule { }

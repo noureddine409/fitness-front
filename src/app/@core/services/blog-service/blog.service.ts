@@ -4,11 +4,15 @@ import {Observable} from "rxjs";
 import {
   BLOG_CANCEL_API_URL,
   BLOG_DELETE_API_URL,
+  BLOG_SEARCH_API_URL,
   BLOG_SUBMIT_API_URL,
   FIND_BLOG_BY_ID_API_URL,
-  GET_TRAINER_BLOGS_API_URL, SAVE_BLOG_API_URL, UPDATE_BLOG_API_URL
+  GET_TRAINER_BLOGS_API_URL,
+  SAVE_BLOG_API_URL,
+  UPDATE_BLOG_API_URL
 } from "../../../@shared/constants";
 import {BlogDto, BlogPatchDto} from "../../models/blog.model";
+import {SearchDto} from "../../models/search.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +20,10 @@ import {BlogDto, BlogPatchDto} from "../../models/blog.model";
 export class BlogService {
 
   constructor(private http: HttpClient) {
+  }
+
+  search(searchDto: SearchDto): Observable<HttpResponse<BlogDto[]>> {
+    return this.http.post<BlogDto[]>(BLOG_SEARCH_API_URL , searchDto, {observe: 'response'});
   }
 
 

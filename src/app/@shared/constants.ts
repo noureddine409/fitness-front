@@ -99,6 +99,8 @@ export const SEARCH_PROGRAM_API_URL = environment.apiUrl + "/api/programs/search
 
 export const GET_PROGRAMS_BY_ENROLLED_USER = environment.apiUrl + "/api/programs/enrollments"
 
+export const BLOG_SEARCH_API_URL = environment.apiUrl + "/api/blogs/search"
+
 export const CONTACT_US_API_URL = environment.apiUrl + '/api/contact-us'
 export const GET_CATEGORY_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/category"
 

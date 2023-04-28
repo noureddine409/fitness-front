@@ -1,0 +1,17 @@
+<div class="recent-news">
+  <div class="action-box">
+    <img src="{{blog.picture}}" alt="">
+  </div>
+  <div class="info-bx">
+    <ul class="media-post">
+      <li><i class="fa fa-calendar"></i>{{ blog.createdAt | date:'medium':'':'en-US' }}</li>
+      <li><i class="fa fa-user"></i>By {{blog.createdBy?.firstName}}</li>
+    </ul>
+    <h5 class="post-title"><a (click)="goToOtherComponent('blog-details/'+blog.id)">{{blog.name}}</a></h5>
+    <p>{{blog.content.split(' ').slice(0, 10).join(' ') + '...'}}</p>
+    <div class="post-extra">
+      <a (click)="goToOtherComponent('blog-details/'+blog.id)" class="btn-link">READ MORE</a>
+    </div>
+  </div>
+</div>
+
