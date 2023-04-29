@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProgramDto} from "../@core/models/program.model";
 import {SearchDto} from "../@core/models/search.model";
 import {ProgramService} from "../@core/services/program-service/program.service";
+import {ALERT_MESSAGES} from "../@shared/constants";
 
 @Component({
   selector: 'app-our-programs',
@@ -23,6 +24,9 @@ export class OurProgramsComponent implements OnInit {
 
   totalPages!: number
   currentPage = 0;
+
+  alert!: { message: string; type: string } | null;
+
 
   constructor(private programService: ProgramService) {
   }
@@ -72,6 +76,12 @@ export class OurProgramsComponent implements OnInit {
         this.programs = value.body!
         let headers = value.headers;
         this.totalPages = Number(headers.get('X-Total-Pages')!);
+      },
+      () => {
+        this.alert = {
+          message: ALERT_MESSAGES.ERROR,
+          type: "danger"
+        }
       }
     )
   }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ProgramService} from "../../../@core/services/program-service/program.service";
 import {ProgramDto} from "../../../@core/models/program.model";
+import {ALERT_MESSAGES} from "../../../@shared/constants";
 
 @Component({
   selector: 'app-programs',
@@ -14,6 +15,9 @@ export class TrainerProgramsComponent implements OnInit {
 
   currentPage: number = 0;
   totalPages: number = 3;
+
+  alert!: { message: string; type: string } | null;
+
 
   constructor(private router: Router, private programService: ProgramService) {
   }
@@ -28,10 +32,16 @@ export class TrainerProgramsComponent implements OnInit {
 
   loadData() {
     this.programService.findTrainerPrograms(this.currentPage).subscribe(response => {
-      this.Programs = response.body!;
-      let headers = response.headers;
-      this.totalPages = Number(headers.get('X-Total-Pages')!);
-    })
+        this.Programs = response.body!;
+        let headers = response.headers;
+        this.totalPages = Number(headers.get('X-Total-Pages')!);
+      },
+      () => {
+        this.alert = {
+          message: ALERT_MESSAGES.ERROR,
+          type: "danger"
+        }
+      })
   }
 
 
@@ -65,11 +75,14 @@ export class TrainerProgramsComponent implements OnInit {
 
   onProgramDelete(id: number) {
     this.programService.deleteProgram(id).subscribe(
-      value => {
+      () => {
         this.Programs = this.Programs.filter((program) => program.id !== id);
       },
-      error => {
-        alert("cannot delete this program");
+      () => {
+        this.alert = {
+          message: ALERT_MESSAGES.ERROR,
+          type: "danger"
+        }
       }
     )
   }

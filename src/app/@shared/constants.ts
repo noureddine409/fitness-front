@@ -202,7 +202,11 @@ export const ALERT_MESSAGES = {
   },
   REQUEST: {
     ERROR: "Sorry, we were unable to save your request, Please try again later or contact our customer support team for further assistance."
-  }
+  },
+  CONTACT: {
+    EMAIL_SENT_SUCCESSFULLY: "Email sent successfully"
+  },
+  ERROR: "We're sorry, something went wrong while processing your request. Please try again later or contact our customer support team for further assistance."
 }
 
 export const VALIDATION_MESSAGES = {

@@ -1,5 +1,8 @@
 
 <div class="container-fluid">
+  <div class="col-lg-12 mt-3">
+    <app-alert *ngIf="alert" typeAlert="{{alert.type}}" message="{{ alert.message }}"></app-alert>
+  </div>
   <div class="db-breadcrumb">
     <h4 class="breadcrumb-title">Dashboard</h4>
     <ul class="db-breadcrumb-list">
@@ -7,6 +10,7 @@
       <li>Dashboard</li>
     </ul>
   </div>
+
   <!-- Card -->
   <div class="row">
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">

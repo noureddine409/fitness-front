@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ALERT_MESSAGES} from "../../../@shared/constants";
-import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {removeFromSetAtIndex, updateSetFromValueChanges} from "../../../utils/selection-box.util";
 import {BlogService} from "../../../@core/services/blog-service/blog.service";
 import {BlogDto, BlogPatchDto} from "../../../@core/models/blog.model";
@@ -102,7 +102,7 @@ export class ModifyBlogComponent {
           this.loading = false;
           this.router.navigate([`/dashboard/blog-details/${blog.id}`]);
         },
-        error => {
+        () => {
           // Set the loading flag to false
           this.loading = false;
           this.errorMessage = ALERT_MESSAGES.BLOG.ERROR;

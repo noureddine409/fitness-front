@@ -21,6 +21,7 @@ export class AddProgramComponent implements OnInit {
   showModal = false;
   loading!: boolean;
 
+
   sectionAdded!: boolean;
   selectedOptions = new Set<string>();
   selectedEquipments = new Set<string>();
@@ -142,7 +143,6 @@ export class AddProgramComponent implements OnInit {
     }
 
     if (confirm("Are you sure you want to save changes?")) {
-      // Set the loading flag to true
       this.loading = true;
 
       const motivation = this.programForm.get('program-motivation')!.value;
@@ -153,7 +153,6 @@ export class AddProgramComponent implements OnInit {
       const category = this.programForm.get('program-category')!.value;
       const programLevel = this.programForm.get('program-level')!.value;
 
-      console.log(this.selectedEquipments)
       this.programDto = {
         name: motivation,
         level: programLevel,
@@ -175,8 +174,7 @@ export class AddProgramComponent implements OnInit {
           this.loading = false;
           this.router.navigate([`/dashboard/program-details/${program!.id}`]);
         },
-        error => {
-          // Set the loading flag to false
+        () => {
           this.loading = false;
           this.errorMessage = ALERT_MESSAGES.PROGRAM.ERROR;
         }

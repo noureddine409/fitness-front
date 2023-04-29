@@ -15,7 +15,6 @@ export class ProgramCardComponent {
   }
 
 
-
   @Input()
   program!: ProgramDto;
   @Input()
@@ -56,7 +55,7 @@ export class ProgramCardComponent {
   }
 
   updateProgram() {
-      this.router.navigate([`/dashboard/modify-Program/${this.program.id}`]);
+    this.router.navigate([`/dashboard/modify-Program/${this.program.id}`]);
   }
 
   validateProgram() {
@@ -68,7 +67,7 @@ export class ProgramCardComponent {
   }
 
   rejectProgram() {
-this.programService.rejectProgram(this.program.id!).subscribe(
+    this.programService.rejectProgram(this.program.id!).subscribe(
       value => {
         this.program = value;
       }

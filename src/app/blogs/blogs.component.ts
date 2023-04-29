@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogService} from "../@core/services/blog-service/blog.service";
 import {BlogDto} from "../@core/models/blog.model";
 import {SearchDto} from "../@core/models/search.model";
+import {ALERT_MESSAGES} from "../@shared/constants";
 
 @Component({
   selector: 'app-blogs',
@@ -11,6 +12,9 @@ import {SearchDto} from "../@core/models/search.model";
 export class BlogsComponent implements OnInit{
 
   blogs: BlogDto[] = []
+
+  alert!: { message: string; type: string } | null;
+
 
   searchDto: SearchDto = {
     keyword: "",
@@ -37,6 +41,12 @@ export class BlogsComponent implements OnInit{
         this.blogs = value.body!
         let headers = value.headers;
         this.totalPages = Number(headers.get('X-Total-Pages')!);
+      },
+      () => {
+        this.alert = {
+          message: ALERT_MESSAGES.ERROR,
+          type: "danger"
+        }
       }
     )
   }

@@ -1,7 +1,11 @@
 <div id="loading-icon-bx"></div>
 <div class="section-area section-sp1">
+
   <div class="container">
     <div  class="ttr-blog-grid-3 row" id="masonry">
+      <div class="col-lg-12 mt-3">
+        <app-alert *ngIf="alert" typeAlert="{{alert.type}}" message="{{ alert.message }}"></app-alert>
+      </div>
       <div *ngFor="let blog of blogs" class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
         <app-blog-card *ngIf="blog" [blog]="blog"></app-blog-card>
       </div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProgramEnrollment} from "../../../@core/models/enrollment.model";
 import {PaymentService} from "../../../@core/services/payment/payment.service";
 import {AppUser} from "../../../@core/models/user.model";
+import {ALERT_MESSAGES} from "../../../@shared/constants";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,9 @@ export class DashboardHomeComponent implements OnInit{
 
   newUsers: AppUser[] = [];
 
+  alert!: { message: string; type: string } | null;
+
+
   constructor(private enrollmentService: PaymentService) {
   }
 
@@ -22,6 +26,12 @@ export class DashboardHomeComponent implements OnInit{
     this.enrollmentService.getEnrolledUser().subscribe(
       value => {
         this.newUsers = value.body!;
+      },
+      () => {
+        this.alert = {
+          message: ALERT_MESSAGES.ERROR,
+          type: "danger"
+        }
       }
     )
 
