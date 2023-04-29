@@ -53,6 +53,7 @@ import {
   SubmittedProgramsComponent
 } from "./dashboard/modules/admin/components/submitted-programs/submitted-programs.component";
 import {JoinRequestsComponent} from "./dashboard/modules/admin/components/join-requests/join-requests.component";
+import {AdminGuard} from "./@core/guards/admin/admin.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -82,7 +83,7 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent,canActivate: [HomeGuard,DashboardGuard], children: [
       {path: '', component: DashboardHomeComponent},
       {path: 'home', component: DashboardHomeComponent},
-      {path: 'admin',component:AdminComponent, children: [
+      {path: 'admin',component:AdminComponent, canActivate: [AdminGuard], children: [
           {path: '', component: AdminHomeComponent},
           {path: 'home', component: AdminHomeComponent},
           {path: 'programs', component: SubmittedProgramsComponent},

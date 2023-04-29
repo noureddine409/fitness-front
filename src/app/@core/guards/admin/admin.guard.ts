@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {map, Observable} from 'rxjs';
 import {REFRESH_TOKEN_KEY, TOKEN_KEY} from "../../../@shared/constants";
+import {Token} from "../../models/token.model";
+import jwt_decode from "jwt-decode";
 import {UserService} from "../../services/user-service/user.service";
 import {TokenStorageService} from "../../services/token-storage/token-storage.service";
 import {AuthService} from "../../services/authentication/auth.service";
-import {Token} from "../../models/token.model";
-import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
+
   constructor(private userService: UserService, private router: Router, private tokenStorageService: TokenStorageService, private authService: AuthService) {
   }
 
@@ -24,7 +24,7 @@ export class DashboardGuard implements CanActivate {
       return false;
     } else {
     }
-    if (accessToken && this.hasAdminOrTrainerRole(accessToken)) {
+    if (accessToken && this.hasAdminRole(accessToken)) {
       return true
     }
     this.router.navigate(["/error-404"]);
@@ -32,10 +32,10 @@ export class DashboardGuard implements CanActivate {
   }
 
 
-  hasAdminOrTrainerRole(token: Token): boolean {
+  hasAdminRole(token: Token): boolean {
     const decodedToken: any = jwt_decode(token.token);
     const roles: string[] = decodedToken.roles;
-    const validRoles = ['ROLE_TRAINER', 'ROLE_ADMIN'];
+    const validRoles = ['ROLE_ADMIN'];
     return validRoles.some(el => roles.includes(el));
   }
 

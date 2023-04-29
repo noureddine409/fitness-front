@@ -2,13 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TokenStorageService} from "../../../@core/services/token-storage/token-storage.service";
 import {AppUser} from "../../../@core/models/user.model";
 import {Router} from "@angular/router";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
 import jwt_decode from 'jwt-decode';
 import {TOKEN_KEY} from "../../../@shared/constants";
 import {Token} from "../../../@core/models/token.model";
 import {Subscription} from "rxjs";
-
-
 
 
 @Component({
@@ -23,9 +20,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   hasDashboardAccess = false
 
   private currentUserSubscription!: Subscription;
+  hasAdminAccess = false;
 
 
-  constructor(private tokenStorageService: TokenStorageService, private router: Router, private socialAuthService: SocialAuthService) {}
+  constructor(private tokenStorageService: TokenStorageService, private router: Router) {}
 
   ngOnInit() {
     const token = this.tokenStorageService.getToken(TOKEN_KEY);
@@ -41,8 +39,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     if(token == null)
       this.hasDashboardAccess = false;
-    else
+    else {
       this.hasDashboardAccess = this.hasAdminOrTrainerRole(token);
+      this.hasAdminAccess = this.hasAdminRole(token);
+    }
+
   }
 
   ngOnDestroy() {
@@ -54,10 +55,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   hasAdminOrTrainerRole(token: Token): boolean {
     const decodedToken: any = jwt_decode(token.token);
     const roles: string[] = decodedToken.roles;
-    console.log(roles);
     const validRoles = ['ROLE_TRAINER', 'ROLE_ADMIN'];
     return validRoles.some(el => roles.includes(el));
   }
+
+  hasAdminRole(token: Token): boolean {
+    const decodedToken: any = jwt_decode(token.token);
+    const roles: string[] = decodedToken.roles;
+    console.log(roles);
+    const validRoles = ['ROLE_ADMIN'];
+    return validRoles.some(el => roles.includes(el));
+  }
+
   goToOtherComponent(url:string) {
     this.router.navigate([url]);
   }
