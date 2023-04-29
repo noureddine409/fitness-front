@@ -6,4 +6,15 @@
   </div>
   <div class="comment-meta"><a href="#">{{ comment.createdAt | date:'medium':'':'en-US' }}</a></div>
   <p>{{comment.comment}}</p>
+<div class="reply1"><a href="#" class="btn" data-toggle="modal" data-target="#exampleModal">Reply</a></div>
+  <div class="reply"><a (click)="deleteComment(comment.id!)" class="btn btn-danger my-button"><i
+    class="fa fa-trash"></i></a></div>
+  <ol class="children" *ngFor="let reply of comment.replies ">
+    <li class="comment odd parent">
+      <app-comment-reply [reply]="reply"></app-comment-reply>
+    </li>
+  </ol>
+
 </div>
+
+

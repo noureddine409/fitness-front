@@ -6,4 +6,6 @@
   </div>
   <div class="comment-meta"><a href="#">{{ reply.createdAt | date:'medium':'':'en-US' }}</a></div>
   <p>{{reply.reply}}</p>
+  <div class="reply1"><a (click)="deleteReplay(reply.id!)" class="btn btn-danger my-button"><i
+    class="fa fa-trash"></i></a></div>
 </div>

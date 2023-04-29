@@ -38,12 +38,8 @@
           <!-- comment list END -->
           <ol class="comment-list" *ngFor="let comment of selectedSection.comments">
             <li class="comment">
-              <app-program-comment [comment]="comment"></app-program-comment>
-              <ol class="children" *ngFor="let reply of comment.replies ">
-                <li class="comment odd parent">
-                  <app-comment-reply [reply]="reply"></app-comment-reply>
-                </li>
-              </ol>
+              <app-program-comment [comment]="comment" (click)="changeSection(comment)"></app-program-comment>
+
               <!-- list END -->
             </li>
           </ol>
@@ -66,6 +62,6 @@
       </div>
     </div>
   </div>
-
+  <app-modal-respond (replayClick)="handleReplayClick($event)"></app-modal-respond>
 </div>
 

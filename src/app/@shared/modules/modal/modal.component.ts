@@ -7,9 +7,6 @@ import {FormGroup} from "@angular/forms";
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-
-  @Input()
-  showMessage!: boolean;
   @Input()
   message!: string;
 
@@ -20,5 +17,6 @@ export class ModalComponent implements OnInit {
   onReply() {
     // handle reply button click
   }
+
 
 }
