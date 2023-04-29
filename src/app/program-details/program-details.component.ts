@@ -19,6 +19,7 @@ export class ProgramDetailsComponent implements OnInit{
   enrollment!: ProgramEnrollment | null;
 
   programAccess = false;
+  loading!: boolean;
 
   constructor(private paymentService: PaymentService, private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute) {
   }
@@ -64,11 +65,14 @@ export class ProgramDetailsComponent implements OnInit{
   }
 
   enroll() {
+    this.loading = true;
     this.paymentService.createEnrollmentOrder(this.programId).subscribe(
       value => {
+        this.loading = false;
         window.location.href = value.redirectUrl;
       },
       error => {
+        this.loading = false;
         this.router.navigate(["/error-404"]);
       }
     )

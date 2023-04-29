@@ -1,7 +1,7 @@
 <li>
       <span class="orders-title">
         <a href="#" class="orders-title-name">{{ order.user.firstName }} | {{order.program.name}}</a>
-        <span class="orders-info">Order #{{ order.payment.transactionId }} | Date {{ order.createdAt | date }}</span>
+        <span class="orders-info">Order #{{ order.payment.transactionId }} | {{ order.createdAt | date }}</span>
       </span>
   <span class="orders-btn">
         <a class="btn button-sm green">
