@@ -135,8 +135,8 @@ export class AppComponent implements OnInit, AfterViewInit{
           return;
         }
         jQuery('.courses-carousel').owlCarousel({
-          loop: true,
-          autoplay: true,
+          loop: false,
+          autoplay: false,
           margin: 0,
           nav: true,
           dots: false,

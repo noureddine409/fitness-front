@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ComponentsModule } from "./components/components.module";
 import {ValidationMessageModule} from "./modules/validation-message/validation-message.module";
 import {ModalModule} from "./modules/modal/modal.module";
+import {ModalRespondModule} from "./modules/modal-respond/modal-respond.module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {ModalModule} from "./modules/modal/modal.module";
     ReactiveFormsModule,
     ComponentsModule,
     ValidationMessageModule,
+    ModalModule
   ],
   declarations: [],
   providers: [],
@@ -21,7 +23,8 @@ import {ModalModule} from "./modules/modal/modal.module";
     ReactiveFormsModule,
     ComponentsModule,
     ValidationMessageModule,
-    ModalModule
+    ModalModule,
+    ModalRespondModule
   ],
 })
 export class SharedModule {

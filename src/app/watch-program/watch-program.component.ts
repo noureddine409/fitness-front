@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProgramDto, ProgramSectionDto} from "../@core/models/program.model";
+import {CommentDto, ProgramDto, ProgramSectionDto} from "../@core/models/program.model";
 import {ProgramService} from "../@core/services/program-service/program.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommentService} from "../@core/services/comment/comment.service";
@@ -20,6 +20,7 @@ export class WatchProgramComponent implements OnInit {
   errorMessage = "";
 
   submitted = false;
+  selectedComment!: CommentDto;
 
   constructor(private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute,
               private formBuilder: FormBuilder, private commentService: CommentService) {
@@ -66,5 +67,19 @@ export class WatchProgramComponent implements OnInit {
         this.selectedSection.comments?.push(value);
       }
     )
+    window.location.reload();
+  }
+
+  changeSection(comment: CommentDto) {
+    this.selectedComment = comment;
+
+  }
+
+  handleReplayClick($event: string) {
+    this.commentService.replyComment(this.selectedComment.id!, $event).subscribe(
+      data => {
+        this.selectedComment.replies.push(data);
+      });
+
   }
 }

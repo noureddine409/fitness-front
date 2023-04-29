@@ -107,6 +107,9 @@ export const GET_CATEGORY_PROGRAMS_API_URL = environment.apiUrl + "/api/programs
 export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
 
 export const CREATE_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}"
+export const REPLY_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}/reply"
+export const DELETE_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}"
+export const DELETE_REPLY_COMMENT_API_URL = environment.apiUrl + "/api/comments/reply/{replyId}"
 
 export const SEARCH_TRAINER_API_URL = environment.apiUrl + '/api/users/search/trainers'
 

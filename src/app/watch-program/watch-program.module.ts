@@ -1,17 +1,18 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {WatchProgramComponent} from "./watch-program.component";
 import {ComponentsModule} from "./components/components.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../@shared/shared.module";
 
 
 @NgModule({
   declarations: [WatchProgramComponent],
-    imports: [
-        CommonModule,
-        ComponentsModule,
-        ReactiveFormsModule
-    ],
-  exports:[WatchProgramComponent]
+  imports: [
+    SharedModule,
+    ComponentsModule,
+    ReactiveFormsModule
+  ],
+  exports: [WatchProgramComponent]
 })
-export class WatchProgramModule { }
+export class WatchProgramModule {
+}
