@@ -982,6 +982,14 @@
 	margin-right: 15px;
 	overflow:hidden;
 }
+
+.new-user-list ul li .new-users-pic img{
+
+  height: 50px;
+  width: 50px;
+
+}
+
 .orders-list ul li,
 .new-user-list ul li{
 	padding-right:0;

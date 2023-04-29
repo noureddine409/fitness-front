@@ -9,6 +9,9 @@ export interface Order {
 }
 
 export interface ProgramEnrollment {
+  id?: number;
+  createdAt?: string;
+  updatedAt?: string;
   user: AppUser;
   program: ProgramDto;
   progress: ProgramProgressDto;

@@ -11,12 +11,14 @@ import {ReviewsComponent} from "./reviews/reviews.component";
 import {AuthenticationModule} from "../../authentication/authentication.module";
 import {AddProgramComponent} from "./add-program/add-program.component";
 import {ModifyBlogComponent} from "./modify-blog/modify-blog.component";
+import { OrderComponent } from './order/order.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const dashboardComponents: Type<any>[] = [ModifyBlogComponent, AddBlogComponent, AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
 
 
 @NgModule({
-  declarations: [...dashboardComponents],
+  declarations: [...dashboardComponents, OrderComponent, NewUserComponent],
   imports: [
     SharedModule,
     AuthenticationModule

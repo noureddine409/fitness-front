@@ -162,6 +162,11 @@ export const GET_ALL_JOIN_REQUESTS= environment.apiUrl + "/api/join-us";
 export const REQUEST_JOIN_API_URL = environment.apiUrl + "/api/join-us";
 export const TREAT_JOIN_REQUEST_API_URL = environment.apiUrl + "/api/join-us/treat/{id}";
 
+export const GET_NEW_USERS_ORDERS = environment.apiUrl + "/api/enrollments/trainer";
+
+export const GET_NEW_ENROLLED_USERS = environment.apiUrl + "/api/enrollments/trainer/users";
+
+
 export const RESET_PASSWORD_URL = environment.apiUrl + "/api/users/reset-password";
 export const ALERT_MESSAGES = {
   REGISTER: {
