@@ -13,12 +13,13 @@ import {AddProgramComponent} from "./add-program/add-program.component";
 import {ModifyBlogComponent} from "./modify-blog/modify-blog.component";
 import { OrderComponent } from './order/order.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { ReviewComponent } from './review/review.component';
 
 const dashboardComponents: Type<any>[] = [ModifyBlogComponent, AddBlogComponent, AddProgramComponent, TrainerProgramComponent, BasicCalendarComponent, DashboardHomeComponent, HeaderComponent, ListViewComponent, SideBarComponent, ReviewsComponent];
 
 
 @NgModule({
-  declarations: [...dashboardComponents, OrderComponent, NewUserComponent],
+  declarations: [...dashboardComponents, OrderComponent, NewUserComponent, ReviewComponent],
   imports: [
     SharedModule,
     AuthenticationModule
