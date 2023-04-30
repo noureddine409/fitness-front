@@ -11,7 +11,7 @@ export class WatchProgramGuard implements CanActivate {
 
   constructor(private paymentService: PaymentService, private router: Router) {
   }
-
+  // TODO bug found:  check also if he own the program
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const programId = route.params.id;
     return this.paymentService.enrolled(programId).pipe(

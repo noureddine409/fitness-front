@@ -320,35 +320,7 @@ export class AppComponent implements OnInit, AfterViewInit{
         jQuery('select').selectpicker();
       }
 
-      var setCountDown = function () {
-        if (!checkSelectorExistence('.countdown')) {
-          return;
-        }
-        var currentDate = new Date();
-        var months = ["January", "February",
-          "March", "April",
-          "May", "June",
-          "July", "August",
-          "September", "October",
-          "November", "December"];
-        currentDate.setDate(currentDate.getDate() + 10);
-        // @ts-ignore
-        currentDate = currentDate.getDate() + " " + months[currentDate.getMonth()] + " " + currentDate.getFullYear();
-        /*You can use this format : 01 January 2019 */
-        // @ts-ignore
-        $('.countdown').countdown({date: currentDate + ' 23:5'});
-      }
 
-      var setCounterUp = function () {
-        if (!checkSelectorExistence('.counter')) {
-          return;
-        }
-        // @ts-ignore
-        jQuery('.counter').counterUp({
-          delay: 10,
-          time: 3000
-        });
-      }
 
       var masonryLayout = function () {
         if (!checkSelectorExistence('#masonry')) {
@@ -454,12 +426,10 @@ export class AppComponent implements OnInit, AfterViewInit{
         scrollPageLayout();
         setHeaderHeight();
         searchBar();
-
         pageScrollToTop();
         managePlaceholderStyle();
         setFooterHeight();
         setStickyheader();
-        setCountDown();
         setStylishScroll();
         manageLeftSideMenu();
         codeSecurity();
@@ -468,9 +438,7 @@ export class AppComponent implements OnInit, AfterViewInit{
       function afterLoadThePage() {
         setBootstrapDropDown();
         setDivSameHeight('.equal-height-container .equal-height-container-item');
-        setCounterUp();
         masonryLayout();
-        //manageLoader();
       }
 
       function changeTheScreen() {

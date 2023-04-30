@@ -3,6 +3,8 @@ import {ProgramEnrollment} from "../../../@core/models/enrollment.model";
 import {PaymentService} from "../../../@core/services/payment/payment.service";
 import {AppUser} from "../../../@core/models/user.model";
 import {ALERT_MESSAGES} from "../../../@shared/constants";
+import {StatisticsDto} from "../../../@core/models/statistics.model";
+import {StatisticsService} from "../../../@core/services/statistics/statistics.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,11 +19,19 @@ export class DashboardHomeComponent implements OnInit{
 
   alert!: { message: string; type: string } | null;
 
+  statistics!: StatisticsDto;
 
-  constructor(private enrollmentService: PaymentService) {
+
+  constructor(private enrollmentService: PaymentService, private statisticsService: StatisticsService) {
   }
 
   ngOnInit() {
+
+    this.statisticsService.getTrainerStatistics().subscribe(
+      value => {
+        this.statistics = value;
+      }
+    )
 
     this.enrollmentService.getEnrolledUser().subscribe(
       value => {
@@ -40,5 +50,29 @@ export class DashboardHomeComponent implements OnInit{
         this.orders = value.body!
       }
     )
+  }
+
+  formatNumber(num: number): string {
+    if (num >= 1000000000) {
+      return (num / 1000000000).toFixed(1);
+    } else if (num >= 1000000) {
+      return (num / 1000000).toFixed(1);
+    } else if (num >= 1000) {
+      return (num / 1000).toFixed(1);
+    } else {
+      return num.toString();
+    }
+  }
+
+  getSuffix(num: number): string {
+    if (num >= 1000000000) {
+      return 'B';
+    } else if (num >= 1000000) {
+      return 'M';
+    } else if (num >= 1000) {
+      return 'K';
+    } else {
+      return '';
+    }
   }
 }

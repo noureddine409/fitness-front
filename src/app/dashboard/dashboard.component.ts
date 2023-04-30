@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements AfterViewInit, OnInit {
   constructor(private router: Router) {
   }
   shouldShowHeaderAndFooter(): boolean {
@@ -15,8 +15,51 @@ export class DashboardComponent implements AfterViewInit {
     return !excludedRoutes.some(route => currentRoute.startsWith(route));
   }
 
+  ngOnInit() {
+    // @ts-ignore
+    var checkSelectorExistence = function(selectorName) {
+      if(jQuery(selectorName).length > 0){return true;}else{return false;}
+    };
+
+    var setCountDown = function(){
+      if(!checkSelectorExistence('.countdown')){return;}
+      // @ts-ignore
+      var currentDate: string = new Date();
+      var months = ["January", "February",
+        "March", "April",
+        "May", "June",
+        "July", "August",
+        "September", "October",
+        "November", "December"];
+      // @ts-ignore
+      currentDate.setDate(currentDate.getDate() + 10);
+      // @ts-ignore
+      currentDate =  currentDate.getDate() + " " + months[currentDate.getMonth()] + " " + currentDate.getFullYear();
+      /*You can use this format : 01 January 2019 */
+      // @ts-ignore
+      $('.countdown').countdown({date: currentDate+' 23:5'});
+    }
+
+    setCountDown();
+  }
+
 
   ngAfterViewInit(): void {
+
+    // @ts-ignore
+    var checkSelectorExistence = function(selectorName) {
+      if(jQuery(selectorName).length > 0){return true;}else{return false;}
+    };
+
+    var setCounterUp = function(){
+      /* change counter to counter-up*/
+      if(!checkSelectorExistence('.counter')){return;}
+      // @ts-ignore
+      jQuery('.counter').counterUp({
+        delay: 10,
+        time: 3000
+      });
+    }
 
     var searchToggle = function() {
       $(".ttr-search-toggle").on("click", function(e) {
@@ -98,6 +141,7 @@ export class DashboardComponent implements AfterViewInit {
     leftSidebar();
     materialButton();
     headerSubMenu();
+    setCounterUp();
   }
 
 
