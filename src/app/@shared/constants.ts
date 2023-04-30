@@ -102,8 +102,6 @@ export const GET_PROGRAMS_BY_ENROLLED_USER = environment.apiUrl + "/api/programs
 export const BLOG_SEARCH_API_URL = environment.apiUrl + "/api/blogs/search"
 
 export const CONTACT_US_API_URL = environment.apiUrl + '/api/contact-us'
-export const GET_CATEGORY_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/category"
-
 export const GOOGLE_LOGIN_API_API = environment.apiUrl + '/api/auth/google-social-login';
 
 export const CREATE_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}"
@@ -133,7 +131,7 @@ export const RESET_PASSWORD_API_URL = environment.apiUrl + "/api/auth/reset-pass
 
 export const FORGET_PASSWORD_VERIFY_API_URL = environment.apiUrl + "/api/auth/forget-password/verify-token"
 
-export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs"
+export const SAVE_PROGRAM_API_URL = environment.apiUrl + "/api/programs/create-program"
 export const UPDATE_PROGRAM_API_URL = environment.apiUrl + "/api/programs/{id}"
 export const UPDATE_SECTION_API_URL = environment.apiUrl + "/api/programs/sections/{id}"
 
@@ -147,7 +145,7 @@ export const PROGRAM_DELETE_API_URL = `${environment.apiUrl}/api/programs/{id}`
 export const GET_TRAINER_PROGRAMS_API_URL = environment.apiUrl + "/api/programs/me"
 
 export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/";
-export const SAVE_BLOG_API_URL = environment.apiUrl + "/api/blogs"
+export const SAVE_BLOG_API_URL = environment.apiUrl + "/api/blogs/create-blog"
 export const UPDATE_BLOG_API_URL = environment.apiUrl + "/api/blogs/{id}"
 
 export const BLOG_SUBMIT_API_URL = `${environment.apiUrl}/api/blogs/{id}/submit`;
@@ -158,9 +156,9 @@ export const BLOG_DELETE_API_URL = `${environment.apiUrl}/api/blogs/{id}`
 export const GET_TRAINER_BLOGS_API_URL = environment.apiUrl + "/api/blogs/me"
 
 export const FIND_BLOG_BY_ID_API_URL = environment.apiUrl + "/api/blogs/";
-export const GET_ALL_JOIN_REQUESTS= environment.apiUrl + "/api/join-us";
-export const REQUEST_JOIN_API_URL = environment.apiUrl + "/api/join-us";
-export const TREAT_JOIN_REQUEST_API_URL = environment.apiUrl + "/api/join-us/treat/{id}";
+export const GET_ALL_JOIN_REQUESTS= environment.apiUrl + "/api/joins/requests";
+export const REQUEST_JOIN_API_URL = environment.apiUrl + "/api/joins/join-us";
+export const TREAT_JOIN_REQUEST_API_URL = environment.apiUrl + "/api/joins/treat/{id}";
 
 export const GET_NEW_USERS_ORDERS = environment.apiUrl + "/api/enrollments/trainer";
 
