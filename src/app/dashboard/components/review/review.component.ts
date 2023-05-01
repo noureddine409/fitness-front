@@ -18,4 +18,16 @@ export class ReviewComponent {
     this.reviewClick.emit(id);
   }
 
+  deleteReview() {
+    this.reviewService.deleteReview(this.review.id!).subscribe(
+      (response) => {
+        //this.router.navigate(['/dashboard/reviews']);
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
 }

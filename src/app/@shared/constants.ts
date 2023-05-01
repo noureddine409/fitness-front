@@ -113,6 +113,7 @@ export const CREATE_REVIEW_API_URL = environment.apiUrl + "/api/reviews/{program
 export const DELETE_REVIEW_API_URL = environment.apiUrl + "/api/reviews/{id}"
 export const SEARCH_REVIEW_API_URL = environment.apiUrl + "/api/reviews/search"
 export const UPDATE_REVIEW_API_URL = environment.apiUrl + "/api/reviews/{id}"
+export const DELETE_REVIEWS_API_URL = environment.apiUrl + "/api/reviews/{id}"
 
 export const SEARCH_TRAINER_API_URL = environment.apiUrl + '/api/users/search/trainers'
 
