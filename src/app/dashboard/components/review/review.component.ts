@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ReviewService} from "../../../@core/services/review-service/review.service";
+import {Router} from "@angular/router";
+import {ReviewDto} from "../../../@core/models/review.model";
 
 @Component({
   selector: 'app-review',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent {
+  @Input()
+  review!: ReviewDto;
+  @Output() reviewClick = new EventEmitter<number>();
+  constructor(private reviewService: ReviewService, private router: Router) {
+  }
+  accessReview(id: number) {
+    this.reviewClick.emit(id);
+  }
 
 }

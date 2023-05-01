@@ -1,0 +1,27 @@
+/* rating.component.css */
+.rating {
+  unicode-bidi: bidi-override;
+}
+
+.rating span {
+  display: inline-block;
+  position: relative;
+  font-size: 24px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.rating span:hover {
+  transform: scale(1.2);
+}
+
+.rating span:hover ~ span {
+  transform: scale(1);
+}
+
+.rating span i {
+  color: #ddd;
+}
+
+.rating span i.active {
+  color: gold;
+}

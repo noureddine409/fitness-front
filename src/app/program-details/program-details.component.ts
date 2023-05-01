@@ -5,6 +5,9 @@ import {ProgramService} from "../@core/services/program-service/program.service"
 import {categories, equipments} from "../@shared/constants";
 import {PaymentService} from "../@core/services/payment/payment.service";
 import {ProgramEnrollment} from "../@core/models/enrollment.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ReviewService} from "../@core/services/review-service/review.service";
+import {ReviewDto} from "../@core/models/review.model";
 
 @Component({
   selector: 'app-program-details',
@@ -15,13 +18,27 @@ export class ProgramDetailsComponent implements OnInit{
 
   programDto!: ProgramDto;
   programId!: number;
+  reviewForm!: FormGroup;
+  submitted!: boolean;
+  review! : ReviewDto;
 
   enrollment!: ProgramEnrollment | null;
 
   programAccess = false;
   loading!: boolean;
+  selectedStars = 0;
 
-  constructor(private paymentService: PaymentService, private router: Router, private programService: ProgramService, private activatedRoute: ActivatedRoute) {
+  setRating(rating: number) {
+    this.selectedStars = rating;
+    console.log(rating);
+  }
+
+  constructor(private paymentService: PaymentService,
+              private router: Router,
+              private programService: ProgramService,
+              private activatedRoute: ActivatedRoute,
+              private readonly fb: FormBuilder,
+              private reviewService: ReviewService) {
   }
 
   getValuesFromMapOptions(keys: string[]): string {
@@ -51,6 +68,13 @@ export class ProgramDetailsComponent implements OnInit{
         this.router.navigate(["/error-404"]);
       }
     )
+    this.reviewForm=this.fb.group({
+      'review': ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(255)
+      ]],
+    });
 
     this.paymentService.enrolled(this.programId).subscribe(
       value => {
@@ -83,4 +107,21 @@ export class ProgramDetailsComponent implements OnInit{
 
   }
 
+
+  saveReview() {
+    this.submitted = true;
+    if(this.reviewForm.invalid) {
+      return
+    }
+    const review = this.reviewForm.get('review')!.value;
+    this.review = {
+      review: review,
+      rating: this.selectedStars
+    }
+    this.reviewService.saveReview(this.programDto.id!, this.review).subscribe(
+      value => {
+        this.router.navigate(["/our-programs"]);
+      });
+    this.reviewForm.reset();
+  }
 }
