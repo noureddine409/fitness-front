@@ -13,13 +13,18 @@
         <div class="wc-title">
           <h4>Review</h4>
         </div>
-        <div class="widget-inner">
-          <app-review></app-review>
+        <div class="widget-inner" *ngFor="let review of reviews">
+          <app-review [review]="review" (reviewClick)="handleReviewClick($event)"></app-review>
           <hr>
-          <app-review></app-review>
-          <hr>
-          <app-review></app-review>
-          <hr>
+        </div>
+        <div class="pagination-bx rounded-sm gray clearfix">
+          <ul class="pagination">
+            <li class="previous"><a (click)="previousPage()"><i class="ti-arrow-left"></i> Prev</a></li>
+            <li *ngFor="let pageNumber of generatePageRange()" [class.active]="pageNumber === currentPage">
+              <a (click)="currentPage = pageNumber; loadData();">{{ pageNumber + 1 }}</a>
+            </li>
+            <li class="next"><a (click)="nextPage()">Next <i class="ti-arrow-right"></i></a></li>
+          </ul>
         </div>
         <!-- add modal-->
         <app-modal-respond></app-modal-respond>
