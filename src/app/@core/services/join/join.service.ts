@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {JoinDto, JoinTreatDto} from "../../models/join.model";
 import {GET_ALL_JOIN_REQUESTS, REQUEST_JOIN_API_URL, TREAT_JOIN_REQUEST_API_URL} from "../../../@shared/constants";
@@ -20,12 +20,15 @@ export class JoinService {
     return this.http.post<JoinDto>(REQUEST_JOIN_API_URL, formData);
   }
 
-  findAllRequests(): Observable<JoinDto[]> {
-    return this.http.get<JoinDto[]>(GET_ALL_JOIN_REQUESTS);
+  findAllRequests(page: number = 0, size: number = 3): Observable<HttpResponse<JoinDto[]>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    return this.http.get<JoinDto[]>(GET_ALL_JOIN_REQUESTS, {params, observe: 'response'});
   }
 
   treatRequest(id: number, joinTreat: JoinTreatDto): Observable<JoinDto> {
-    const url = TREAT_JOIN_REQUEST_API_URL.replace('{id}', id.toString());
+    const url = TREAT_JOIN_REQUEST_API_URL.replace('{id_request}', id.toString());
     return this.http.patch<JoinDto>(url, joinTreat);
   }
 }

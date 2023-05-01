@@ -1,1 +1,35 @@
-<p>join-requests works!</p>
+<div class="container-fluid">
+  <div class="db-breadcrumb">
+    <h4 class="breadcrumb-title">Request</h4>
+    <ul class="db-breadcrumb-list">
+      <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+      <li>Request</li>
+    </ul>
+  </div>
+  <div class="row">
+    <!-- Your Profile Views Chart -->
+    <div class="col-lg-12 m-b30">
+      <div class="widget-box">
+        <div class="wc-title">
+          <h4>Request</h4>
+        </div>
+        <div class="widget-inner" *ngFor="let request of requests">
+          <app-request-card [request]="request" (requestClick)="handleRequestClick($event)"></app-request-card>
+          <hr>
+        </div>
+        <div class="pagination-bx rounded-sm gray clearfix">
+          <ul class="pagination">
+            <li class="previous"><a (click)="previousPage()"><i class="ti-arrow-left"></i> Prev</a></li>
+            <li *ngFor="let pageNumber of generatePageRange()" [class.active]="pageNumber === currentPage">
+              <a (click)="currentPage = pageNumber; loadData();">{{ pageNumber + 1 }}</a>
+            </li>
+            <li class="next"><a (click)="nextPage()">Next <i class="ti-arrow-right"></i></a></li>
+          </ul>
+        </div>
+        <!-- add modal-->
+        <app-modal-respond></app-modal-respond>
+      </div>
+    </div>
+    <!-- Your Profile Views Chart END-->
+  </div>
+</div>

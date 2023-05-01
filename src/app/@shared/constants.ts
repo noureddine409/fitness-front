@@ -166,7 +166,7 @@ export const GET_TRAINER_BLOGS_API_URL = environment.apiUrl + "/api/blogs/me"
 export const FIND_BLOG_BY_ID_API_URL = environment.apiUrl + "/api/blogs/";
 export const GET_ALL_JOIN_REQUESTS= environment.apiUrl + "/api/joins/requests";
 export const REQUEST_JOIN_API_URL = environment.apiUrl + "/api/joins/join-us";
-export const TREAT_JOIN_REQUEST_API_URL = environment.apiUrl + "/api/joins/treat/{id}";
+export const TREAT_JOIN_REQUEST_API_URL = environment.apiUrl + "/api/joins/treat/{id_request}";
 
 export const GET_NEW_USERS_ORDERS = environment.apiUrl + "/api/enrollments/trainer";
 

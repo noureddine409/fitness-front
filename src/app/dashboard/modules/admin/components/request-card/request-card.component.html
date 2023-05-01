@@ -1,0 +1,54 @@
+<div class="card-courses-list admin-review">
+  <div class="card-courses-full-dec">
+    <div class="card-courses-title">
+      <h4 (click)="accessRequest(request.id!)">{{request.expertise}}</h4>
+    </div>
+    <div class="card-courses-list-bx">
+      <ul class="card-courses-view">
+        <li class="card-courses-user">
+          <div class="card-courses-user-pic">
+            <img [src]=request.sender!.profilePicture alt=""/>
+          </div>
+          <div class="card-courses-user-info">
+            <h5>User</h5>
+            <h4>{{request.sender!.firstName}} {{request.sender!.lastName}}</h4>
+          </div>
+        </li>
+        <li class="card-courses-review">
+          <h5>
+        <span class="{{request.approved ? 'badge bg-success' : 'badge bg-danger'}}" style="font-size: 1.25rem; color: white;">
+            {{request.approved ? 'Approved' : 'Not Approved'}}
+        </span>
+          </h5>
+        </li>
+        <li class="card-courses-categories">
+          <h5>Date</h5>
+          <h4>{{ request.createdAt | date }}</h4>
+        </li>
+      </ul>
+    </div>
+    <div class="row card-courses-dec">
+      <div class="col-md-12">
+        <p>{{request.message}} </p>
+      </div>
+      <div class="col-md-12">
+        <a *ngIf="request.approved==false" (click)="refuseRequest()" class="btn red outline radius-xl" style="margin-left: 10px;">Refuse</a>
+        <a *ngIf="request.approved==false" (click)="acceptRequest()" class="btn green outline radius-xl" style="margin-left: 10px;">Accept</a>
+        <a class="btn radius-xl" (click)="showPicture()">Show Image</a>
+        <div *ngIf="showImage" class="modal" tabindex="-1" style="display: block;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Image</h5>
+                <button type="button" class="btn-close" (click)="showImage = false"></button>
+              </div>
+              <div class="modal-body">
+                <img [src]=request.documents!.pop()>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

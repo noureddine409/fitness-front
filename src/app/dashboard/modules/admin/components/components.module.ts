@@ -7,12 +7,13 @@ import {AdminSideBarComponent} from "./admin-side-bar/admin-side-bar.component";
 import {SubmittedProgramsComponent} from './submitted-programs/submitted-programs.component';
 import {JoinRequestsComponent} from './join-requests/join-requests.component';
 import {TrProgramsComponentsModule} from "../../trainer-programs/components/components.module";
+import { RequestCardComponent } from './request-card/request-card.component';
 
 const adminComponents: Type<any>[] = [AdminHomeComponent, AdminHeaderComponent, AdminSideBarComponent];
 
 
 @NgModule({
-  declarations: [...adminComponents, SubmittedProgramsComponent, JoinRequestsComponent],
+  declarations: [...adminComponents, SubmittedProgramsComponent, JoinRequestsComponent, RequestCardComponent],
   imports: [
     SharedModule,
     AuthenticationModule,
