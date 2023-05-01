@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ProfileComponent as ProfileComponentPublic} from "./profile/profile.component";
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {OurProgramsComponent} from "./our-programs/our-programs.component";
@@ -62,7 +63,7 @@ const routes: Routes = [
   {path: 'our-programs', component: OurProgramsComponent, canActivate: [HomeGuard]},
   {path: 'program-details/:id', component: ProgramDetailsComponent, canActivate: [HomeGuard]},
   {path: 'blog-details/:id', component: TrainerBlogDetailsComponent, canActivate: [HomeGuard]},
-
+  {path: 'user-details/:id', component: ProfileComponentPublic, canActivate: [HomeGuard]},
   {path: 'watch-program/:id', component: WatchProgramComponent, canActivate: [HomeGuard,WatchProgramGuard]},
   {path: 'our-trainers', component: OurTrainersComponent, canActivate: [HomeGuard]},
   {path: 'blogs', component: BlogsComponent, canActivate: [HomeGuard]},

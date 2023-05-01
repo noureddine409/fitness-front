@@ -148,6 +148,8 @@ export const FIND_PROGRAM_BY_ID_API_URL = environment.apiUrl + "/api/programs/";
 export const SAVE_BLOG_API_URL = environment.apiUrl + "/api/blogs/create-blog"
 export const UPDATE_BLOG_API_URL = environment.apiUrl + "/api/blogs/{id}"
 export const GET_TRAINER_STATISTICS = environment.apiUrl + "/api/statistics/trainer"
+
+export const GET_USER_BY_ID_API_URL = environment.apiUrl + "/api/users/{id}"
 export const BLOG_SUBMIT_API_URL = `${environment.apiUrl}/api/blogs/{id}/submit`;
 
 export const BLOG_CANCEL_API_URL = `${environment.apiUrl}/api/blogs/{id}/cancel`;
