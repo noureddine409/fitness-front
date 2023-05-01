@@ -7,8 +7,8 @@ export interface ReviewDto {
   updatedAt?: string;
   review: string;
   rating: number;
-  createdBy: AppUser;
-  program: ProgramDto;
+  createdBy?: AppUser;
+  program?: ProgramDto;
 }
 export interface ReviewPatchDto {
   review: string;

@@ -135,6 +135,46 @@
         </div>
 
       </div>
+      <div class="clear" id="comment-list">
+        <div class="comments-area" id="comments">
+          <div class="clearfix m-b20">
+            <div class="comment-respond" id="respond">
+              <h4 class="comment-reply-title" id="reply-title">Share your opinion <small> <a style="display:none;"
+                                                                                             href="#"
+                                                                                             id="cancel-comment-reply-link"
+                                                                                             rel="nofollow">Cancel reply</a> </small></h4>
+              <form [formGroup]="reviewForm" class="comment-form" id="commentform">
+                <!-- rating.component.html -->
+                <br>
+                <br>
+                <div class="container">
+                  <h5>How would you rate your experience with us?</h5>
+                  <div class="rating">
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" (click)="setRating(i + 1)">
+                      <i class="fa fa-star" [ngClass]="{'active': i + 1 <= selectedStars}"></i>
+                    </span>
+                  </div>
+                </div>
+                <br>
+                <br>
+
+                <p class="comment-form-comment" [ngClass]="{'has-danger': reviewForm.get('review')!.invalid && reviewForm.get('review')!.touched}">
+                  <label for="comment">Review</label>
+                  <textarea rows="8" name="comment" formControlName="review"
+                            placeholder="Do you have any suggestions how to improve our program and service?"
+                            id="comment"></textarea>
+                  <app-validation-message controlName="review" [formGroup]="reviewForm"
+                                          [submitted]="submitted"></app-validation-message>
+                </p>
+                <p class="form-submit">
+                  <input (click)="saveReview()" type="submit" value="Submit Review" class="submit" id="submit" name="submit">
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

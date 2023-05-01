@@ -18,7 +18,7 @@ export class ReviewService {
     constructor(private http: HttpClient) {
     }
     saveReview(programId:number,review:ReviewDto):Observable<ReviewDto>{
-      const url = CREATE_REVIEW_API_URL.replace("{id}", programId.toString());
+      const url = CREATE_REVIEW_API_URL.replace("{programId}", programId.toString());
       return this.http.post<ReviewDto>(url,review);
     }
     getReview(reviewId:number):Observable<ReviewDto>{

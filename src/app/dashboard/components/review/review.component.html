@@ -1,17 +1,17 @@
 <div class="card-courses-list admin-review">
   <div class="card-courses-full-dec">
     <div class="card-courses-title">
-      <h4 (click)="accessReview(review.program.id!)">{{review.program.name}}</h4>
+      <h4 (click)="accessReview(review.program!.id!)">{{review.program!.name!}}</h4>
     </div>
     <div class="card-courses-list-bx">
       <ul class="card-courses-view">
         <li class="card-courses-user">
           <div class="card-courses-user-pic">
-            <img [src]=review.createdBy.profilePicture alt=""/>
+            <img [src]=review.createdBy!.profilePicture alt=""/>
           </div>
           <div class="card-courses-user-info">
             <h5>Reviewer</h5>
-            <h4>{{review.createdBy.firstName}} {{review.createdBy.lastName}}</h4>
+            <h4>{{review.createdBy!.firstName}} {{review.createdBy!.lastName}}</h4>
           </div>
         </li>
         <li class="card-courses-review">
