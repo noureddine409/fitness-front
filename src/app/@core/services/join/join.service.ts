@@ -10,7 +10,8 @@ import {GET_ALL_JOIN_REQUESTS, REQUEST_JOIN_API_URL, TREAT_JOIN_REQUEST_API_URL}
 export class JoinService {
   constructor(private http: HttpClient) {
   }
-  becomeTrainer(join: any,documents: any[]):Observable<JoinDto> {
+
+  becomeTrainer(join: any, documents: any[]): Observable<JoinDto> {
     const formData = new FormData();
     formData.append('join', join);
     for (let i = 0; i < documents.length; i++) {
@@ -18,11 +19,13 @@ export class JoinService {
     }
     return this.http.post<JoinDto>(REQUEST_JOIN_API_URL, formData);
   }
-  findAllRequests():Observable<JoinDto[]>{
+
+  findAllRequests(): Observable<JoinDto[]> {
     return this.http.get<JoinDto[]>(GET_ALL_JOIN_REQUESTS);
   }
-  treatRequest(id:number,joinTreat:JoinTreatDto):Observable<JoinDto>{
-const url = TREAT_JOIN_REQUEST_API_URL.replace('{id}', id.toString());
-    return this.http.patch<JoinDto>(url,joinTreat);
+
+  treatRequest(id: number, joinTreat: JoinTreatDto): Observable<JoinDto> {
+    const url = TREAT_JOIN_REQUEST_API_URL.replace('{id}', id.toString());
+    return this.http.patch<JoinDto>(url, joinTreat);
   }
 }

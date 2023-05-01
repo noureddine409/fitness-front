@@ -108,6 +108,11 @@ export const CREATE_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}"
 export const REPLY_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}/reply"
 export const DELETE_COMMENT_API_URL = environment.apiUrl + "/api/comments/{id}"
 export const DELETE_REPLY_COMMENT_API_URL = environment.apiUrl + "/api/comments/reply/{replyId}"
+export const GET_REVIEWS_API_URL = environment.apiUrl + "/api/reviews/{id}"
+export const CREATE_REVIEW_API_URL = environment.apiUrl + "/api/reviews/{programId}"
+export const DELETE_REVIEW_API_URL = environment.apiUrl + "/api/reviews/{id}"
+export const SEARCH_REVIEW_API_URL = environment.apiUrl + "/api/reviews/search"
+export const UPDATE_REVIEW_API_URL = environment.apiUrl + "/api/reviews/{id}"
 
 export const SEARCH_TRAINER_API_URL = environment.apiUrl + '/api/users/search/trainers'
 
