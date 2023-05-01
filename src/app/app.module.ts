@@ -30,36 +30,38 @@ import {CompleteOrderComponent} from './complete-order/complete-order.component'
 import {CommonModule} from "@angular/common";
 import {ProgramDetailsModule} from "./program-details/program-details.module";
 import {ContactModule} from "./contact/contact.module";
+import {ProfileModule} from "./profile/profile.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     CompleteOrderComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    SocialLoginModule,
-    GoogleSigninButtonModule,
-    RouterModule.forRoot([]),
-    HomeModule,
-    OurServicesItemsModule,
-    OurProgramsModule,
-    OurTrainersModule,
-    BlogsModule,
-    AuthenticationModule,
-    LayoutModule,
-    DashboardModule,
-    WatchProgramModule,
-    JoinUsModule,
-    ProgramDetailsModule,
-    ContactModule
+    imports: [
+        CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SocialLoginModule,
+        GoogleSigninButtonModule,
+        RouterModule.forRoot([]),
+        HomeModule,
+        OurServicesItemsModule,
+        OurProgramsModule,
+        OurTrainersModule,
+        BlogsModule,
+        AuthenticationModule,
+        LayoutModule,
+        DashboardModule,
+        WatchProgramModule,
+        JoinUsModule,
+        ProgramDetailsModule,
+        ContactModule,
+        ProfileModule,
 //...
 
-  ],
+    ],
   providers: [RegistrationService,
     {
       provide: HTTP_INTERCEPTORS,
