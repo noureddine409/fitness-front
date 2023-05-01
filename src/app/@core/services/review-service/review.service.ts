@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {ReviewDto, ReviewPatchDto} from "../../models/review.model";
 import {
-  CREATE_REVIEW_API_URL,
+  CREATE_REVIEW_API_URL, DELETE_REVIEW_API_URL,
   GET_REVIEWS_API_URL,
   SEARCH_REVIEW_API_URL,
   UPDATE_REVIEW_API_URL
@@ -31,5 +31,9 @@ export class ReviewService {
     }
     searchReview(searchDto:SearchDto):Observable<HttpResponse<ReviewDto[]>>{
       return this.http.post<ReviewDto[]>(SEARCH_REVIEW_API_URL,searchDto,{observe:'response'});
+    }
+    deleteReview(reviewId:number):Observable<Boolean>{
+      const url=DELETE_REVIEW_API_URL.replace("{id}",reviewId.toString());
+      return this.http.delete<Boolean>(url);
     }
 }
