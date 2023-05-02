@@ -24,7 +24,7 @@ const dashboardComponents: Type<any>[] = [ModifyBlogComponent, AddBlogComponent,
     SharedModule,
     AuthenticationModule
   ],
-  exports: [...dashboardComponents]
+    exports: [...dashboardComponents, NewUserComponent]
 })
 export class ComponentsModule {
 }
